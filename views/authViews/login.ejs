@@ -1,0 +1,9 @@
+<%- include ('../presets/header',{title:'Iniciar Sesion',login:null}) %> 
+    <form action="/auth/login" method="post">
+        <label for="">Email</label>
+        <input type="email" name="email" placeholder="Correo Electronico"/>
+        <label for="">Contraseña</label>
+        <input type="password" name="password" placeholder="Contraseña"/>
+        <input type="submit" value="Iniciar Sesion"/>
+    </form>
+<%- include ('../presets/footer')  %> 

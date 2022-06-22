@@ -1,0 +1,12 @@
+const forgotPasswordRender = require('../controllers/getControllers/forgotPasswordRender')
+const loginRender = require('../controllers/getControllers/loginRender')
+const singUpRender = require('../controllers/getControllers/singUpRender')
+const loginUser = require('../controllers/postControllers/loginUser')
+const registerUser = require('../controllers/postControllers/registerUser')
+const router = require('express').Router()
+router.get('/login',loginRender)
+router.get('/register',singUpRender)
+router.get('/forgot-password',forgotPasswordRender)
+router.post('/register',registerUser)
+router.post('/login',loginUser)
+module.exports =router
