@@ -1,0 +1,12 @@
+<%- include ('../presetsViews/header',{title: 'Contacto',login:null}) %>
+<h1>Contacto</h1>
+<form action="/contact" method="post">
+	<label for="">Correo electronico</label>
+    <input type="email" name="email" id="" placeholder="Correo electronico"/>
+    <label for="">Asunto</label>
+    <input type="text" name="subject" id="" placeholder="Asunto"/>
+    <label for="">Su mensaje</label>
+    <textarea name="text" id="" cols="30" rows="10"></textarea>
+    <input type="submit" value="Enviar"/>
+</form>
+<%- include ('../presetsViews/footer')%>

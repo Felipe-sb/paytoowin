@@ -1,4 +1,4 @@
-<%- include ('../presets/header',{title:'Registrarse'}) %>
+<%- include ('../presetsViews/header',{title:'Registrarse',login:null}) %>
 <form action="/auth/register" method="post">
     <label for="">Nombre de usuario</label>
     <input type="text" name="username" id="" placeholder="Nombre de usuario"/>
@@ -9,5 +9,6 @@
     <label for="">Confirma Contraseña</label>
     <input type="password" name="confirmPassword" id="" placeholder="Confirma Contraseña"/>
     <input type="submit" value="Registrarse"/>
+    <a href="/auth/login">Iniciar sesion</a>
 </form>
-<%- include ('../presets/footer') %> 
+<%- include ('../presetsViews/footer') %> 

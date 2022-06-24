@@ -1,0 +1,15 @@
+<%- include('../presetsViews/header',{title:product.title,login:null}) %> 
+    <center>
+        <div>
+            <h2><%= product.title %></h2>
+            <p><%= product.level %> </p>
+            <p><%= product.description %></p>
+            <p><%= product.price %> </p>
+            <form action="/products/cart" method="post">
+                <input type="hidden" name="product" value="<%=product%>"/>
+                <input type="hidden" name="user">
+                <input type="submit" value="Agregar al carrito" />
+            </form>
+        </div>
+    </center>
+<%- include('../presetsViews/footer') %> 

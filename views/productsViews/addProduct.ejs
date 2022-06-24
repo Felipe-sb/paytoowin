@@ -1,0 +1,21 @@
+<%- include('../presetsViews/header',{title: 'Añadir Producto',login:null}) %>
+<form action="/products/add-product" method="post">
+	<label for="">Titulo</label>
+	<input type="text" name="title" id="" placeholder="Titulo" />
+	<label for="">Juego</label>
+	<input type="text" name="game" id="" placeholder="Juego" />
+	<label for="">Nivel</label>
+	<input type="number" name="level" id="" placeholder="Nivel" />
+	<label for="">Descripcion</label>
+	<textarea
+		name="description"
+		id="description"
+		placeholder="Descripcion"
+		cols="30"
+		rows="10"
+	></textarea>
+    <label for="">Precio</label>
+    <input type="number" name="price" id="" placeholder="Precio" />
+    <input type="submit" value="Agregar Producto"/>
+</form>
+<%- include('../presetsViews/footer') %>

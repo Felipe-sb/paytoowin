@@ -1,0 +1,18 @@
+<%- include('../presetsViews/header',{title: 'Catalogo',login:null}) %>
+    <% if (msg) { %>
+        <h2><%= msg %> </h2>
+    <% } %>
+    <% if (products) { %>
+        <% products.forEach(product => { %>
+            <a href="/products/product/<%= product.id %>">
+                <div>
+                    <h2><%= product.title %> </h2>
+                    <p><%= product.game %> </p>
+                    <p><%= product.level %></p>
+                    <p><%= product.description %></p>
+                    <p><%= product.price %></p>
+                </div>
+            </a>
+        <% }) %> 
+    <% } %>
+<%- include('../presetsViews/footer') %> 

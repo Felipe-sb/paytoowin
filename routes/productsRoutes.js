@@ -1,0 +1,10 @@
+const addProductRender = require('../controllers/getControllers/addProductRender')
+const addNewProduct = require('../controllers/postControllers/addNewProduct')
+const getAllProducts = require('../controllers/getControllers/catalogRender')
+const getProductById = require('../controllers/getControllers/getProductById')
+const router = require('express').Router()
+router.get('/',getAllProducts)
+router.get('/product/:id',getProductById)
+router.get('/add-product',addProductRender)
+router.post('/add-product',addNewProduct)
+module.exports =router

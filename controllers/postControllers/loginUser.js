@@ -13,6 +13,5 @@ const loginUser = async(req,res)=>{
     req.session.username = user.username
     req.session.email = user.email
     res.redirect('/auth/register')
-    console.log(req.session);
 }
 module.exports = loginUser;
