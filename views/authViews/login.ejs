@@ -1,11 +1,47 @@
 <%- include ('../presetsViews/header',{title:'Iniciar Sesion',login:null}) %> 
-    <form action="/auth/login" method="post">
-        <label for="">Email</label>
-        <input type="email" name="email" placeholder="Correo Electronico"/>
-        <label for="">Contraseña</label>
-        <input type="password" name="password" placeholder="Contraseña"/>
-        <input type="submit" value="Iniciar Sesion"/>
-        <a href="/auth/register">Registrarse</a>
-        <a href="/auth/forgot-password">Recuperar contraseña</a>
-    </form>
+    <link rel="stylesheet" href="/css/signin.css">
+    <div>
+        <main class="form-signin">
+            <form id="loginForm" action="/auth/login" method="POST">
+                <img
+                    class="mb-4"
+                    src="/img/logo.svg"
+                    alt="logo"
+                    width="80"
+                    height="67"
+                />
+                <h1 class="h3 mb-3 fw-normal">Iniciar Sesion</h1>
+
+                <div class="form-floating">
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="floatingInput"
+                        name="email"
+                        placeholder="Correo Electronico"
+                    />
+                    <label for="floatingInput">Correo electronico</label>
+                </div>
+                <div class="form-floating">
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="floatingPassword"
+                        name="password"
+                        placeholder="Contraseña"
+                    />
+                    <label for="floatingPassword">Contraseña</label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">
+                    Iniciar Sesion
+                </button>
+                <a href="/auth/register" type="button">Registrarse</a>
+                <hr />
+                <p>
+                    Si olvidaste tu contraseña has
+                    <a href="/auth/forgot-password">click aqui</a>
+                </p>
+            </form>
+        </main>
+    </div>
 <%- include ('../presetsViews/footer')  %> 
