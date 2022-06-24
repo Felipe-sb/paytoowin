@@ -13,7 +13,18 @@ const addNewProduct = (req, res) => {
 	});
     newProduct.save()
         .then((product)=>{
-            res.redirect('/products')
+            res.render('./productsViews/addProduct',{
+				product,
+				alertConfig:{
+					alert:true,
+					title:'Producto agregado',
+					text:`Ahora tienes que esperar a que sea verificado por nuestro equipo`,
+					icon:'success',
+					confirmButton:true,
+					timer:false,
+					route:'products'
+				}
+			})
         })
 };
 module.exports = addNewProduct;

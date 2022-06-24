@@ -12,7 +12,17 @@ const registerUser = async (req, res) => {
 			subject: 'Cuenta creada',
 			text: `Bienvenido ${user.username} a paytoowin la mejor plataforma para la compra y venta de juegos de tus juegos favoritos`,
 		});
-        res.redirect('/auth/login')
+        res.render('./authViews/register',{
+			alertConfig:{
+				alert:true,
+				title:'Usuario registrado con exito',
+				text:`Bienvenido a paytoowin`,
+				icon:'success',
+				confirmButton:true,
+				timer:false,
+				route:'auth/login'
+			}
+		})
 	});
 };
 module.exports = registerUser;

@@ -23,7 +23,17 @@ const sendNewPasswordToMail = async (req, res) => {
 			subject: 'Recuperacion de contraseña',
 			text: `Hola ${user.username} tu nueva contraseña es ${newPassword}`,
 		});
-		res.redirect('/auth/login');
+		res.render('./authViews/forgotPassword',{
+			alertConfig:{
+				alert:true,
+				title:'Contraseña recuperada',
+				text:'La contraseña fue enviada a tu correo',
+				icon:'success',
+				confirmButton:true,
+				timer:false,
+				route:'auth/login'
+			}
+		})
 	});
 };
 module.exports = sendNewPasswordToMail;

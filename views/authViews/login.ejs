@@ -44,4 +44,18 @@
             </form>
         </main>
     </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if (alertConfig.alert) { %>
+        <script>
+            Swal.fire({
+                title: '<%=alertConfig.title%>',
+                text: '<%=alertConfig.text%>',
+                icon: '<%=alertConfig.icon%>',
+                showConfirmButton: <%=alertConfig.confirmButton%>,
+                timer: <%=alertConfig.timer%>,
+            }).then(() => {
+                window.location = '/<%=alertConfig.route%>'
+            })
+        </script>
+    <% } %>
 <%- include ('../presetsViews/footer')  %> 

@@ -1,18 +1,27 @@
-<%- include('../presetsViews/header',{title: 'Catalogo',login:null}) %>
-    <% if (msg) { %>
-        <h2><%= msg %> </h2>
-    <% } %>
-    <% if (products) { %>
-        <% products.forEach(product => { %>
-            <a href="/products/product/<%= product.id %>">
-                <div>
-                    <h2><%= product.title %> </h2>
-                    <p><%= product.game %> </p>
-                    <p><%= product.level %></p>
-                    <p><%= product.description %></p>
-                    <p><%= product.price %></p>
+<%- include('../presetsViews/header',{title: 'Catalogo',login:null}) %> 
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+            <% if (msg) { %>
+                <h2 class="page-header"><%= msg %></h2>
+            <% }else{ %>
+			<h2 class="page-header">Catalogo</h2>
+            <%}%>
+		</div>
+        <% if (products) { %>
+            <% products.forEach(product => { %>
+                <div class="col-md-3 col-6 product-block">
+                    <a href="/products/product/<%= product.id %> " style="text-decoration: none;color: #000000">
+                        <div class="caption">
+                            <h3><%= product.title %> </h3>
+                            <div class="mb-4"><label><%= product.game %> </label></div>
+                            <div class="price-mob mb-2"><%= product.price %> </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        <% }) %> 
-    <% } %>
-<%- include('../presetsViews/footer') %> 
+            <% }) %>
+        <% } %>
+	</div>
+</div>
+<%- include('../presetsViews/footer') %>

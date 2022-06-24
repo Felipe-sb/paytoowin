@@ -9,22 +9,18 @@ body {
   margin: auto;
   text-align: center;
 }
-
 .form-signin .checkbox {
   font-weight: 400;
   text-align: center;
 }
-
 .form-signin .form-floating:focus-within {
   z-index: 2;
 }
-
 .form-floating2:focus-within {
   z-index: 2;
   padding: 30;
   margin-bottom: 10px;
 }
-
 .form-signin input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
@@ -47,10 +43,11 @@ body {
   -moz-user-select: none;
   user-select: none;
 }
-
+textarea.text{
+  height: 200px;
+}
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
       font-size: 3.5rem;
   }
 }
-
