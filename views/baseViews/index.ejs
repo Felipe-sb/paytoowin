@@ -1,4 +1,8 @@
-<%- include('../presetsViews/header',{title: 'PayTooWin',login:null}) %>
+<% if (!login) { %>
+    <%- include('../presetsViews/header',{title: 'PayTooWin',login:null}) %>
+<% }else{ %>
+    <%- include('../presetsViews/header',{title: 'PayTooWin',login:true,username:login.username}) %>
+<% } %> 
 <link rel="stylesheet" href="./css/index.css">
 <div>
     <div
@@ -34,7 +38,6 @@
                     src="img/slider-1.jpg"
                     class="d-block w-100 slider"
                     alt="banner-1"
-                    loading="lazy"
                 />
                 <div class="carousel-caption d-none d-md-block">
                     <h5>La batalla intergaláctica te espera</h5>
@@ -48,8 +51,7 @@
                 <img
                     src="img/slider-3.jpg"
                     class="d-block w-100 slider"
-                    alt="banner-3"
-                    loading="lazy"
+                    alt="banner-2"
                 />
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Juga con más de 20.000 players de tu región</h5>
@@ -61,7 +63,6 @@
                     src="img/slider-5.jpg"
                     class="d-block w-100 slider"
                     alt="banner-5"
-                    loading="lazy"
                 />
                 <div class="carousel-caption d-none d-md-block">
                     <h5>No te quedes atrás</h5>

@@ -1,4 +1,8 @@
-<%- include ('../presetsViews/header',{title: 'Contacto',login:null}) %>
+<% if (!login) { %>
+    <%- include('../presetsViews/header',{title: 'Contacto',login:null}) %>
+<% }else{ %>
+    <%- include('../presetsViews/header',{title: 'Contacto',login:true,username:login.username}) %>
+<% } %> 
 <link rel="stylesheet" href="/css/signin.css">
     <div>
         <main class="form-signin">

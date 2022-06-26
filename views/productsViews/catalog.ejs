@@ -1,4 +1,8 @@
-<%- include('../presetsViews/header',{title: 'Catalogo',login:null}) %> 
+<% if (!login) { %>
+    <%- include('../presetsViews/header',{title: 'Catalogo',login:null}) %>
+<% }else{ %>
+    <%- include('../presetsViews/header',{title: 'Catalogo',login:true,username:login.username}) %>
+<% } %> 
 <div class="container">
 	<div class="row">
 		<div class="col-12">
