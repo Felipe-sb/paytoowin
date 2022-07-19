@@ -1,13 +1,25 @@
-<% if(!login){ %>
-	<%- include('../presetsViews/header',{title: 'Añadir Producto',login:null}) %>	
+<% if (!login) { %>
+    <%- include('../presetsViews/header',{title:`Update product` ,login:null}) %>
 <% }else{ %>
-	<%- include('../presetsViews/header',{title: 'Añadir Producto',login:true,username:login.username}) %>
+    <%- include('../presetsViews/header',{title: 'Update product' ,login:true,username:login.username}) %>
 <% } %> 
 <link rel="stylesheet" href="/css/signin.css">
 <div>
 	<main class="form-signin">
-		<form action="/products/add-product" method="post" enctype="multipart/form-data">
-			<h1 class="h3 mb-3 fw-normal">Agregar Producto</h1>
+		<form action="/products/update-product" method="post">
+			<h1 class="h3 mb-3 fw-normal">Actualizar Producto</h1>
+            <div class="form-floating">
+				<input
+					type="text"
+					class="form-control"
+					id="floatingInput"
+					placeholder="ID"
+                    value="<%=product.id %>"
+                    disabled
+				/>
+				<label for="floatingInput">ID</label>
+                <input type="hidden" name="id" value="<%= product.id %>" />
+			</div>
 			<div class="form-floating">
 				<input
 					type="text"
@@ -15,6 +27,7 @@
 					id="floatingInput"
 					name="title"
 					placeholder="Titulo"
+                    value="<%=product.title %>"
 				/>
 				<label for="floatingInput">Titulo</label>
 			</div>
@@ -25,6 +38,7 @@
 					id="floatingInput"
 					name="game"
 					placeholder="Juego"
+                    value="<%= product.game %> "
 				/>
 				<label for="floatingInput">Juego</label>
 			</div>
@@ -35,14 +49,9 @@
 					id="floatingInput"
 					name="level"
 					placeholder="Nivel"
+                    value="<%= product.level %> "
 				/>
 				<label for="floatingInput">Nivel</label>
-			</div>
-			<div class="form-floating">
-				<div class="" style="padding-top: 50px;">
-					<input class="form-control" type="file" name="images" id="formFileMultiple" multiple>
-				  </div>
-				<label for="floatingInput" style="border: 1px solid #000000; width: 100%;">Imagenes</label>
 			</div>
 			<div class="form-floating">
 				<textarea
@@ -50,7 +59,8 @@
 					id="floatingInput"
 					name="description"
 					placeholder="Descripcion"
-				></textarea>
+                    
+				><%= product.description %></textarea>
 				<label for="floatingInput">Descripcion</label>
 			</div>
 			<div class="form-floating">
@@ -60,11 +70,12 @@
 					id="floatingInput"
 					name="price"
 					placeholder="Precio"
+                    value="<%= product.price %>"
 				/>
 				<label for="floatingInput">Precio</label>
 			</div>
 			<button class="w-100 btn btn-lg btn-primary" type="submit">
-				Añadir Producto
+				Actualizar Producto
 			</button>
 		</form>
 	</main>

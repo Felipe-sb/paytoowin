@@ -2,10 +2,13 @@ const Product = require('../../models/Product');
 
 const addNewProduct = (req, res) => {
 	const { title, game, level, description, price } = req.body;
+	console.log(req.files)
+	const images = req.files.map(image => image.filename)
 	const newProduct = new Product({
 		title,
 		game,
 		level: Number(level),
+		images,
 		description,
 		price: Number(price),
 		partialDelete: false,
@@ -14,6 +17,7 @@ const addNewProduct = (req, res) => {
     newProduct.save()
         .then((product)=>{
             res.render('./productsViews/addProduct',{
+				login:req.session.loggedIn,
 				product,
 				alertConfig:{
 					alert:true,

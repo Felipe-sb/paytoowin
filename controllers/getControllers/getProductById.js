@@ -12,7 +12,7 @@ const getProductById = async (req, res, next) => {
 			login: { username: req.session.username, email: req.session.email },
 		});
 	} catch (error) {
-		next(error);
+		next();
 	}
 };
 module.exports = getProductById;
