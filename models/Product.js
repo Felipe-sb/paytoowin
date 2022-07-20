@@ -3,7 +3,12 @@ const productSchema = new Schema({
 	title: String,
 	game: String,
 	level: Number,
-	images:Array,
+	images:[
+		{
+			url:String,
+			originalname:String,
+		}
+	],
 	description: String,
 	price: Number,
 	partialDelete: Boolean,

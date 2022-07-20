@@ -23,7 +23,7 @@
                             <% product.images.forEach(image=>{
                             %>
                                   <div class="carousel-item active">
-                                    <img src="./img/accounts/<%=image%>" class="d-block w-100" alt="<%= image %> ">
+                                    <img src="<%=image.url%>" class="d-block w-100" alt="<%= image.originalname %> ">
                                   </div>
                             <%    
                             }) %> 

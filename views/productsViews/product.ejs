@@ -9,7 +9,7 @@
             <p><%= product.level %> </p>
             <% product.images.forEach(image=>{
             %>
-            <img src="./img/accounts/<%=image%> " alt="<%= image %> ">
+            <img src="<%=image.url%> " alt="<%= image.originalname %> ">
             <%
             }) %> 
             <p><%= product.description %></p>

@@ -4,4 +4,4 @@ mongoose.connect(connectionString)
     .then(()=>{
         console.log('Connected to cluster');
     })
-    .catch(console.log('no conectado'))
+    .catch(err=>console.log(err));

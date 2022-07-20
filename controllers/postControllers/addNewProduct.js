@@ -1,9 +1,21 @@
 const Product = require('../../models/Product');
-
-const addNewProduct = (req, res) => {
+const cloudinary = require('cloudinary');
+cloudinary.config({ 
+    cloud_name: 'mycloudsb', 
+    api_key: '664152299234654', 
+    api_secret: '4J55bcmY_viuzJLEOuoG4KadSJI' 
+});
+const addNewProduct = async (req, res) => {
 	const { title, game, level, description, price } = req.body;
 	console.log(req.files)
-	const images = req.files.map(image => image.filename)
+	let images = []
+	for (let i = 0; i < req.files.length; i++){
+		images[i] = await cloudinary.v2.uploader.upload(req.files[i].path)
+	}
+	images = images.map(image=>{
+		return {url:image.url,originalname:image.original_filename}
+	})
+	console.log(images)
 	const newProduct = new Product({
 		title,
 		game,
