@@ -6,6 +6,7 @@ const updateProductRender = require('../controllers/getControllers/updateProduct
 const updateProduct = require('../controllers/postControllers/updateProduct')
 const upload = require('../helpers/multer')
 const validateAddProductForm = require('../middlewares/validateAddProductForm')
+const deleteProduct = require('../controllers/postControllers/deleteProduct')
 const router = require('express').Router()
 router.get('/',getAllProducts)
 router.get('/product/:id',getProductById)
@@ -13,4 +14,5 @@ router.get('/add-product',addProductRender)
 router.get('/update-product/:id',updateProductRender)
 router.post('/add-product',upload,validateAddProductForm,addNewProduct)
 router.post('/update-product',upload,updateProduct)
+router.post('/delete',deleteProduct)
 module.exports =router
