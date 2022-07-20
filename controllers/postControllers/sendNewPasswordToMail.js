@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const generateRandomPass = require('../../helpers/generateNewPassword');
 const transporter = require('../../helpers/transporter');
 const User = require('../../models/User');
