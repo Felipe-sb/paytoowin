@@ -29,6 +29,8 @@ const addNewProduct = (req, res) => {
 					route:'products'
 				}
 			})
-        })
+        }).catch(error =>{
+			console.log('No se pudo guardar el producto')
+		})
 };
 module.exports = addNewProduct;
