@@ -7,6 +7,7 @@ const productSchema = new Schema({
 		{
 			url:String,
 			originalname:String,
+			public_id:String,
 		}
 	],
 	description: String,

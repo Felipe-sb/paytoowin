@@ -13,7 +13,7 @@ const addNewProduct = async (req, res) => {
 		images[i] = await cloudinary.v2.uploader.upload(req.files[i].path)
 	}
 	images = images.map(image=>{
-		return {url:image.url,originalname:image.original_filename}
+		return {url:image.url,originalname:image.original_filename,public_id:image.public_id}
 	})
 	console.log(images)
 	const newProduct = new Product({
