@@ -9,6 +9,7 @@ const sendContactMail = async(req,res) =>{
         text
     })
     res.render('./baseViews/contact',{
+        login:req.session.loggedIn,
         alertConfig:{
             alert:true,
             title:'Correo enviado con exito',
