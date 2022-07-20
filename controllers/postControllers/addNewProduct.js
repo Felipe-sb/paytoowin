@@ -1,10 +1,5 @@
 const Product = require('../../models/Product');
-const cloudinary = require('cloudinary');
-cloudinary.config({ 
-    cloud_name: 'mycloudsb', 
-    api_key: '664152299234654', 
-    api_secret: '4J55bcmY_viuzJLEOuoG4KadSJI' 
-});
+const cloudinary = require('../../helpers/cloudinary');
 const addNewProduct = async (req, res) => {
 	const { title, game, level, description, price } = req.body;
 	console.log(req.files)
