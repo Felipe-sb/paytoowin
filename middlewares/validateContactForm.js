@@ -3,9 +3,9 @@ exports.validateContactForm=(req,res,next)=>{
     const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
     const subjectRegex = /^(?!\s*$).+/
     const textRegex = /^(?!\s*$).+/
-
     if (!emailRegex.test(email)) {
         res.render('./baseViews/contact',{
+			login:req.session.loggedIn,
             alertConfig:{
 				alert:true,
 				title:'Email invalido',
@@ -13,7 +13,7 @@ exports.validateContactForm=(req,res,next)=>{
 				icon:'warning',
 				confirmButton:true,
 				timer:false,
-				route:'/contact'
+				route:'contact'
 			}
         })
         return
@@ -21,6 +21,7 @@ exports.validateContactForm=(req,res,next)=>{
 
     if (!subjectRegex.test(subject)) {
         res.render('./baseViews/contact',{
+			login:req.session.loggedIn,
             alertConfig:{
 				alert:true,
 				title:'Asunto vacio',
@@ -28,7 +29,7 @@ exports.validateContactForm=(req,res,next)=>{
 				icon:'warning',
 				confirmButton:true,
 				timer:false,
-				route:'/contact'
+				route:'contact'
 			}
         })
         return
@@ -36,6 +37,7 @@ exports.validateContactForm=(req,res,next)=>{
 
     if (!textRegex.test(text)) {
         res.render('./baseViews/contact',{
+			login:req.session.loggedIn,
             alertConfig:{
 				alert:true,
 				title:'Contenido vacio',
@@ -43,7 +45,7 @@ exports.validateContactForm=(req,res,next)=>{
 				icon:'warning',
 				confirmButton:true,
 				timer:false,
-				route:'/contact'
+				route:'contact'
 			}
         })
         return
