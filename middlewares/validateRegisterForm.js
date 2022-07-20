@@ -3,7 +3,7 @@ exports.validateRegisterForm=(req,res,next)=>{
     const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
     const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/
     const confirmPassRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/
-    const usernameRegex= /^(?!\s*$).+/
+    const usernameRegex= /^[a-zA-Z0-9]{4,10}$/
 
     if (!usernameRegex.test(username)) {
         res.render('./authViews/register',{
