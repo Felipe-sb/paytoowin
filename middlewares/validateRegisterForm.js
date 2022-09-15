@@ -80,3 +80,4 @@ exports.validateRegisterForm=(req,res,next)=>{
     next();
         
 }
+
