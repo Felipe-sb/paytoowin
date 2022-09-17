@@ -1,0 +1,24 @@
+<% if (!login) { %>
+    <%- include('../presetsViews/header',{title: 'PayTooWin',login:null}) %>
+<% }else{ %>
+    <%- include('../presetsViews/header',{title: 'PayTooWin',login:true,username:login.username}) %>
+<% } %> 
+
+<center>
+<br><br>
+<div> 
+
+   <h2>Condiciones Generales de uso de servicio PayToowin</h2>
+   <br><br>
+   <h3>1 Responsabilidades</h3><br>
+   <h5>PayTooWin ofrece un servicio meramente de mediacion entre el vendedor y el comprador de cuentas de videojuegos, es responsabilidad del cliente(vendedor) tomar nocion de la legalidad de la venta de cuentas de dicho videojuego.</h5>
+
+
+
+
+
+
+</div>
+</center>
+
+<%- include('../presetsViews/footer') %> 
