@@ -1,24 +1,47 @@
+<html>
 <% if (!login) { %>
     <%- include('../presetsViews/header',{title: 'PayTooWin',login:null}) %>
 <% }else{ %>
     <%- include('../presetsViews/header',{title: 'PayTooWin',login:true,username:login.username}) %>
 <% } %> 
 
-<center>
-<br><br>
-<div> 
 
-   <h2>Condiciones Generales de uso de servicio PayToowin</h2>
-   <br><br>
-   <h3>1 Responsabilidades</h3><br>
-   <h5>PayTooWin ofrece un servicio meramente de mediacion entre el vendedor y el comprador de cuentas de videojuegos, es responsabilidad del cliente(vendedor) tomar nocion de la legalidad de la venta de cuentas de dicho videojuego.</h5>
+    <link rel="stylesheet" href="./css/terminos.css">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
 
+    <div class="body-content">
 
-
-
-
-
+<div class="header">
+  <h2>Terminos y condiciones PayTooWin</h2>
 </div>
-</center>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <h2>Condiciones generales de contratación de PayTooWin</h2><br>
+      <h3>1 Responsabilidades</h3>
+      <p>PayTooWin ofrece un servicio meramente de mediacion entre el vendedor y el comprador de cuentas de videojuegos, es responsabilidad del cliente(vendedor) tomar nocion de la legalidad de la venta de cuentas de dicho videojuego.</p>
+      <br><h3>Accesibilidad</h3>
+      <p>PayTooWin garantiza una accesibilidad del servicio del 90% (noventa por ciento) de media anual. De este promedio se exceptúa el tiempo durante el cual los servidores del sitio web no están accesibles en Internet a causa de problemas técnicos o de otro tipo que no se encuentran en el ámbito de influencia de PayTooWin (fuerza mayor, culpa de terceros, etc.), así como el tiempo durante el cual se efectúan trabajos de mantenimiento rutinarios.</p>
+   
+    </div>
+    <div class="card">
+      <h2>Información sobre la privacidad de datos</h2>
+      <p>INGRESAR TEXTO AQUI.</p>
+    </div>
+    <div class="card">
+        <h2>Aviso Legal</h2>
+        <p>INGRESAR TEXTO AQUI.</p>
+     
+      </div>
+  </div>
+</div>
+    </div>
+</body>
 
 <%- include('../presetsViews/footer') %> 
+
+</html>
