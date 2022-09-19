@@ -1,5 +1,5 @@
 const validateAddProductForm = (req,res,next)=>{
-    const {title,game,level,description,price} = req.body;
+    const {title,game,level,description,price,tipoJuego,paisOrigen} = req.body;
     const images = req.files
     const regexNotEmptyString = /^(?!\s*$).+/
     const regexOnlyNumbers = /^[0-9]*$/
@@ -9,6 +9,36 @@ const validateAddProductForm = (req,res,next)=>{
             alertConfig:{
 				alert:true,
 				title:'Titulo invalido',
+				text:`Porfavor ingrese valores validos`,
+				icon:'warning',
+				confirmButton:true,
+				timer:false,
+				route:'products/add-product'
+			}
+        })
+        return;
+    }
+	if(!regexNotEmptyString.test(tipoJuego)){
+        res.render('./productsViews/addProduct',{
+            login:req.session.loggedIn,
+            alertConfig:{
+				alert:true,
+				title:'Tipo de juego invalido',
+				text:`Porfavor ingrese valores validos`,
+				icon:'warning',
+				confirmButton:true,
+				timer:false,
+				route:'products/add-product'
+			}
+        })
+        return;
+    }
+	if(!regexNotEmptyString.test(paisOrigen)){
+        res.render('./productsViews/addProduct',{
+            login:req.session.loggedIn,
+            alertConfig:{
+				alert:true,
+				title:'Pais invalido',
 				text:`Porfavor ingrese valores validos`,
 				icon:'warning',
 				confirmButton:true,
@@ -95,4 +125,5 @@ const validateAddProductForm = (req,res,next)=>{
     }
     next()
 }
+
 module.exports = validateAddProductForm

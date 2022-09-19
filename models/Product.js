@@ -14,6 +14,8 @@ const productSchema = new Schema({
 	price: Number,
 	partialDelete: Boolean,
 	verified: Boolean,
+	tipoJuego: String,
+	paisOrigen: String,
 });
 const Product = model('Product', productSchema);
 module.exports = Product;

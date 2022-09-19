@@ -18,6 +18,6 @@ app.use('/products',require('./routes/productsRoutes'));
 app.use((req, res, next) => {
 	res.render('./baseViews/404')
 })
-app.listen(process.env.PORT || 2000, () => {
+app.listen(process.env.PORT || 4000, () => {
 	console.log('Server listening');
 });

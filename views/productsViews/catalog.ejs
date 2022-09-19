@@ -3,6 +3,7 @@
 <% }else{ %>
     <%- include('../presetsViews/header',{title: 'Catalogo',login:true,username:login.username}) %>
 <% } %> 
+<center>
 <div class="container">
 	<div class="row">
 		<div class="col-12">
@@ -39,6 +40,8 @@
                             </div>
                             <div class="mb-4"><label><%= product.game %> </label></div>
                             <div class="price-mob mb-2"><%= product.price %> </div>
+                            <div class="price-mob mb-2"><%= product.tipoJuego %> </div>
+                            <div class="price-mob mb-2"><%= product.paisOrigen %> </div>
                             <div class="clearfix"></div>
                         </div>
                     </a>
@@ -47,4 +50,5 @@
         <% } %>
 	</div>
 </div>
+</center>
 <%- include('../presetsViews/footer') %>
