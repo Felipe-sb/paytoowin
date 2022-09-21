@@ -1,0 +1,43 @@
+<% if (!login) { %>
+    <%- include('../presetsViews/header',{title:`Update products` ,login:null}) %>
+<% }else{ %>
+    <%- include('../presetsViews/header',{title: 'Update products' ,login:true,username:login.username}) %>
+<% } %> 
+<div class="container">
+    <div class="row">
+        <% if (products) { %>
+            <% products.forEach(product => { %>
+                <div class="col-md-3 col-6 product-block">
+                    <a href="/products/update-product/<%= product.id %> " style="text-decoration: none;color: #000000">
+                        <div class="caption">
+                            <h3><%= product.title %> </h3>
+                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                            <% product.images.forEach(image=>{
+                            %>
+                                  <div class="carousel-item active">
+                                    <img src="<%=image.url%>" class="d-block w-100" alt="<%= image.originalname %> ">
+                                  </div>
+                            <%    
+                            }) %> 
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            <div class="mb-4"><label><%= product.game %> </label></div>
+                            <div class="price-mob mb-2"><%= product.price %> </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+</div>
+<% include ('../presetsViews/footer') %> 
