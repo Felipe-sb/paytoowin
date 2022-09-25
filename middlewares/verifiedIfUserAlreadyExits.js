@@ -2,7 +2,6 @@ const User = require('../models/User')
 const verifiedIfUserAlreadyExits = async (req,res,next) =>{
     const {email} = req.body
     const user = await User.find({email})
-    console.log(user)
     if (user.length !== 0) {
         res.render('./authViews/register',{
             alertConfig:{
@@ -15,7 +14,7 @@ const verifiedIfUserAlreadyExits = async (req,res,next) =>{
 				route:'auth/register'
 			}
         })
-        return
+        return;
     }
     next()
 }

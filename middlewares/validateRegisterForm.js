@@ -1,5 +1,5 @@
 exports.validateRegisterForm=(req,res,next)=>{
-    const {email,password,confirmPassword,username} = req.body
+    const {email,password,confirmPassword,username,rol} = req.body
     const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
     const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/
     const confirmPassRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/
@@ -77,6 +77,20 @@ exports.validateRegisterForm=(req,res,next)=>{
         })
         return
     }
+	if (rol !== 'admin' && rol !== 'clientService' && rol !== 'client') {
+		res.render('./authViews/register',{
+            alertConfig:{
+				alert:true,
+				title:'Ooooops',
+				text:`Porfavor seleccione un rol valido`,
+				icon:'warning',
+				confirmButton:true,
+				timer:false,
+				route:'auth/register'
+			}
+        })
+		return
+	}
     next();
         
 }

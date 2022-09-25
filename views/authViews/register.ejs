@@ -11,6 +11,12 @@
                     height="67"
                 />
                 <h1 class="h3 mb-3 fw-normal">Registrarse</h1>
+                <select class="form-select mb-1" aria-label="Default select example" name="rol">
+                    <option selected>Selecciona el rol y accesivilidad del usuario</option>
+                    <option value="admin">Administrador</option>
+                    <option value="clientServicee">Servicio al cliente</option>
+                    <option value="client">Cliente</option>
+                  </select>
                 <div class="form-floating">
                     <input
                         type="text"
@@ -52,7 +58,7 @@
                     <label for="floatingInput">Confirma tu contraseña</label>
                 </div>
                 <label for="accept">
-                    <input type="checkbox" id="accept" name="accept" value="yes"> Acepto los <a href="/terminos">Terminos y Condiciones </a>
+                    <input type="checkbox" id="accept" name="accept" value="yes"> Acepto los <a href="/terminos" target="_blank">Terminos y Condiciones </a>
                 </label>
                 
                 <br><br><button class="w-100 btn btn-lg btn-outline-warning" type="submit">
