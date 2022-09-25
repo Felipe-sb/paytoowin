@@ -4,6 +4,9 @@
     <%- include('../presetsViews/header',{title: 'Catalogo',login:true,username:login.username}) %>
 <% } %> 
 <center>
+
+    
+    
 <div class="container">
 	<div class="row">
 		<div class="col-12">
@@ -13,6 +16,21 @@
 			<h2 class="page-header">Catalogo</h2>
             <%}%>
 		</div>
+
+        <div> 
+
+        <form action="/products/filter" method="post" >
+            <%- include('../presetsViews/gameSelect') %>
+            <%- include('../presetsViews/gameType') %>
+            <%- include('../presetsViews/gameDeveloper') %>
+
+
+        
+            <input type="submit" class="btn btn-success" value="filtrar" >
+
+        </form>
+        </div>
+
         <% if (products) { %>
             <% products.forEach(product => { %>
                 <div class="col-md-3 col-6 product-block">

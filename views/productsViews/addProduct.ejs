@@ -19,14 +19,7 @@
 				<label for="floatingInput">Titulo</label>
 			</div>
 			<div class="form-floating">
-				<input
-					type="text"
-					class="form-control"
-					id="floatingInput"
-					name="game"
-					placeholder="Juego"
-				/>
-				<label for="floatingInput">Juego</label>
+				<%- include('../presetsViews/gameSelect') %>
 			</div>
 			<div class="form-floating">
 				<input
@@ -45,34 +38,12 @@
 				  </div>
 				<label for="floatingInput" style="border: 1px solid #000000; width: 100%;">Imagenes</label>
 			</div>
+			
 			<div class="form-floating">
-				<textarea
-					class="form-control"
-					id="floatingInput"
-					name="description"
-					placeholder="Descripcion"
-				></textarea>
-				<label for="floatingInput">Descripcion</label>
+				<%- include('../presetsViews/gameType') %>
 			</div>
 			<div class="form-floating">
-				<input
-					type="text"
-					class="form-control"
-					id="floatingInput"
-					name="tipoJuego"
-					placeholder="MMO,RPG,Shooter,E-Sports"
-				/>
-				<label for="floatingInput">Tipo de juego</label>
-			</div>
-			<div class="form-floating">
-				<input
-					type="text"
-					class="form-control"
-					id="floatingInput"
-					name="paisOrigen"
-					placeholder="EEUU,Chile,Alemania,Japon,Corea"
-				/>
-				<label for="floatingInput">Pais de origen</label>
+				<%- include('../presetsViews/gameDeveloper') %>
 			</div>
 			<div class="form-floating">
 				<input
@@ -83,6 +54,15 @@
 					placeholder="Precio"
 				/>
 				<label for="floatingInput">Precio</label>
+			</div>
+			<div class="form-floating">
+				<textarea
+					class="form-control"
+					id="floatingInput"
+					name="description"
+					placeholder="Descripcion"
+				></textarea>
+				<label for="floatingInput">Descripcion</label>
 			</div>
 
 			<button class="w-100 btn btn-lg btn-outline-warning" type="submit">

@@ -1,7 +1,7 @@
 const Product = require('../../models/Product');
 const cloudinary = require('../../helpers/cloudinary');
 const addNewProduct = async (req, res) => {
-	const { title, game, level, description, price,tipoJuego,paisOrigen } = req.body;
+	const { title, game, level, description, price,gameType,developer } = req.body;
 	console.log(req.files)
 	let images = []
 	for (let i = 0; i < req.files.length; i++){
@@ -20,8 +20,8 @@ const addNewProduct = async (req, res) => {
 		price: Number(price),
 		partialDelete: false,
 		verified: false,
-		tipoJuego,
-		paisOrigen,
+		gameType,
+		developer,
 	});
     newProduct.save()
         .then((product)=>{

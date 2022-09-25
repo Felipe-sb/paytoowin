@@ -1,5 +1,5 @@
 const validateAddProductForm = (req,res,next)=>{
-    const {title,game,level,description,price,tipoJuego,paisOrigen} = req.body;
+    const {title,game,level,description,price,gameType,developer} = req.body;
     const images = req.files
     const regexNotEmptyString = /^(?!\s*$).+/
     const regexOnlyNumbers = /^[0-9]*$/
@@ -18,7 +18,7 @@ const validateAddProductForm = (req,res,next)=>{
         })
         return;
     }
-	if(!regexNotEmptyString.test(tipoJuego)){
+	if(gameType!== "battleroyale" && "deportes" && "rpg" && "mmo" ){
         res.render('./productsViews/addProduct',{
             login:req.session.loggedIn,
             alertConfig:{
@@ -33,7 +33,7 @@ const validateAddProductForm = (req,res,next)=>{
         })
         return;
     }
-	if(!regexNotEmptyString.test(paisOrigen)){
+	if(developer !== "ubisoft" && "rockstar" && "blizzard" && "activision" && "riot" && "ea" && "epicgames" && "microsoft" && "bigpoint" && "pubgstudios"){
         res.render('./productsViews/addProduct',{
             login:req.session.loggedIn,
             alertConfig:{
@@ -48,7 +48,7 @@ const validateAddProductForm = (req,res,next)=>{
         })
         return;
     }
-    if (!regexNotEmptyString.test(game)){
+    if (game !== "darkorbit" && "lol" && "gta5" && "wow" && "warzone" && "fortnite" && "pubg" && "apex" && "forzah5" && "valorant" && "fifa23"){
         res.render('./productsViews/addProduct',{
             login:req.session.loggedIn,
             alertConfig:{
