@@ -3,7 +3,9 @@ const userSchema = new Schema({
 	username: String,
 	email: String,
 	password: String,
-	rol:String
+	createDate:String,
+	rol:String,
+	banned:Boolean
 });
 const User = model('User', userSchema);
 module.exports = User;

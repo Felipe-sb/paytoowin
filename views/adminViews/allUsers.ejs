@@ -1,0 +1,26 @@
+<%- include ('../presetsViews/header',{title:'Lista de usuarios',login:null}) %>
+<div class="container mt-3">
+    <div class="row">
+        <% if (users) { %>
+            <% users.forEach(user => { %>
+                <div class="col-md-3 col-6 product-block">
+                    <a href="/admin/users/<%= user.id %> " style="text-decoration: none;color: #000000">
+                        <div class="caption">
+                            <h3><%= user.username %> </h3>
+                            <div class="mb-4"><label><%= user.email %> </label></div>
+                            <% if (user.rol === 'admin') { %>
+                                <div class="price-mob mb-2">Administrador </div>
+                            <% }else if(user.rol==='clientService') {%>
+                                <div class="price-mob mb-2">Servicio al cliente </div>
+                            <%} else {%>
+                                <div class="price-mob mb-2">Cliente</div>
+                            <%}%>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+</div>
+<%- include ('../presetsViews/footer') %>
