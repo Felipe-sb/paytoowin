@@ -3,22 +3,23 @@
 <% }else{ %>
     <%- include('../presetsViews/header',{title: product.title,login:true,username:login.username}) %>
 <% } %> 
-    <center>
-        <div class="card col-md-3 col-6 product-block">
+    <center><br>
+        <div class="card col-md-3 col-6 product-block"><br>
             <h2><%= product.title %></h2>
-            <p><%= product.level %> </p>
+            <p><h4>Nivel </h4><%= product.level %> </p>
             <% product.images.forEach(image=>{
             %>
             <img src="<%=image.url%> " alt="<%= image.originalname %> ">
             <%
-            }) %> 
+            }) %> <br>
             <p><%= product.description %></p>
-            <p><%= product.price %> </p>
+            <p>$<%= product.price %> </p>
             <form action="/products/cart" method="post">
                 <input type="hidden" name="product" value="<%=product%>"/>
                 <input type="hidden" name="user">
-                <input type="submit" class="btn btn-success" value="Agregar al carrito" />
+                <input type="submit" class="btn btn-outline-warning" value="Agregar al carrito" />
             </form>
-        </div>
+            <br>
+        </div><br>
     </center>
 <%- include('../presetsViews/footer') %> 
