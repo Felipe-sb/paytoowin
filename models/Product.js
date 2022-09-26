@@ -14,7 +14,7 @@ const productSchema = new Schema({
 	price: Number,
 	partialDelete: Boolean,
 	verified: Boolean,
-	gametype: String,
+	gameType: String,
 	developer: String,
 });
 const Product = model('Product', productSchema);
