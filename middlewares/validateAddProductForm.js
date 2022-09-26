@@ -18,7 +18,8 @@ const validateAddProductForm = (req,res,next)=>{
         })
         return;
     }
-	if(gameType!== "battleroyale" && "deportes" && "rpg" && "mmo" ){
+	if(gameType !== "battleroyale" && gameType !=="deportes" && gameType !=="rpg" && gameType !=="mmo" ){
+		
         res.render('./productsViews/addProduct',{
             login:req.session.loggedIn,
             alertConfig:{
@@ -33,7 +34,7 @@ const validateAddProductForm = (req,res,next)=>{
         })
         return;
     }
-	if(developer !== "ubisoft" && "rockstar" && "blizzard" && "activision" && "riot" && "ea" && "epicgames" && "microsoft" && "bigpoint" && "pubgstudios"){
+	if(developer !== "ubisoft" && developer!== "rockstar" && developer!== "blizzard" && developer!=="activision" && developer!=="riot" && developer!=="ea" && developer!=="epicgames" && developer!=="microsoft" && developer!=="bigpoint" && developer!=="pubgstudios"){
         res.render('./productsViews/addProduct',{
             login:req.session.loggedIn,
             alertConfig:{
@@ -48,7 +49,7 @@ const validateAddProductForm = (req,res,next)=>{
         })
         return;
     }
-    if (game !== "darkorbit" && "lol" && "gta5" && "wow" && "warzone" && "fortnite" && "pubg" && "apex" && "forzah5" && "valorant" && "fifa23"){
+    if (game !== "darkorbit" && game !=="lol" && game !=="gta5" && game !=="wow" && game !=="warzone" && game !=="fortnite" && game !=="pubg" && game !=="apex" && game !=="forzah5" && game !=="valorant" && game !=="fifa23"){
         res.render('./productsViews/addProduct',{
             login:req.session.loggedIn,
             alertConfig:{
