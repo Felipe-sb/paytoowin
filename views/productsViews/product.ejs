@@ -4,7 +4,7 @@
     <%- include('../presetsViews/header',{title: product.title,login:true,username:login.username}) %>
 <% } %> 
     <center>
-        <div>
+        <div class="card col-md-3 col-6 product-block">
             <h2><%= product.title %></h2>
             <p><%= product.level %> </p>
             <% product.images.forEach(image=>{

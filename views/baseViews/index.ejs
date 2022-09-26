@@ -1,9 +1,8 @@
-<% if (!login) { %>
-    <%- include('../presetsViews/header',{title: 'PayTooWin',login:null}) %>
-<% }else{ %>
-    <%- include('../presetsViews/header',{title: 'PayTooWin',login:true,username:login.username}) %>
-<% } %> 
-<link rel="stylesheet" href="./css/index.css">
+<% if (!login) { %> <%- include('../presetsViews/header',{title:
+'PayTooWin',login:null}) %> <% }else{ %> <%-
+include('../presetsViews/header',{title:
+'PayTooWin',login:true,username:login.username}) %> <% } %>
+<link rel="stylesheet" href="./css/index.css" />
 <div>
     <div
         id="carouselExampleCaptions"
@@ -42,8 +41,8 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h5>La batalla intergaláctica te espera</h5>
                     <p>
-                        Ven y únete a la comunidad más grande de Dark
-                        Orbit en latinoamérica
+                        Ven y únete a la comunidad más grande de Dark Orbit en
+                        latinoamérica
                     </p>
                 </div>
             </div>
@@ -67,8 +66,8 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h5>No te quedes atrás</h5>
                     <p>
-                        Consigue naves y equipamentos desde la primer a
-                        la última temporada
+                        Consigue naves y equipamentos desde la primer a la
+                        última temporada
                     </p>
                 </div>
             </div>
@@ -79,10 +78,7 @@
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide="prev"
         >
-            <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-            ></span>
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
         <button
@@ -91,19 +87,18 @@
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide="next"
         >
-            <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-            ></span>
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </div>
 </div>
 <div
-    class="container text-center d-flex justify-content-center align-items-center"  padding="100rem">
+    class="container text-center d-flex justify-content-center align-items-center"
+    padding="100rem"
 >
-    
-<!--
+    >
+
+    <!--
     <div class="card" style="width: 18rem">
         <img
             src="img/slider-2.jpg"
@@ -149,88 +144,66 @@
     </div>
 
 -->
-
-    <div class="card" style="width: 18rem">
-        <img
-            src="img/cta-valo.png"
-            class="card-img-top"
-            loading="lazy"
-        />
-        <div class="card-body">
-            <h5 class="card-title">Cuenta Valorant</h5>
-            <p class="card-text">
-                Cuenta con 5 armas Planinum, 2 diamantes y rango Radiante.
-            </p>
-            <a
-                href="#"
-                class="btn btn-outline-warning"
-                target="_blank"
-                >Comprar</a
-            >
+    <div class="row">
+        <div class="card col-md-3 col-6 product-block">
+            <img src="img/cta-valo.png" class="card-img-top" loading="lazy" />
+            <div class="card-body">
+                <h5 class="card-title">Cuenta Valorant</h5>
+                <p class="card-text">
+                    Cuenta con 5 armas Planinum, 2 diamantes y rango Radiante.
+                </p>
+                <a href="#" class="btn btn-outline-warning" target="_blank"
+                    >Comprar</a
+                >
+            </div>
         </div>
-    </div>
 
-    <div class="card" style="width: 18rem">
-        <img
-            src="img/cta-wow.png"
-            class="card-img-top"
-            loading="lazy"
-        />
-        <div class="card-body">
-            <h5 class="card-title">Cuenta WOW</h5>
-            <p class="card-text">
-                Cuenta WoW full equipo, Ogro Sangriento, nivel 238.
-            </p>
-            <a
-                href="#"
-                class="btn btn-outline-warning"
-                target="_blank"
-                >Comprar</a
-            >
+        <div class="card col-md-3 col-6 product-block">
+            <img src="img/cta-wow.png" class="card-img-top" loading="lazy" />
+            <div class="card-body">
+                <h5 class="card-title">Cuenta WOW</h5>
+                <p class="card-text">
+                    Cuenta WoW full equipo, Ogro Sangriento, nivel 238.
+                </p>
+                <a href="#" class="btn btn-outline-warning" target="_blank"
+                    >Comprar</a
+                >
+            </div>
         </div>
-    </div>
 
-    <div class="card" style="width: 18rem">
-        <img
-            src="img/cta_lol2.png"
-            class="card-img-top"
-            loading="lazy"
-        />
-        <div class="card-body">
-            <h5 class="card-title">Cuenta LoL</h5>
-            <p class="card-text">
-                Cuenta LoL, 391 aspectos de colección (5 legendarios)
-            </p>
-            <a
-                href="#"
-                class="btn btn-outline-warning"
-                target="_blank"
-                >Comprar</a
-            >
+        <div class="card col-md-3 col-6 product-block">
+            <img src="img/cta_lol2.png" class="card-img-top" loading="lazy" />
+            <div class="card-body">
+                <h5 class="card-title">Cuenta LoL</h5>
+                <p class="card-text">
+                    Cuenta LoL, 391 aspectos de colección (5 legendarios)
+                </p>
+                <a href="#" class="btn btn-outline-warning" target="_blank"
+                    >Comprar</a
+                >
+            </div>
         </div>
-    </div>
 
-    <div class="card" style="width: 18rem">
-        <img
-            src="img/cta-counter.jpg"
-            class="card-img-top"
-            loading="lazy"
-        />
-        <div class="card-body">
-            <h5 class="card-title">Cuenta Counter Strike</h5>
-            <p class="card-text">
-                Cuenta Counter Strike, 3 armas legendarias, 2 místicas
-            </p>
-            <a
-                href="#"
-                class="btn btn-outline-warning"
-                target="_blank"
-                >Comprar</a
-            >
+        <div class="card col-md-3 col-6 product-block">
+            <img
+                src="img/cta-counter.jpg"
+                class="card-img-top"
+                loading="lazy"
+            />
+            <div class="card-body">
+                <h5 class="card-title">Cuenta Counter Strike</h5>
+                <p class="card-text">
+                    Cuenta Counter Strike, 3 armas legendarias, 2 místicas
+                </p>
+                <a href="#" class="btn btn-outline-warning" target="_blank"
+                    >Comprar</a
+                >
+            </div>
         </div>
-    </div>
+        <!--
 
-    <div class="card" style="width: 18rem">
+
+    <div class="card col-md-3 col-6 product-block">
         <img
             src="img/cta-do.jpg"
             class="card-img-top"
@@ -249,6 +222,7 @@
             >
         </div>
     </div>
-
+-->
+    </div>
 </div>
-<%- include('../presetsViews/footer') %> 
+<%- include('../presetsViews/footer') %>
