@@ -1,6 +1,4 @@
 const Product = require("../../models/Product")
-
-
 const productFilter = async (req,res) => {
     const {game,gameType,developer} = req.body
     let query = {}

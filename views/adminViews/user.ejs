@@ -1,0 +1,44 @@
+<%- include ('../presetsViews/header',{title:user.username,login:null}) %>
+<div>
+	<main class="form-signin">
+		<form action="/admin/updateUser" method="post">
+			<h1 class="h3 mb-3 fw-normal">Actualizar Usuario</h1>
+            <input type="hidden" name="id" value="<%= user.id %>" />
+			<div class="form-floating">
+				<input
+					type="text"
+					class="form-control"
+					id="floatingInput"
+					name="username"
+					placeholder="Nombre de usuario"
+                    value="<%=user.username %>"
+				/>
+				<label for="floatingInput">Nombre de usuario</label>
+			</div>
+			<div class="form-floating">
+				<input
+					type="text"
+					class="form-control"
+					id="floatingInput"
+					name="email"
+					placeholder="Correo electronico"
+                    value="<%= user.email %>"
+                    disabled="true"
+				/>
+				<label for="floatingInput">Correo Electronico</label>
+			</div>
+            <select class="form-select mb-1" aria-label="Default select example" name="rol">
+                <option selected>Selecciona el rol y accesibilidad del usuario</option>
+                <option value="admin">Administrador</option>
+                <option value="clientService">Servicio al cliente</option>
+                <option value="client">Cliente</option>
+            </select>
+			<input type="submit" value="Actualizar Usuario" class="btn btn-primary">
+		</form>
+		<form action="/admin/banUser" method="post">
+			<input type="hidden" name="id" value="<%= user.id %>" />
+			<input type="submit" value="Banear Usuario" class="btn btn-danger mt-4 w-100 btn-lg">
+		</form>
+	</main>
+</div>
+<%- include ('../presetsViews/footer') %>
