@@ -1,72 +1,108 @@
-<% if (!login) { %>
-    <%- include('../presetsViews/header',{title: 'Catalogo',login:null}) %>
-<% }else{ %>
-    <%- include('../presetsViews/header',{title: 'Catalogo',login:true,username:login.username}) %>
-<% } %> 
+<% if (!login) { %> <%- include('../presetsViews/header',{title:
+'Catalogo',login:null}) %> <% }else{ %> <%-
+include('../presetsViews/header',{title:
+'Catalogo',login:true,username:login.username}) %> <% } %>
 <center>
-
-    
-    
-<div class="container">
-	<div class="row">
-		<div class="col-12">
-            <% if (msg) { %>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <% if (msg) { %>
                 <h2 class="page-header"><%= msg %></h2>
-            <% }else{ %>
-			<h2 class="page-header">Catalogo</h2>
-            <%}%>
-		</div>
+                <% }else{ %>
+                <h2 class="page-header">Catalogo</h2>
+                <%}%>
+            </div>
 
-        <div> 
+            <div>
+                <form action="/products/filter" method="post">
+                    <%- include('../presetsViews/gameSelect') %> <%-
+                    include('../presetsViews/gameType') %> <%-
+                    include('../presetsViews/gameDeveloper') %>
 
-        <form action="/products/filter" method="post" >
-            <%- include('../presetsViews/gameSelect') %>
-            <%- include('../presetsViews/gameType') %>
-            <%- include('../presetsViews/gameDeveloper') %>
+                    <input
+                        type="submit"
+                        class="btn btn-success"
+                        value="filtrar"
+                    />
+                </form>
+            </div>
 
-
-        
-            <input type="submit" class="btn btn-success" value="filtrar" >
-
-        </form>
-        </div>
-
-        <% if (products) { %>
-            <% products.forEach(product => { %>
-                <div class="card col-md-3 col-6 product-block">
-                    <a href="/products/product/<%= product.id %> " style="text-decoration: none;color: #000000">
-                        <div class="caption">
-                            <h3><%= product.title %> </h3>
-                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                            <% product.images.forEach(image=>{
-                            %>
-                                  <div class="carousel-item active">
-                                    <img src="<%=image.url%>" class="d-block w-100" alt="<%= image.originalname %> ">
-                                  </div>
-                            <%    
-                            }) %> 
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                            <div class="mb-4"><label><h2><%= product.game %></h2> </label></div>
-                            <div class="price-mob mb-2"> <h5>Precio:</h5>$<%= product.price %> </div>
-                            <div class="price-mob mb-2"><%= product.tipoJuego %> </div>
-                            <div class="price-mob mb-2"><%= product.paisOrigen %> </div>
-                            <div class="clearfix"></div>
+            <% if (products) { %> <% products.forEach(product => { %>
+            <div class="card col-md-3 col-6 product-block">
+                <a
+                    href="/products/product/<%= product.id %> "
+                    style="text-decoration: none; color: #000000"
+                >
+                    <div class="caption">
+                        <div class="mb-4">
+                            <br /><label><h2><%= product.game %></h2> </label>
                         </div>
-                    </a>
-                </div>
-            <% }) %>
-        <% } %>
-	</div>
-</div>
+
+                        <div
+                            id="carouselExampleControls"
+                            class="carousel slide"
+                            data-bs-ride="carousel"
+                        >
+                            <div class="carousel-inner">
+                                <% product.images.forEach(image=>{ %>
+                                <div class="carousel-item active">
+                                    <img
+                                        height="180rem"
+                                        src="<%=image.url%>"
+                                        class="d-block w-100"
+                                        alt="<%= image.originalname %> "
+                                    />
+                                </div>
+                                <% }) %>
+                            </div>
+                            <button
+                                class="carousel-control-prev"
+                                type="button"
+                                data-bs-target="#carouselExampleControls"
+                                data-bs-slide="prev"
+                            >
+                                <span
+                                    class="carousel-control-prev-icon"
+                                    aria-hidden="true"
+                                ></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button
+                                class="carousel-control-next"
+                                type="button"
+                                data-bs-target="#carouselExampleControls"
+                                data-bs-slide="next"
+                            >
+                                <span
+                                    class="carousel-control-next-icon"
+                                    aria-hidden="true"
+                                ></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <br />
+                        <div style="height:5rem ;">
+                            <h4><%= product.title %></h4><br>
+                        </div>
+                        
+                        <a
+                            href="#"
+                            class="btn btn-outline-warning"
+                            target="_blank"
+                            >$<%= product.price %></a
+                        >
+                        <div class="price-mob mb-2">
+                            <%= product.tipoJuego %>
+                        </div>
+                        <div class="price-mob mb-2">
+                            <%= product.paisOrigen %>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+            <% }) %> <% } %>
+        </div>
+    </div>
 </center>
 <%- include('../presetsViews/footer') %>
