@@ -5,7 +5,8 @@ const userSchema = new Schema({
 	password: String,
 	createDate:String,
 	rol:String,
-	banned:Boolean
+	banned:Boolean,
+	cart:Array,
 });
 const User = model('User', userSchema);
 module.exports = User;
