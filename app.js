@@ -15,7 +15,8 @@ app.use(session({
 app.use('/',require('./routes/baseRoutes'))
 app.use('/auth', require('./routes/authRoutes'));
 app.use('/products',require('./routes/productsRoutes'));
-app.use('/admin',require('./routes/adminRoutes'))
+app.use('/admin',require('./routes/adminRoutes'));
+app.use('/commerce',require('./routes/commerceRoutes'))
 app.use((req, res, next) => {
 	res.render('./baseViews/404')
 })
