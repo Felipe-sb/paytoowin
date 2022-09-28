@@ -1,4 +1,4 @@
-const addProductRender = (req,res) =>{
+const addProductRender = (req,res,next) =>{
     if (req.session.loggedIn) {
 		const { username, email } = req.session;
 		res.render('./productsViews/addProduct', {
@@ -7,6 +7,6 @@ const addProductRender = (req,res) =>{
 		});
 		return;
 	}
-	res.render('./productsViews/addProduct',{login:null,alertConfig:{alert:false}});
+	next()
 }
 module.exports = addProductRender
