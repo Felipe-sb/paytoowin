@@ -1,7 +1,11 @@
-const cartRender = (req, res,next) => {
+const User = require("../../models/User");
+
+const cartRender = async(req, res,next) => {
 	if (req.session.loggedIn) {
+		const user = await User.findOne({email:req.session.email}).populate('cart')
 		res.render('./commerceViews/cart', {
-			login:null
+			cart:user.cart,
+			login:{username:req.session.username,email:req.session.email}
 		});
 		return;
 	}

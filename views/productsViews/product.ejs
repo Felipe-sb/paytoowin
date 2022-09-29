@@ -14,11 +14,14 @@
             }) %> <br>
             <p><%= product.description %></p>
             <p>$<%= product.price %> </p>
-            <form action="/products/cart" method="post">
-                <input type="hidden" name="product" value="<%=product%>"/>
-                <input type="hidden" name="user">
-                <input type="submit" class="btn btn-outline-warning" value="Agregar al carrito" />
-            </form>
+            <% if (login) { %>
+                <form action="/commerce/addToCart" method="post">
+                    <input type="hidden" name="idProduct" value="<%=product.id%>"/>
+                    <input type="submit" class="btn btn-outline-warning" value="Agregar al carrito" />
+                </form>
+            <% }else{ %>
+                <a href="/auth/login">Iniciar Sesion</a>
+            <%}%>
             <br>
         </div><br>
     </center>
