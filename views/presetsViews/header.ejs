@@ -43,6 +43,7 @@
 						<li class="nav-item">
 							<a class="nav-link" href="/products">Catalogo</a>
 						</li>
+						<% if (login) { %>
 						<li class="nav-item">
 							<a class="nav-link" href="/commerce">Carrito</a>
 						</li>
@@ -55,21 +56,17 @@
 							>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" <% if (login) { %>
-								<a href="#"> <%=username%> </a>
-								<li class="nav-item">
-									<form action="/auth/logout" method="post">
-										<input type="submit" value="Cerrar sesion" class="btn btn-danger">
-									</form>
-								</li>
-		
-								<% }else{ %>
-								<a href="/auth/login">Iniciar Sesion</a>
-								<li class="nav-item">
-									<a class="nav-link" href="/auth/register">Registrarme</a>
-								</li>
-								<%}%>
-							</a>
+							<a href="#" class="nav-link"> <%=username%> </a>
+							<li class="nav-item">
+								<form action="/auth/logout" method="post">
+									<input type="submit" value="Cerrar sesion" class="btn btn-danger">
+								</form>
+							</li>
+						<% }else{ %>
+							<a href="/auth/login" class="nav-link">Iniciar Sesion</a>
+							<a class="nav-link" href="/auth/register">Registrarme</a>
+							
+						<%}%>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="/contact">Contacto</a>
