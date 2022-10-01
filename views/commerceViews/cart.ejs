@@ -32,7 +32,10 @@
                           <h6 class="mb-0">$ <%= product.price %> CLP </h6>
                         </div>
                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                          <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                          <form action="/commerce/deleteProductFromCart" method="post">
+                            <input type="hidden" name="idProduct" value="<%=product.id%>">
+                            <input type="submit" value="Eliminar" class="btn btn-danger btn-xs">
+                          </form>
                         </div>
                       </div>
                       <hr class="my-4">
