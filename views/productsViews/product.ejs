@@ -1,28 +1,113 @@
+
+
+
 <% if (!login) { %>
     <%- include('../presetsViews/header',{title: product.title,login:null}) %>
 <% }else{ %>
     <%- include('../presetsViews/header',{title: product.title,login:true,username:login.username}) %>
 <% } %> 
-    <center><br>
-        <div class="card col-md-3 col-6 product-block"><br>
-            <h2><%= product.title %></h2>
-            <p><h4>Nivel </h4><%= product.level %> </p>
-            <% product.images.forEach(image=>{
-            %>
-            <img src="<%=image.url%> " alt="<%= image.originalname %> ">
-            <%
-            }) %> <br>
-            <p><%= product.description %></p>
-            <p>$<%= product.price %> </p>
-            <% if (login) { %>
-                <form action="/commerce/addToCart" method="post">
-                    <input type="hidden" name="idProduct" value="<%=product.id%>"/>
-                    <input type="submit" class="btn btn-outline-warning" value="Agregar al carrito" />
-                </form>
-            <% }else{ %>
-                <a href="/auth/login">Iniciar Sesion</a>
-            <%}%>
-            <br>
-        </div><br>
-    </center>
+<!DOCTYPE html>
+<html lang="en">
+
+    <style>
+
+      img {
+        max-width: 90%; }
+  
+      .card {
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        margin-left: 50px;
+        margin-right: 50px;
+        background: #ffffff;
+        padding: 2em;
+        line-height: 2em; }
+            
+      
+      .product-title, .price, .sizes, .colors {
+        text-transform: UPPERCASE;
+        font-weight: bold; }
+      
+      .checked, .price span {
+        color: #ff9f1a; }
+      
+      .product-title, .rating, .product-description, .price, .vote, .sizes {
+        margin-bottom: 15px;
+     }
+     .back{
+        margin-left: 45px;
+     }
+      
+
+      
+      </style>
+
+</div>
+    
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+
+<body>
+   
+   
+
+<div class="container">
+    <div class="pt-5">
+        <div class="back">
+        <h6 class="mb-0"><a href="/products" class="text-body"><i
+              class="fas fa-long-arrow-alt-left me-2"></i>Ir al catalogo</a></h6>
+      </div>
+    </div>
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                
+                <div class="preview col-md-6">
+                    
+                    <div class="preview-pic tab-content">
+                      
+                      
+                    </div>
+                    <ul class="preview-thumbnail nav nav-tabs">
+                      
+                      <li><a data-target="#pic-2" data-toggle="tab"><div class="tab-pane active" id="pic-1"><% product.images.forEach(image=>{
+                        %>
+                        <img src="<%=image.url%> "  alt="<%= image.originalname %> ">
+                        <%
+                        }) %></div></a></li>
+                    </ul>
+                    
+                </div>
+                <div class="details col-md-6">
+                    <h2><%= product.title %></h2>
+            
+                    <p class="product-description"><%= product.description %></p>
+                    <p class="product-description"></p>Nivel: <%= product.level %></p>
+                    <h4 class="price">$<%= product.price %></h4>
+                    
+                    <% if (login) { %>
+                        <form action="/commerce/addToCart" method="post">
+                            <input type="hidden" name="idProduct" value="<%=product.id%>"/>
+                            <input type="submit" class="btn btn-outline-warning" value="Agregar al carrito" />
+                        </form>
+                    <% }else{ %>
+                        <a href="/auth/login" class="iniciar">Iniciar Sesion</a>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+   
+
+        
+    
 <%- include('../presetsViews/footer') %> 
+
+</html>
+
+
