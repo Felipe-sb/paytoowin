@@ -15,7 +15,11 @@
 			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 			crossorigin="anonymous"
 		/>
-		
+		<link
+			href="/css/header.css"
+			rel="stylesheet"
+			
+		/>
 		<title><%= title %></title>
 	</head>
 	
@@ -60,23 +64,29 @@
 							>
 						</li>
 						<li class="nav-item">
+							<a class="nav-link" style="color: black;" href="/contact">Contacto</a>
+						</li>
+						<div class="login">
+						<li class="nav-item">
 							<a href="#" class="nav-link" style="color: black;"  > <%=username%> </a>
+						</div>
 							<li class="nav-item">
 								<form action="/auth/logout" method="post">
 									<input type="submit" value="Cerrar sesion" class="btn btn-danger">
 								</form>
 							</li>
+						
 						<% }else{ %>
 							<a href="/auth/login" class="nav-link" style="color: black;">Iniciar Sesion</a>
 							<a class="nav-link" style="color: black;" href="/auth/register">Registrarme</a>
 							
 						<%}%>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" style="color: black;" href="/contact">Contacto</a>
-						</li>
+						
+					
 					</ul>
 				</div>
 				</div>
 			</div>
+		
 		</nav>

@@ -1,52 +1,20 @@
 
-
+<html>
 
 <% if (!login) { %>
     <%- include('../presetsViews/header',{title: product.title,login:null}) %>
 <% }else{ %>
     <%- include('../presetsViews/header',{title: product.title,login:true,username:login.username}) %>
 <% } %> 
-<!DOCTYPE html>
-<html lang="en">
 
-    <style>
-
-      img {
-        max-width: 90%; }
-  
-      .card {
-        font-family: Arial, Helvetica, sans-serif;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-left: 50px;
-        margin-right: 50px;
-        background: #ffffff;
-        padding: 2em;
-        line-height: 2em; }
-            
-      
-      .product-title, .price, .sizes, .colors {
-        text-transform: UPPERCASE;
-        font-weight: bold; }
-      
-      .checked, .price span {
-        color: #ff9f1a; }
-      
-      .product-title, .rating, .product-description, .price, .vote, .sizes {
-        margin-bottom: 15px;
-     }
-     .back{
-        margin-left: 45px;
-     }
-      
-
-      
-      </style>
-
-</div>
-    
+ 
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link
+			href="/css/product.css"
+			rel="stylesheet"
+			
+		/>
         </head>
 
 <body>
