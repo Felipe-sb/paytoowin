@@ -16,7 +16,11 @@ const productSchema = new Schema({
 	verified: Boolean,
 	gameType: String,
 	developer: String,
-	owner: String,
+	owner: [{
+		type:Schema.Types.ObjectId,
+		ref:'User'
+	}],
+	clicks:Number,
 });
 const Product = model('Product', productSchema);
 module.exports = Product;

@@ -1,4 +1,8 @@
-<%- include('../presetsViews/header',{title:'404', login:null})%>
+<% if (!login) { %>
+    <%- include('../presetsViews/header',{title:'404', login:null})%>
+<% }else{ %>
+    <%- include('../presetsViews/header',{title:'404', login,username})%>
+<% } %> 
 <center>
     <h1 class="mt-5">404</h1>
     <h2>Esta Página no existe</h2>

@@ -3,6 +3,8 @@ const getProductById = async (req, res, next) => {
 	const { id } = req.params;
 	try {
 		const product = await Product.findById(id);
+		product.clicks = product.clicks+1
+		await product.save();
 		if (!req.session.loggedIn) {
 			res.render('./productsViews/product', { product, login: null });
 			return;

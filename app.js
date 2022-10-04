@@ -17,8 +17,12 @@ app.use('/auth', require('./routes/authRoutes'));
 app.use('/products',require('./routes/productsRoutes'));
 app.use('/admin',require('./routes/adminRoutes'));
 app.use('/commerce',require('./routes/commerceRoutes'))
-app.use((req, res, next) => {
-	res.render('./baseViews/404')
+app.use((req, res) => {
+	if (req.session.loggedIn) {
+		res.status(404).render('./baseViews/404',{login:true,username:req.session.username})	
+	}else{
+		res.status(404).render('./baseViews/404',{login:null})
+	}
 })
 app.listen(process.env.PORT || 4000, () => {
 	console.log('Server listening');

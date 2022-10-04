@@ -99,145 +99,30 @@ include('../presetsViews/header',{title:
         class="container text-center d-flex justify-content-center align-items-center"
         padding="100rem"
     >
-        <!--
-    <div class="card" style="width: 18rem">
-        <img
-            src="img/slider-2.jpg"
-            class="card-img-top"
-            alt="CanalYT"
-            loading="lazy"
-        />
-        <div class="card-body">
-            <h5 class="card-title">YouTube Dark Orbit</h5>
-            <p class="card-text">
-                Contamos con nuestro propio canal de YouTube dedicado
-                100% a tu juego favorito Dark Orbit. ¡Ven y visítanos!
-            </p>
-            <a
-                href="https://www.youtube.com/channel/UCsdpNp0gM_q-SYzEmyXyBpw"
-                class="btn btn-danger"
-                target="_blank"
-                >YouTube Oficial DO</a
-            >
-        </div>
-    </div>
-
-    <div class="card" style="width: 18rem">
-        <img
-            src="img/slider-6.jpg"
-            class="card-img-top"
-            loading="lazy"
-        />
-        <div class="card-body">
-            <h5 class="card-title">Facebook Fan Page</h5>
-            <p class="card-text">
-                ¡Ingresa a nuestra Fan Page en Facebook y comparte con
-                la comunidad latinoamericana más grande de
-                latinoamericana!
-            </p>
-            <a
-                href="https://www.facebook.com/gaming/ignaciosapbe"
-                class="btn btn-primary"
-                target="_blank"
-                >Facebook Oficial DO</a
-            >
-        </div>
-    </div>
-
-    -->
-
         <div class="row">
-            <div class="card col-md-3 col-6 product-block">
-                <img
-                    src="img/cta-valo.png"
-                    class="card-img-top"
-                    loading="lazy"
-                />
-                <div class="card-body">
-                    <h5 class="card-title">Cuenta Valorant</h5>
-                    <p class="card-text">
-                        Cuenta con 5 armas Planinum, 2 diamantes y rango
-                        Radiante.
-                    </p>
-                    <a href="#" class="btn btn-outline-warning" target="_blank"
-                        >Comprar</a
-                    >
+                <% let counter = 0 
+                top.forEach(product =>{ 
+                    if(counter <= 3){%>
+
+                <div class="card col-md-3 col-6 product-block">
+                    <img
+                        src="<%= product.images[0].url %> "
+                        class="card-img-top"
+                        loading="lazy"
+                    />
+                    <div class="card-body">
+                        <h5 class="card-title"><%= product.tile %> </h5>
+                        <p class="card-text">
+                            <%= product.description %> 
+                        </p>
+                        <a href="/products/product/<% product.id %> " class="btn btn-outline-warning" target="_blank"
+                            >Comprar</a
+                        >
+                    </div>
                 </div>
-            </div>
-
-            <div class="card col-md-3 col-6 product-block">
-                <img
-                    src="img/cta-wow.png"
-                    class="card-img-top"
-                    loading="lazy"
-                />
-                <div class="card-body">
-                    <h5 class="card-title">Cuenta WOW</h5>
-                    <p class="card-text">
-                        Cuenta WoW full equipo, Ogro Sangriento, nivel 238.
-                    </p>
-                    <a href="#" class="btn btn-outline-warning" target="_blank"
-                        >Comprar</a
-                    >
-                </div>
-            </div>
-
-            <div class="card col-md-3 col-6 product-block">
-                <img
-                    src="img/cta_lol2.png"
-                    class="card-img-top"
-                    loading="lazy"
-                />
-                <div class="card-body">
-                    <h5 class="card-title">Cuenta LoL</h5>
-                    <p class="card-text">
-                        Cuenta LoL, 391 aspectos de colección (5 legendarios)
-                    </p>
-                    <a href="#" class="btn btn-outline-warning" target="_blank"
-                        >Comprar</a
-                    >
-                </div>
-            </div>
-
-            <div class="card col-md-3 col-6 product-block">
-                <img
-                    src="img/cta-counter.jpg"
-                    class="card-img-top"
-                    loading="lazy"
-                />
-                <div class="card-body">
-                    <h5 class="card-title">Cuenta Counter Strike</h5>
-                    <p class="card-text">
-                        Cuenta Counter Strike, 3 armas legendarias, 2 místicas
-                    </p>
-                    <a href="#" class="btn btn-outline-warning" target="_blank"
-                        >Comprar</a
-                    >
-                </div>
-            </div>
-            <!--
-
-
-        <div class="card col-md-3 col-6 product-block">
-        <img
-            src="img/cta-do.jpg"
-            class="card-img-top"
-            loading="lazy"
-        />
-        <div class="card-body">
-            <h5 class="card-title">Cuenta Dark Orbit</h5>
-            <p class="card-text">
-                Cuenta Dark Orbit, 7 naves, equipamento de temporada
-            </p>
-            <a
-                href="#"
-                class="btn btn-outline-warning"
-                target="_blank"
-                >Comprar</a
-            >
-        </div>
-        </div>
-        --></div>
+            <%      }
+                    counter ++
+                }) %>
     </div>
 </div>
 <br />

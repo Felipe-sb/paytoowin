@@ -1,8 +1,9 @@
 const Product = require('../../models/Product');
 const cloudinary = require('../../helpers/cloudinary');
+const User = require('../../models/User');
 const addNewProduct = async (req, res) => {
 	const { title, game, level, description, price,gameType,developer } = req.body;
-	console.log(req.files)
+	const user = await User.findOne({email:req.session.email})
 	let images = []
 	for (let i = 0; i < req.files.length; i++){
 		images[i] = await cloudinary.v2.uploader.upload(req.files[i].path)
@@ -22,6 +23,8 @@ const addNewProduct = async (req, res) => {
 		verified: false,
 		gameType,
 		developer,
+		owner: user._id,
+		clicks:0
 	});
     newProduct.save()
         .then((product)=>{
@@ -38,6 +41,7 @@ const addNewProduct = async (req, res) => {
 					route:'products'
 				}
 			})
+			return product
         }).catch(error =>{
 			console.log('No se pudo guardar el producto')
 		})
