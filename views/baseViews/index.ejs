@@ -111,13 +111,12 @@ include('../presetsViews/header',{title:
                         loading="lazy"
                     />
                     <div class="card-body">
-                        <h5 class="card-title"><%= product.tile %> </h5>
+                        <h5 class="card-title"><%= product.title %> </h5>
                         <p class="card-text">
                             <%= product.description %> 
                         </p>
-                        <a href="/products/product/<% product.id %> " class="btn btn-outline-warning" target="_blank"
-                            >Comprar</a
-                        >
+                        <a href="/products/product/<% product.id %>" class="btn btn-outline-warning"
+                            >Comprar</a>
                     </div>
                 </div>
             <%      }
