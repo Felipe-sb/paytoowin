@@ -1,0 +1,79 @@
+<html>
+<% if (!login) { %>
+    <%- include('../presetsViews/header',{title: 'PayTooWin',login:null}) %>
+<% }else{ %>
+    <%- include('../presetsViews/header',{title: 'PayTooWin',login:true,username:login.username}) %>
+<% } %> 
+
+
+    
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./css/cuenta.css">
+</head>
+<body>
+
+    <div class="body-content">
+        <% if (login) { %>
+<div class="header">
+  <h2>Configuracion de cuenta</h2>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+    <form>
+        <div class="form-floating">
+            <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                name="email"
+                placeholder="Correo Electronico"
+            />
+            <label for="floatingInput">Correo electronico</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-outline-warning" type="submit">
+            Actualizar Correo
+        </button>
+    </form>
+      
+      
+    </div>
+    <div class="card">
+        <div class="form-floating">
+            <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                name="password"
+                placeholder="Contraseña"
+            />
+            <label for="floatingPassword">Contraseña</label>
+        </div>
+        <div class="form-floating">
+            <input
+                type="password"
+                class="form-control"
+                id="floatingInput"
+                name="confirmPassword"
+                placeholder="Confirma tu contraseña"
+            />
+            <label for="floatingInput">Confirma tu contraseña</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-outline-warning" type="submit">
+            Actualizar Contraseña
+        </button>
+        
+      </div>
+    
+    
+  </div>
+  <% } %>
+</div>
+    </div>
+</body>
+
+<%- include('../presetsViews/footer') %> 
+
+</html>

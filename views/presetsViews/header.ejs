@@ -52,6 +52,7 @@
 							<a class="nav-link" style="color: black;" href="/products">Catalogo</a>
 						</li>
 						
+						
 						<% if (login) { %>
 						<li class="nav-item">
 							<a class="nav-link" style="color: black;" href="/commerce">Carrito</a>
@@ -67,7 +68,7 @@
 						
 						<div class="login">
 						<li class="nav-item">
-							<a href="#" class="nav-link" style="color: black;"  > <%=username%> </a>
+							<a href="/cuenta" class="nav-link" style="color: black;"  > <%=username%> </a>
 						</div>
 							<li class="nav-item">
 								<form action="/auth/logout" method="post">
