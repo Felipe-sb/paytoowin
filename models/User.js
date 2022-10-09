@@ -6,10 +6,10 @@ const userSchema = new Schema({
 	createDate:String,
 	rol:String,
 	banned:Boolean,
-	cart:{
+	cart:[{
 		type: Schema.Types.ObjectId,
 		ref: 'Product'
-	}
+	}]
 });
 const User = model('User', userSchema);
 module.exports = User;
