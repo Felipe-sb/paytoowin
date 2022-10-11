@@ -4,6 +4,7 @@ const indexRender = require('../controllers/getControllers/indexRender');
 const terminosRender = require('../controllers/getControllers/terminosRender');
 const sendContactMail = require('../controllers/postControllers/sendContactMail');
 const { updateClient } = require('../controllers/postControllers/updateClient');
+const { validateClientAccount } = require('../middlewares/validateClientAccount');
 const { validateContactForm } = require('../middlewares/validateContactForm');
 
 const router = require('express').Router();

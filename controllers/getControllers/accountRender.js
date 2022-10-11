@@ -4,8 +4,9 @@ const cuentaRender = (req, res, next) => {
 		
 		res.status(200).render('./baseViews/cuenta', {
 			login: { username, email, userId },
+			alertConfig:{alert:false}
 		});
-		return;
+		return
 	}
 	next();
 };

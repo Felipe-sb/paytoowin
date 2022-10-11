@@ -31,7 +31,7 @@
             />
             <label for="floatingInput">Correo electronico</label>
         </div>
-        <button class="w-100 btn btn-lg btn-outline-warning" type="submit">
+        <button class="w-100 btn btn-lg btn-outline-warning" type="submit" onclick="">
             Actualizar Correo
         </button>
     </form>
@@ -59,7 +59,7 @@
             />
             <label for="floatingInput">Confirma tu contraseña</label>
         </div>
-        <button class="w-100 btn btn-lg btn-outline-warning" type="submit">
+        <button class="w-100 btn btn-lg btn-outline-warning" type="submit" onclick="validateClientAccount()">
             Actualizar Contraseña
         </button>
         
@@ -72,6 +72,20 @@
 </div>
     </div>
 </body>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if (alertConfig.alert) { %>
+        <script>
+            Swal.fire({
+                title: '<%=alertConfig.title%>',
+                text: '<%=alertConfig.text%>',
+                icon: '<%=alertConfig.icon%>',
+                showConfirmButton: <%=alertConfig.confirmButton%>,
+                timer: <%=alertConfig.timer%>,
+            }).then(() => {
+                window.location = '/<%=alertConfig.route%>'
+            })
+        </script>
+    <% } %>
 
 <%- include('../presetsViews/footer') %> 
 
