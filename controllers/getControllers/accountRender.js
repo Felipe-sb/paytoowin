@@ -1,11 +1,12 @@
-const cuentaRender = (req, res) => {
+const cuentaRender = (req, res, next) => {
 	if (req.session.loggedIn) {
-		const {username, email } = req.session;
-		res.render('./baseViews/cuenta', {
-			login: { username, email },
+		const {username, email, userId } = req.session;
+		
+		res.status(200).render('./baseViews/cuenta', {
+			login: { username, email, userId },
 		});
 		return;
 	}
-	res.render('./baseViews/cuenta',{login:null});
+	next();
 };
 module.exports = cuentaRender;

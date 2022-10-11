@@ -35,9 +35,11 @@ const loginUser = async(req,res)=>{
         return
     }
     req.session.loggedIn = true;
+    req.session.userId = user.id
     req.session.username = user.username
     req.session.email = user.email
     req.session.rol = user.rol
+    console.log(req.session);
     res.redirect('/')
 }
 module.exports = loginUser;
