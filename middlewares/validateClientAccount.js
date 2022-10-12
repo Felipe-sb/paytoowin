@@ -1,6 +1,5 @@
 exports.validateClientAccount=(req,res,next)=>{
-    const {email,password,confirmPassword} = req.body
-    const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    const {password,confirmPassword} = req.body
     const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/
 
     
@@ -28,7 +27,7 @@ exports.validateClientAccount=(req,res,next)=>{
         res.render('./baseViews/cuenta',{
             alertConfig:{
 				alert:true,
-				title:'Contraseña no valida',
+				title:'Error al confirmar contraseña',
 				text:`Ingrese una contraseña valida (Ej: B23fa55)`,
 				icon:'warning',
 				confirmButton:true,

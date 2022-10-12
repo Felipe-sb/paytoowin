@@ -15,43 +15,29 @@
             class="fas fa-long-arrow-alt-left me-2"></i>Volver</a></h6><br>
         
 <div class="header">
-  <h2>Configuracion de contraseña</h2>
+  <h2>Configuracion de correo</h2>
 </div>
 
 <div class="row">
   <div class="leftcolumn">
-    
-
-    <form action="/cuenta" method="POST">
     <div class="card">
+    <form action="/updateEmailClient" method="POST">
         <div class="form-floating">
             <input
-                type="password"
-                class="form-control"
-                id="floatingPassword"
-                name="password"
-                placeholder="Contraseña"
-            />
-            <label for="floatingPassword">Contraseña</label>
-        </div>
-        <div class="form-floating">
-            <input
-                type="password"
+                type="email"
                 class="form-control"
                 id="floatingInput"
-                name="confirmPassword"
-                placeholder="Confirma tu contraseña"
+                name="email"
+                value="<%=login.email%>"
+                placeholder="Correo Electronico"
             />
-            <label for="floatingInput">Confirma tu contraseña</label>
+            <label for="floatingInput">Correo electronico</label>
         </div>
         <button class="w-100 btn btn-lg btn-outline-warning" type="submit">
-            Actualizar Contraseña
+            Actualizar Correo
         </button>
-        
-      </div>
     </form>
-    
-    
+    </div>
   </div>
 
 </div>
