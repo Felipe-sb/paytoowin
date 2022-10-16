@@ -3,6 +3,7 @@ const cuentaRender = require('../controllers/getControllers/accountRender');
 const contactRender = require('../controllers/getControllers/contactRender');
 const indexRender = require('../controllers/getControllers/indexRender');
 const terminosRender = require('../controllers/getControllers/terminosRender');
+const faqsRender = require('../controllers/getControllers/faqsRender');
 const updateEmailClient = require('../controllers/getControllers/updateEmailClient');
 const sendContactMail = require('../controllers/postControllers/sendContactMail');
 const { updatePasswordClient } = require('../controllers/postControllers/updateClient');
@@ -15,6 +16,7 @@ const verifiedEmailExist = require('../middlewares/verifiedEmailExist');
 const router = require('express').Router();
 router.get('/',indexRender)
 router.get('/terminos',terminosRender)
+router.get('/faqs',faqsRender)
 router.get('/cuenta',cuentaRender)
 router.get('/accountSetting',accountConfigRender)
 router.get('/updateEmailClient',updateEmailClient)
