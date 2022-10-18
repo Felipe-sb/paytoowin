@@ -21,6 +21,11 @@ const productSchema = new Schema({
 		ref:'User'
 	}],
 	clicks:Number,
+	username:String,
+	password:String,
+	email:String, 
+
+
 });
 const Product = model('Product', productSchema);
 module.exports = Product;
