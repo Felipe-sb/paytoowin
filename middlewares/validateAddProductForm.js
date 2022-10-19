@@ -1,8 +1,11 @@
 const validateAddProductForm = (req,res,next)=>{
-    const {title,game,level,description,price,gameType,developer} = req.body;
+    const {title,game,level,description,price,gameType,developer,username,password,email} = req.body;
     const images = req.files
     const regexNotEmptyString = /^(?!\s*$).+/
     const regexOnlyNumbers = /^[0-9]*$/
+	const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+	const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/
+
     if(!regexNotEmptyString.test(title)){
         res.render('./productsViews/addProduct',{
             login:req.session.loggedIn,
@@ -123,6 +126,53 @@ const validateAddProductForm = (req,res,next)=>{
 			}
         })
         return;
+    }
+	if (!regexNotEmptyString.test(username)) {
+        res.render('./productsViews/addProduct',{
+            login:req.session.loggedIn,
+            alertConfig:{
+				alert:true,
+				title:'Nombre de usuario invalido',
+				text:`Ingrese un nombre de usuario valido`,
+				icon:'warning',
+				confirmButton:true,
+				timer:false,
+				route:'products/add-product'
+			}
+        })
+        return;
+    }
+	if (!email || !emailRegex.test(email)) {
+        res.render('./productsViews/addProduct',{
+			login:req.session.loggedIn,
+            alertConfig:{
+				alert:true,
+				title:'Correo electronico no valido',
+				text:`Ingrese un email valido`,
+				icon:'warning',
+				confirmButton:true,
+				timer:false,
+				route:'products/add-product'
+			}
+        })
+        return
+    }
+	if (!password || !passRegex.test(password)){
+
+        res.render('./productsViews/addProduct',{
+			login:req.session.loggedIn,
+            alertConfig:{
+				alert:true,
+				title:'Contraseña no valida',
+				text:`Ingrese una contraseña valida (Ej: A12da45)`,
+				icon:'warning',
+				confirmButton:true,
+				timer:false,
+				route:'products/add-product'
+			}
+        })
+        return
+
     }
     next()
 }

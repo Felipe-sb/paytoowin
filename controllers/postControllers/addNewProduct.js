@@ -1,8 +1,10 @@
 const Product = require('../../models/Product');
 const cloudinary = require('../../helpers/cloudinary');
 const User = require('../../models/User');
+const bcrypt = require('bcryptjs');
 const addNewProduct = async (req, res) => {
-	const { title, game, level, description, price,gameType,developer } = req.body;
+	const { title, game, level, description, price,gameType,developer,username,password,email } = req.body;
+	const hashPassword = await bcrypt.hash(password, 8);
 	const user = await User.findOne({email:req.session.email})
 	let images = []
 	for (let i = 0; i < req.files.length; i++){
@@ -24,7 +26,10 @@ const addNewProduct = async (req, res) => {
 		gameType,
 		developer,
 		owner: user._id,
-		clicks:0
+		clicks:0,
+		username,
+		password: hashPassword,
+		email
 	});
     newProduct.save()
         .then((product)=>{
