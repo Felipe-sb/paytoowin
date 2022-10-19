@@ -1,5 +1,6 @@
 const axios = require('axios');
 const User = require('../../models/User');
+const Product = require('../../models/Product')
 const PAYPAL_API_URL = 'https://api-m.sandbox.paypal.com';
 const createOrder = async (req, res,next) => {
     if (req.session.loggedIn) {
@@ -20,7 +21,7 @@ const createOrder = async (req, res,next) => {
                 brand_name: 'PayTooWin',
                 landing_page: 'NO_PREFERENCE',
                 user_action: 'PAY_NOW',
-                return_url: 'https://paytoowin.herokuapp.com/commerce/captureOrder',
+                return_url: 'https://paytoowin.heokuapp.com/commerce/captureOrder',
                 cancel_url: 'https://paytoowin.herokuapp.com/commerce/cancelOrder',
             },
         };
@@ -46,20 +47,25 @@ const cancelOrder = async (req, res) => {
 };
 const captureOrder = async (req, res) => {
     const { token, PayerId } = req.query;
-    const response = await axios.post(
-        `${PAYPAL_API_URL}/v2/checkout/orders/${token}/capture`,
-        {},
-        {
-            auth: {
-                username:
-                    'AWCeTsS3yNzM5coeA0zkxBSg_Y6L_VNJASYqZqbH9y8fNSJmrvAbLUW9VbK83cnMj1_ToZBBjErBWlQ3',
-                password:
-                    'EACs7Nu33blg_OBgLJevnA7SBo5dcfKNKI7jfCYlPDAGrbk20ut5FlkLoRBZsEucl0PqICpxHaM0iXJh',
-            },
-        }
-    );
-    console.log(response);
-    res.send('Orden capturada');
+    // const response = await axios.post(
+    //     `${PAYPAL_API_URL}/v2/checkout/orders/${token}/capture`,
+    //     {},
+    //     {
+    //         auth: {
+    //             username:
+    //                 'AWCeTsS3yNzM5coeA0zkxBSg_Y6L_VNJASYqZqbH9y8fNSJmrvAbLUW9VbK83cnMj1_ToZBBjErBWlQ3',
+    //             password:
+    //                 'EACs7Nu33blg_OBgLJevnA7SBo5dcfKNKI7jfCYlPDAGrbk20ut5FlkLoRBZsEucl0PqICpxHaM0iXJh',
+    //         },
+    //     }
+    // );
+    const user = await User.findOne({email:req.session.email}).populate('cart')
+    user.cart.forEach(async(product) =>{
+        await Product.findByIdAndUpdate(product.id,{partialdelete:true})
+    })
+    user.cart=[]
+    await user.save()
+    res.redirect('/commerce')
 };
 module.exports = {
     createOrder,
