@@ -12,7 +12,7 @@ const createOrder = async (req, res,next) => {
                 {
                     amount: {
                         currency_code: 'USD',
-                        value: `12.00`,
+                        value: `${totalPrice}`,
                     },
                     description: 'accounts',
                 },
