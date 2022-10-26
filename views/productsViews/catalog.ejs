@@ -20,6 +20,7 @@ include('../presetsViews/header',{title:
                 <h2 class="page-header">Catalogo</h2>
                 <%}%>
             </div>
+            
 
             <div>
                 <form action="/products/filter" method="post">
@@ -115,6 +116,38 @@ include('../presetsViews/header',{title:
                 <% }) %> 
             <% } %>
         </div>
+
+    </div>
+
+    <div class="row">
+        <% if (pages) { %>
+            <nav class="mx-auto"
+            <ul class="pagination">
+            <% if (current==1) { %>
+                <li class="page-item disabled">
+                    <a href="#" class="page-link">Primera pagina </a>
+                    </li>
+                    <% } else { %> 
+                        <li class="page-item">
+                            <a href="/products/catalog/1" class="page-link">Primera pagina </a>
+                            </li>
+                            <% } %>
+
+
+                            <% if(current == pages) {  %> 
+                                <li class="page-item disabled" >
+                                    <a href="#" class="page-link">Ultima pagina </a>
+                                    </li>
+                                <% } else {  %>
+                                    <li class="page-item">
+                                        <a class="page-link" href="/products/catalog/<%=pages%>">Ultima pagina</a>
+                                    </li> 
+
+                                    <% } %>
+            </ul>
+        </nav>
+            <% } %>
+    </div>
     </div>
     <br>
 </center>
