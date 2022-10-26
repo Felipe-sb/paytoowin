@@ -25,8 +25,8 @@ const createOrder = async (req, res, next) => {
                 brand_name: 'PayTooWin',
                 landing_page: 'NO_PREFERENCE',
                 user_action: 'PAY_NOW',
-                return_url: 'http://localhost:4000/commerce/captureOrder',
-                cancel_url: 'http://localhost:4000/commerce/cancelOrder',
+                return_url: 'https://paytoowin.herokuapp.com/commerce/captureOrder',
+                cancel_url: 'https://paytoowin.herokuapp.com/commerce/cancelOrder',
             },
         };
         const { data } = await axios.post(
