@@ -9,6 +9,10 @@ const userSchema = new Schema({
 	cart:[{
 		type: Schema.Types.ObjectId,
 		ref: 'Product'
+	}],
+	oldPurchases:[{
+		type: Schema.Types.ObjectId,
+		ref: 'Product'
 	}]
 });
 const User = model('User', userSchema);

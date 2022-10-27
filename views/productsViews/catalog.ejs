@@ -38,7 +38,7 @@ include('../presetsViews/header',{title:
 
             <% if (products) { %> 
                 <% products.forEach(product => { %>
-                    <% if (product.verified) { %>
+                    <% if (product.verified && !product.partialDelete) { %>
                         <div class="card col-md-3 col-6 product-block">
                             <a
                                 href="/products/product/<%= product.id %> "

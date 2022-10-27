@@ -1,6 +1,7 @@
 const axios = require('axios');
 const User = require('../../models/User');
 const Product = require('../../models/Product');
+const transporter = require('../../helpers/transporter');
 const PAYPAL_API_URL = 'https://api-m.sandbox.paypal.com';
 const createOrder = async (req, res, next) => {
     if (req.session.loggedIn) {
@@ -16,7 +17,7 @@ const createOrder = async (req, res, next) => {
                 {
                     amount: {
                         currency_code: 'USD',
-                        value: `${totalPrice}}`,
+                        value: `${totalPrice}`,
                     },
                     description: 'accounts',
                 },
@@ -25,8 +26,8 @@ const createOrder = async (req, res, next) => {
                 brand_name: 'PayTooWin',
                 landing_page: 'NO_PREFERENCE',
                 user_action: 'PAY_NOW',
-                return_url: 'https://paytoowin.herokuapp.com/commerce/captureOrder',
-                cancel_url: 'https://paytoowin.herokuapp.com/commerce/cancelOrder',
+                return_url: 'http://localhost:4000/commerce/captureOrder',
+                cancel_url: 'http://localhost:4000/commerce/cancelOrder',
             },
         };
         const { data } = await axios.post(
@@ -66,13 +67,23 @@ const captureOrder = async (req, res) => {
     const user = await User.findOne({ email: req.session.email }).populate(
         'cart'
     );
+    let text = `${user.username} gracias por tu compra en PayTooWin a continuación se encuentran tus productos comprados con su nombre de usuario y su contraseña.`
+    let counter = 1
     user.cart.forEach(async (product) => {
         await Product.findByIdAndUpdate(product.id, {
-            partialdelete: true,
+            partialDelete: true,
         });
+        text += `\nCuenta numero ${counter}\n Nombre de usuario: ${product.username}\n Contraseña: ${product.password}`
     });
+    user.oldPurchases=[...user.oldPurchases,...user.cart]
     user.cart = [];
     await user.save();
+    await transporter.sendMail({
+        from:'paytoowin-noreply@gmail.com',
+        to:`${user.email}`,
+        subject:'Compra Exitosa',
+        text
+    })
     res.redirect('/commerce');
 };
 module.exports = {
