@@ -118,11 +118,11 @@ include('../presetsViews/header',{title:
         </div>
 
     </div>
-
-    <div class="row">
+<div>
+    <div class="row pagination">
         <% if (pages) { %>
             <nav class="mx-auto"
-            <ul class="pagination">
+            <ul>
             <% if (current==1) { %>
                 <li class="page-item disabled">
                     <a href="#" class="page-link">Primera pagina </a>
@@ -132,6 +132,36 @@ include('../presetsViews/header',{title:
                             <a href="/products/catalog/1" class="page-link">Primera pagina </a>
                             </li>
                             <% } %>
+
+                            <% var i= (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                            <% if (i !== 1) { %>
+                                <a href="#" class="page-link">.....</a>
+                                <% } %>
+                                <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+
+                                    <% if (i == current) { %>
+                                        <li class="page-item">
+                                            <a href="<%= i %>" class="page-link">
+                                                <%= i %>
+                                            </a>
+
+
+                                        </li>
+                                        <% } else { %>
+                                <li class="page-item">
+                                    <a href="/products/catalog/<%= i %>" class="page-link">
+                                        <%= i %>
+                                    </a>
+                                </li>
+
+                                <% } %>
+                                <% if(i == Number(current) + 4 && i < pages) { %>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">...</a>
+                                    </li>
+
+                                    <% } %>
+                                    <% } %>
 
 
                             <% if(current == pages) {  %> 
@@ -149,6 +179,7 @@ include('../presetsViews/header',{title:
             <% } %>
     </div>
     </div>
+</div>
     <br>
 </center>
 <%- include('../presetsViews/footer') %>
