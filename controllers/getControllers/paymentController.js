@@ -69,11 +69,15 @@ const captureOrder = async (req, res) => {
     );
     let text = `${user.username} gracias por tu compra en PayTooWin a continuación se encuentran tus productos comprados con su nombre de usuario y su contraseña.`
     let counter = 1
+    let owner = {}
     user.cart.forEach(async (product) => {
         await Product.findByIdAndUpdate(product.id, {
             partialDelete: true,
         });
-        text += `\nCuenta numero ${counter}\n Nombre de usuario: ${product.username}\n Contraseña: ${product.password}`
+        owner = await User.findById(product.owner[0])
+        owner.balance = owner.balance+((product.price*15)/100)
+        owner.save();
+        text += `\n\nCuenta numero ${counter}\nJuego${product.game}\nNombre de usuario: ${product.username}\nContraseña: ${product.password}`
     });
     user.oldPurchases=[...user.oldPurchases,...user.cart]
     user.cart = [];

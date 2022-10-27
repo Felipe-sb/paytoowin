@@ -13,7 +13,8 @@ const userSchema = new Schema({
 	oldPurchases:[{
 		type: Schema.Types.ObjectId,
 		ref: 'Product'
-	}]
+	}],
+	balance:Number
 });
 const User = model('User', userSchema);
 module.exports = User;
