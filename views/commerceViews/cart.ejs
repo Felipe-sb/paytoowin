@@ -68,7 +68,27 @@
                       <h5>$ <%= total %> USD</h5>
                     </div>
                     <a type="button" class="btn btn-dark btn-block btn-lg"
-                      data-mdb-ripple-color="dark" href="/commerce/createOrder">Ir a pagar</a>
+                      data-mdb-ripple-color="dark" href="/commerce/createOrderPayPal">Pagar Por Paypal</a>
+                    <% console.log(paymentId); 
+                    if (paymentId) { %>
+                      <script src="https://sdk.mercadopago.com/js/v2"></script>
+                      <div class="cho-container btn btn-primary mt-4 p-0 h-200"></div>
+                      <script>
+                        const mp = new MercadoPago('TEST-db3026d4-cf9f-4ee2-9a67-483a40c6af81', {
+                          locale: 'es-CL'
+                        });
+
+                        mp.checkout({
+                          preference: {
+                            id: '<%=paymentId%>'
+                          },
+                          render: {
+                            container: '.cho-container',
+                            label: 'Pagar Por mercadopago',
+                          }
+                        });
+                      </script>
+                    <% } %>
                   </div>
                 </div>
               </div>

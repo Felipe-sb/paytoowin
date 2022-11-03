@@ -3,7 +3,7 @@ const User = require('../../models/User');
 const Product = require('../../models/Product');
 const transporter = require('../../helpers/transporter');
 const PAYPAL_API_URL = 'https://api-m.sandbox.paypal.com';
-const createOrder = async (req, res, next) => {
+const createOrderPayPal = async (req, res, next) => {
     if (req.session.loggedIn) {
         const user = await User.findOne({ email: req.session.email }).populate(
             'cart'
@@ -47,10 +47,10 @@ const createOrder = async (req, res, next) => {
     }
     next();
 };
-const cancelOrder = async (req, res) => {
+const cancelOrderPayPal = async (req, res) => {
     res.redirect('/commerce');
 };
-const captureOrder = async (req, res) => {
+const captureOrderPayPal = async (req, res) => {
     const { token, PayerId } = req.query;
     const response = await axios.post(
         `${PAYPAL_API_URL}/v2/checkout/orders/${token}/capture`,
@@ -75,9 +75,10 @@ const captureOrder = async (req, res) => {
             partialDelete: true,
         });
         owner = await User.findById(product.owner[0])
-        owner.balance = owner.balance+((product.price*15)/100)
+        owner.balance = owner.balance+((product.price*75)/100)
         owner.save();
         text += `\n\nCuenta numero ${counter}\nJuego${product.game}\nNombre de usuario: ${product.username}\nContraseña: ${product.password}`
+        counter ++;
     });
     user.oldPurchases=[...user.oldPurchases,...user.cart]
     user.cart = [];
@@ -91,7 +92,7 @@ const captureOrder = async (req, res) => {
     res.redirect('/commerce');
 };
 module.exports = {
-    createOrder,
-    cancelOrder,
-    captureOrder,
+    createOrderPayPal,
+    cancelOrderPayPal,
+    captureOrderPayPal,
 };

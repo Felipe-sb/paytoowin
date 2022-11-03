@@ -1,13 +1,16 @@
 const cartRender = require('../controllers/getControllers/cartRender');
 const { deleteProductFromCart } = require('../controllers/getControllers/deleteProductFronUserCart');
+const { createOrderMercadoPago } = require('../controllers/getControllers/mercadopagoPaymentController');
+const { captureOrderPayPal, cancelOrderPayPal, createOrderPayPal } = require('../controllers/getControllers/paypalPaymentController');
 const { addProductToCart } = require('../controllers/postControllers/addProductToCart');
-const { captureOrder, cancelOrder, createOrder } = require('../controllers/getControllers/paymentController');
+
 
 const router = require('express').Router();
 router.get('/',cartRender)
-router.get('/captureOrder',captureOrder)
-router.get('/cancelOrder',cancelOrder)
-router.get('/createOrder',createOrder)
+router.get('/createOrderMercadoPago',createOrderMercadoPago)
+router.get('/captureOrderPayPal',captureOrderPayPal)
+router.get('/cancelOrderPayPal',cancelOrderPayPal)
+router.get('/createOrderPayPal',createOrderPayPal)
 router.post('/addToCart',addProductToCart)
 router.post('/deleteProductFromCart', deleteProductFromCart)
 
