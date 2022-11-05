@@ -39,6 +39,7 @@ const loginUser = async(req,res)=>{
     req.session.username = user.username
     req.session.email = user.email
     req.session.rol = user.rol
+    req.session.balance = user.balance
     console.log(req.session);
     res.redirect('/')
 }

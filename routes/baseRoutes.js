@@ -13,6 +13,8 @@ const { validateClientAccount } = require('../middlewares/validateClientAccount'
 const { validateContactForm } = require('../middlewares/validateContactForm');
 const { validateEmail } = require('../middlewares/validateEmailClient');
 const verifiedEmailExist = require('../middlewares/verifiedEmailExist');
+const saldoRender = require('../controllers/getControllers/saldoRender');
+const loginUser = require('../controllers/postControllers/loginUser');
 
 const router = require('express').Router();
 router.get('/',indexRender)
@@ -21,6 +23,7 @@ router.get('/faqs',faqsRender)
 router.get('/nosotros',nosotrosRender)
 router.get('/cuenta',cuentaRender)
 router.get('/accountSetting',accountConfigRender)
+router.get('/saldo',saldoRender)
 router.get('/updateEmailClient',updateEmailClient)
 router.get('/contact',contactRender)
 router.post('/contact',validateContactForm,sendContactMail)
