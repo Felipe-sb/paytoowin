@@ -1,16 +1,18 @@
-const saldoRender = (req, res, next) => {
+const User = require("../../models/User");
+
+const saldoRender = async(req, res, next) => {
 	if (req.session.loggedIn) {
-		const {username, email, userId, balance } = req.session;
-		
+		const {email,username,userId} = req.session;
+		const user = await User.findOne({email})
+		console.log(user);
 		res.status(200).render('./baseViews/saldo', {
-			login: { username , email, userId, balance},
+			login: { username , email,userId},
 			alertConfig:{alert:false},
-			balance: req.session.balance
-
-
+			balance:user.balance
 		});
 		return
 	}
 	next();
+
 };
 module.exports = saldoRender;
