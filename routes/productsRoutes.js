@@ -10,6 +10,7 @@ const deleteProduct = require('../controllers/postControllers/deleteProduct')
 const listProducts = require('../controllers/getControllers/listProducts')
 const { productFilter } = require('../controllers/postControllers/getProductsFilter')
 const accountRender = require('../controllers/getControllers/accountRender')
+const verifiedProduct = require('../controllers/postControllers/verifiedProduct')
 const router = require('express').Router()
 router.get('/',(req,res)=>{
     res.redirect('/products/catalog/1')
@@ -111,6 +112,28 @@ router.post('/delete',async(req,res,next)=>{
             title:'Producto Eliminado',
             text:``,
             icon:'warning',
+            confirmButton:true,
+            timer:false,
+            route:'products/catalog/1'
+        }
+    })
+})
+
+router.post('/verified',async(req,res,next)=>{
+    if(!req.session.loggedIn){
+        next();
+        return;
+    }
+    const {id} = req.body;
+    const product = await verifiedProduct(id)
+    res.render('./productsViews/addProduct',{
+        login:req.session.loggedIn,
+        product:null,
+        alertConfig:{
+            alert:true,
+            title:'Producto Verificado',
+            text:``,
+            icon:'success',
             confirmButton:true,
             timer:false,
             route:'products/catalog/1'

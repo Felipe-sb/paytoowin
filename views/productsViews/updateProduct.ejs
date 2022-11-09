@@ -112,7 +112,14 @@
 			<button class="w-100 btn btn-lg btn-primary" type="submit">
 				Actualizar Producto
 			</button>
-		</form>
+		</form><br>
+       <% if(!product.verified) {%>
+		<form action="/products/verified" method="post">
+			<input type="hidden" name="id" value="<%= product.id %>" />
+			<input type="submit" value="Verificar Producto" class="btn btn-success mt-4 w-100 btn-lg">
+		</form><br>
+		<% } %>
+
 		<form action="/products/delete" method="post">
 			<input type="hidden" name="id" value="<%= product.id %>" />
 			<input type="submit" value="Eliminar Producto" class="btn btn-danger mt-4 w-100 btn-lg">
