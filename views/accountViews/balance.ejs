@@ -6,32 +6,35 @@
     
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="./css/cuenta.css">
+<link rel="stylesheet" href="/css/cuenta.css">
 </head>
 <body>
 
     <div class="body-content">
-        
+        <h6 class="mb-0"><a href="/account/accountSetting" class="text-body"><i
+            class="fas fa-long-arrow-alt-left me-2"></i>Volver</a></h6><br>
         
 <div class="header">
-  <h2>Perfil de usuario</h2>
+  <h2>Saldo y pago</h2>
 </div>
-
+<center>
 <div class="row">
+    <form action="/getMoney" method="post">
   <div class="leftcolumn">
     <div class="card">
-        <a href="/cuenta" class="nav-link" style="color: black;"  > Cambiar Contraseña</a>
-        <a href="/updateEmailClient" class="nav-link" style="color: black;"  > Cambiar Correo</a>
-        <a href="/saldo" class="nav-link" style="color: black;"  > Saldo y pago</a>
-        <a href="#" class="nav-link" style="color: black;"  > Historial de compras</a>
-        <a href="#" class="nav-link" style="color: black;"  > Reportar cuenta baneada</a>
-        <a href="/contact" class="nav-link" style="color: black;"  > Ayuda</a>
+        <h4 class="nav-link" style="color: black;">Saldo disponible: $<%=balance%> USD</h4>
+        
     </div>
       </div>
+      <button class="w-100 btn btn-lg btn-outline-warning" type="submit">
+        Retirar Dinero
+    </button>
+   
     </form>
   </div>
 </div>
     </div>
+</center>
 </body>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <% if (alertConfig.alert) { %>

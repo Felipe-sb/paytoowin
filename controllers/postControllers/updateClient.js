@@ -7,7 +7,7 @@ const updatePasswordClient = async (req, res,next) => {
         if (password !== "" || password !== undefined ) {
             const cryptPass = await bcryptjs.hash(password,8)
         const newUser = await User.findByIdAndUpdate(req.session.userId, { password: cryptPass });
-        res.render('./baseViews/cuenta',{
+        res.render('./accountViews/cuenta',{
                 alertConfig:{
                     alert:true,
                     title:'OPERACION EXITOSA',
@@ -15,7 +15,7 @@ const updatePasswordClient = async (req, res,next) => {
                     icon:'success',
                     confirmButton:true,
                     timer:false,
-                    route:'cuenta'
+                    route:'account/cuenta'
                 },
                 login:{userId:req.session.userId, username:req.session.username, email:req.session.email}
     

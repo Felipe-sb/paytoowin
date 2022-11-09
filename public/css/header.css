@@ -2,4 +2,6 @@
 
     margin-left: 400px !important;
 }
-
+.image-color{
+    background-image: linear-gradient(#4523E8,#8623F1,#A826F8,#bfa0ff);
+}

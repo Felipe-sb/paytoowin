@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV !== 'production'){
+	require('dotenv').config()
+}
 require('./database/connection');
 const path = require('path');
 const express = require('express');
@@ -17,6 +20,7 @@ app.use('/auth', require('./routes/authRoutes'));
 app.use('/products',require('./routes/productsRoutes'));
 app.use('/admin',require('./routes/adminRoutes'));
 app.use('/commerce',require('./routes/commerceRoutes'))
+app.use('/account',require('./routes/accountRoutes'))
 app.use((req, res) => {
 	if (req.session.loggedIn) {
 		res.status(404).render('./baseViews/404',{login:true,username:req.session.username})	

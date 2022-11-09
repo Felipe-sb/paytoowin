@@ -104,15 +104,15 @@ include('../presetsViews/header',{title:
                 top.forEach(product =>{ 
                     if(counter <= 3){%>
 
-                <div class="card col-md-3 col-6 product-block">
+                <div class="card col-md-4 col-6 product-block p-4" style="background-color: #8623F1; border-radius: 15px;">
                     <img
                         src="<%= product.images[0].url %> "
                         class="card-img-top"
                         loading="lazy"
                     />
                     <div class="card-body">
-                        <h5 class="card-title"><%= product.title %> </h5>
-                        <p class="card-text">
+                        <h5 class="card-title" style="color: #ffffff;"><%= product.title %> </h5>
+                        <p class="card-text" style="color: #ffffff;">
                             <%= product.description %> 
                         </p>
                         <a href="/products/product/<%=product.id%>" class="btn btn-outline-warning"
