@@ -14,6 +14,7 @@ const productSchema = new Schema({
 	price: Number,
 	partialDelete: Boolean,
 	verified: Boolean,
+	sold:Boolean,
 	gameType: String,
 	developer: String,
 	owner: [{
@@ -24,7 +25,6 @@ const productSchema = new Schema({
 	username:String,
 	password:String,
 	email:String, 
-
 
 });
 const Product = model('Product', productSchema);

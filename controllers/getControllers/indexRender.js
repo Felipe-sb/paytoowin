@@ -2,7 +2,14 @@ const Product = require("../../models/Product");
 
 const indexRender = async(req, res) => {
 	const data = await Product.find({})
-	const orderProductsByClicks = data.sort((a,b)=>{
+
+	const orderProductsByClicks = data
+		.filter(product=>{
+			if (!product.sold) {
+				return product
+			}
+		})
+		.sort((a,b)=>{
 		return b.clicks - a.clicks
 	})
 	console.log(data)

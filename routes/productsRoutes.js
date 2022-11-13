@@ -11,6 +11,7 @@ const listProducts = require('../controllers/getControllers/listProducts')
 const { productFilter } = require('../controllers/postControllers/getProductsFilter')
 const accountRender = require('../controllers/getControllers/accountRender')
 const verifiedProduct = require('../controllers/postControllers/verifiedProduct')
+const User = require('../models/User')
 const router = require('express').Router()
 router.get('/',(req,res)=>{
     res.redirect('/products/catalog/1')
@@ -56,7 +57,10 @@ router.post('/add-product',upload,validateAddProductForm,async(req,res)=>{
     const owner = req.session.email
     const files = req.files
     addNewProduct(title, game, level, description, price,gameType,developer,username,password,email,owner,files)
-        .then((product)=>{
+        .then(async(product)=>{
+            const user = await User.findOne({email:owner})
+            user.products = [...user.products,product._id]
+            await user.save()
             res.render('./productsViews/addProduct',{
                 login:req.session.loggedIn,
                 product,

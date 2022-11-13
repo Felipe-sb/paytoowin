@@ -14,6 +14,10 @@ const userSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Product'
 	}],
+	products:[{
+		type: Schema.Types.ObjectId,
+		ref:'Product',
+	}],
 	balance:Number
 });
 const User = model('User', userSchema);

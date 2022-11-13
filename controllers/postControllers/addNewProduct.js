@@ -21,6 +21,7 @@ const addNewProduct = async (title, game, level, description, price ,gameType,de
 		description,
 		price: Number(price),
 		partialDelete: false,
+		sold:false,
 		verified: false,
 		gameType,
 		developer,

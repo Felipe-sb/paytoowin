@@ -44,6 +44,7 @@ router.get('/successPay', async (req, res, next) => {
                     const product = user.cart[i];
                     await Product.findByIdAndUpdate(product.id, {
                         partialDelete: true,
+                        sold:true,
                     });
                     owner = await User.findById(product.owner[0]);
                     owner.balance = owner.balance + (product.price * 75) / 100;
