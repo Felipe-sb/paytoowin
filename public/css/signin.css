@@ -33,9 +33,6 @@ body {
   border-top-right-radius: 0;
 }
 
-.logo {
-   background-image: url('../img/logo.svg');
-}
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
