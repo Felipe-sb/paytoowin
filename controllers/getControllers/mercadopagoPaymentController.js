@@ -5,9 +5,9 @@ const createOrderMercadoPago = async(user) =>{
     let preference = {
         items:[],
         back_urls:{
-            "success":"http://localhost:4000/commerce/successPay",
-            "failure":"https://paytoowin.herokuapp.com/",
-            "pending":"https://paytoowin.herokuapp.com/"
+            "success":`${process.env.HOST}/commerce/successPay`,
+            "failure":`${process.env.HOST}/commerce/successPay`,
+            "pending":`${process.env.HOST}/commerce/successPay`
         },
         auto_return:'approved',
     }

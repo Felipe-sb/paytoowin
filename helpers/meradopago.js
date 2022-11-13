@@ -1,5 +1,5 @@
 const mercadopago = require('mercadopago');
 mercadopago.configure({
-    access_token:'TEST-4655289584569176-110310-7d079cfc37d9d9d0caed08df24784a07-680092447'
+    access_token:process.env.MERCADOPAGO_ACCESS_TOKEN
 })
 module.exports=mercadopago
