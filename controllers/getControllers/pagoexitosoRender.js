@@ -1,11 +1,11 @@
 const pagoexitosoRender = (req, res) => {
 	if (req.session.loggedIn) {
 		const {username, email } = req.session;
-		res.render('./baseViews/pagoexitoso', {
+		res.render('./commerceViews/pagoexitoso', {
 			login: { username, email },
 		});
 		return;
 	}
-	res.render('./baseViews/pagoexitoso',{login:null});
+	res.render('./commerceViews/pagoexitoso',{login:null});
 };
 module.exports = pagoexitosoRender;

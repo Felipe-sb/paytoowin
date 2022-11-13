@@ -65,6 +65,9 @@ router.get('/successPay', async (req, res, next) => {
         res.render('./commerceViews/pagoexitoso', {
             login: { username: req.session.username },
         });
+        res.render('./commerceViews/pagopendiente', {
+            login: { username: req.session.username },
+        });
     }
 });
 router.post('/addToCart', addProductToCart);
