@@ -10,7 +10,7 @@
 <div>
 	<main class="form-signin">
 		<form action="/products/update-product" method="post" enctype="multipart/form-data">
-			<h1 class="h3 mb-3 fw-normal">Actualizar Producto</h1>
+			<h1 class="h3 mb-3 fw-normal" style="color: #ffff;">Actualizar Producto</h1>
             <input type="hidden" name="id" value="<%= product.id %>" />
 			<div class="form-floating">
 				<input
@@ -113,14 +113,17 @@
 				Actualizar Producto
 			</button>
 		</form><br>
-       <% if(!product.verified) {%>
+       <% if(!product.verified && rol == "admin"){%>
 		<form action="/products/verified" method="post">
 			<input type="hidden" name="id" value="<%= product.id %>" />
 			<input type="submit" value="Verificar Producto" class="btn btn-success mt-4 w-100 btn-lg">
 		</form>
-		<% } else {%>
-			<h5 style="color: green;">PRODUCTO VERIFICADO</h5>
-			<% }%>
+			<% } if (rol == "client" && !product.verified){%>
+			<h5 style="color: red;">Esperando verificacion del producto</h5>
+			<% } if (product.verified) {%>
+				<h5 style="color: green;">PRODUCTO VERIFICADO</h5>
+
+				<% } %>
 		<form action="/products/delete" method="post">
 			<input type="hidden" name="id" value="<%= product.id %>" />
 			<input type="submit" value="Eliminar Producto" class="btn btn-danger mt-4 w-100 btn-lg">

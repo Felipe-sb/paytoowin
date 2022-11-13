@@ -1,15 +1,23 @@
 const Product = require('../../models/Product')
+const User = require('../../models/User')
 const updateProductRender = async(req,res,next) =>{
 	if (!req.session.loggedIn) {
 		next()
 		return
 	}
 	const { id } = req.params;
+	const {email} = req.session;
 	const product = await Product.findById(id);
+	const user = await User.findOne({email})
+	console.log(user);
 	res.render('./productsViews/updateProduct', {
 		product,
-		login: { username: req.session.username, email: req.session.email },
-        alertConfig:{alert:false}
+		login: { username: req.session.username, email: req.session.email},
+        alertConfig:{alert:false},
+		rol:user.rol
+		
+		
+		
 	});
 }
 module.exports = updateProductRender;
