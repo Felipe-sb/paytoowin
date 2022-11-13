@@ -26,8 +26,8 @@ const createOrderPayPal = async (req, res, next) => {
                 brand_name: 'PayTooWin',
                 landing_page: 'NO_PREFERENCE',
                 user_action: 'PAY_NOW',
-                return_url: 'https://paytoowin.herokuapp.com/commerce/captureOrder',
-                cancel_url: 'https://paytoowin.herokuapp.com/commerce/cancelOrder',
+                return_url: 'http://localhost:4000/commerce/captureOrderPayPal',
+                cancel_url: 'http://localhost:4000/commerce/cancelOrderPayPal',
             },
         };
         const { data } = await axios.post(
@@ -76,7 +76,7 @@ const captureOrderPayPal = async (req, res) => {
         });
         owner = await User.findById(product.owner[0])
         owner.balance = owner.balance+((product.price*75)/100)
-        owner.save();
+        await owner.save();
         text += `\n\nCuenta numero ${counter}\nJuego${product.game}\nNombre de usuario: ${product.username}\nContraseña: ${product.password}`
         counter ++;
     });

@@ -67,10 +67,15 @@
                       <h5 class="text-uppercase">Total a pagar</h5>
                       <h5>$ <%= total %> USD</h5>
                     </div>
-                    <a type="button" class="btn btn-dark btn-block btn-lg"
+                    <% if (cart.length === 0) { %>
+                      
+                      <a type="button" class="btn btn-dark btn-block btn-lg disabled"
                       data-mdb-ripple-color="dark" href="/commerce/createOrderPayPal">Pagar Por Paypal</a>
-                    <% console.log(paymentId); 
-                    if (paymentId) { %>
+                    <% }else{ %>
+                      <a type="button" class="btn btn-dark btn-block btn-lg"
+                      data-mdb-ripple-color="dark" href="/commerce/createOrderPayPal">Pagar Por Paypal</a>
+                    <%}%>
+                    <%  if (paymentId) { %>
                       <script src="https://sdk.mercadopago.com/js/v2"></script>
                       <div class="cho-container btn btn-primary mt-4 p-0 h-200"></div>
                       <script>
