@@ -12,6 +12,8 @@ const { productFilter } = require('../controllers/postControllers/getProductsFil
 const accountRender = require('../controllers/getControllers/accountRender')
 const verifiedProduct = require('../controllers/postControllers/verifiedProduct')
 const User = require('../models/User')
+const validateUpdateProduct = require('../middlewares/validateUpdateProduct')
+const Product = require('../models/Product')
 const router = require('express').Router()
 router.get('/',(req,res)=>{
     res.redirect('/products/catalog/1')
@@ -25,13 +27,23 @@ router.get('/product/:id',async(req,res,next)=>{
 		res.render('./productsViews/product', { product, login: null });
 		return;
 	}
+    const user = await  User.findOne({email:req.session.email}).populate('cart')
+    let haveTheProductInCart = false
+    user.cart.forEach(tmp=>{
+        if (tmp.id === id) {
+            haveTheProductInCart = true
+        }
+    })
 	res.render('./productsViews/product', {
+        haveTheProductInCart,
 		product,
 		login: { username: req.session.username, email: req.session.email },
 	});
 })
-router.post('/filter',async(req,res)=>{
+router.post('/filter/:page',async(req,res)=>{
     const {game,gameType,developer} = req.body
+    let perPage = 8;
+    let page = req.params.page || 1;
     let query = {}
     if(game !== ''){
         query['game'] = game
@@ -42,8 +54,45 @@ router.post('/filter',async(req,res)=>{
     if(developer !== ''){
         query['developer'] = developer
     }
-    const products = await productFilter(query)
-    res.render("./productsViews/catalog",{products,login:null,alertConfig:{alert:false},msg:null})
+    if (req.session.loggedIn) {
+        Product.find({query})
+            .skip(perPage * page - perPage)
+            .limit(perPage)
+            .exec((err, products) => {
+                Product.count((err, count) => {
+                    if (err) return next(err);
+                    res.render('./productsViews/catalog', {
+                        products,
+                        current: page,
+                        pages: Math.ceil(count / perPage),
+                        login: {username: req.session.username},
+                        msg: null
+                      
+                    });
+                    return
+                });
+            });
+        
+        } else {
+    
+            Product.find({query})
+                .skip(perPage * page - perPage)
+                .limit(perPage)
+                .exec((err, products) => {
+                    Product.count((err, count) => {
+                        if (err) return next(err);
+                        res.render('./productsViews/catalog', {
+                            products,
+                            current: page,
+                            pages: Math.ceil(count / perPage),
+                            login: null,
+                            msg: null
+                          
+                        });
+                        return
+                    });
+                });
+            }
 })
 router.get('/add-product',addProductRender)
 router.get('/update-product/',listProducts)
@@ -76,7 +125,7 @@ router.post('/add-product',upload,validateAddProductForm,async(req,res)=>{
             })
         })
 })
-router.post('/update-product',upload,async(req,res,next)=>{
+router.post('/update-product',upload,validateUpdateProduct,async(req,res,next)=>{
     if(!req.session.loggedIn){
         next()
         return
@@ -89,6 +138,7 @@ router.post('/update-product',upload,async(req,res,next)=>{
             username:req.session.username,
             email:req.session.email
         },
+        rol:req.session.rol,
         product,
         alertConfig:{
             alert:true,

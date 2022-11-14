@@ -2,10 +2,9 @@ const Product = require("../../models/Product");
 
 const indexRender = async(req, res) => {
 	const data = await Product.find({})
-
 	const orderProductsByClicks = data
 		.filter(product=>{
-			if (!product.sold) {
+			if (!product.sold && product.verified && !product.partialDelete) {
 				return product
 			}
 		})

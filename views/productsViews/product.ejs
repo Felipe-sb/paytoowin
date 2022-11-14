@@ -77,19 +77,23 @@
                             </p>
                             <h4 class="price">$<%= product.price %> USD</h4>
 
-                            <% if (login) { %>
-                            <form action="/commerce/addToCart" method="post">
-                                <input
-                                    type="hidden"
-                                    name="idProduct"
-                                    value="<%=product.id%>"
-                                />
-                                <input
-                                    type="submit"
-                                    class="btn btn-warning"
-                                    value="Agregar al carrito"
-                                />
-                            </form>
+                            <% if (login) { 
+                                if(haveTheProductInCart){%>
+                                    <button disabled="disabled" class="btn btn-warning disabled"> Ya tienes este producto en el carrito </button>
+                                <% }else{ %>
+                                    <form action="/commerce/addToCart" method="post">
+                                        <input
+                                            type="hidden"
+                                            name="idProduct"
+                                            value="<%=product.id%>"
+                                        />
+                                        <input
+                                            type="submit"
+                                            class="btn btn-warning"
+                                            value="Agregar al carrito"
+                                        />
+                                    </form>
+                                <% } %>  
                             <% }else{ %>
                             <a href="/auth/login" class="iniciar"
                                 >Iniciar Sesion</a
