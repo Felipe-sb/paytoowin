@@ -119,10 +119,14 @@ include('../presetsViews/header',{title:
 
     </div>
 <div>
-    <div class="row pagination">
+<br><br>
+
+
+
+    
         <% if (pages) { %>
-            <nav class="mx-auto"
-            <ul>
+            <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
             <% if (current==1) { %>
                 <li class="page-item disabled">
                     <a href="#" class="page-link">Primera pagina </a>
@@ -175,9 +179,9 @@ include('../presetsViews/header',{title:
 
                                     <% } %>
             </ul>
-        </nav>
+            </nav>
             <% } %>
-    </div>
+    
     </div>
 </div>
     <br>
