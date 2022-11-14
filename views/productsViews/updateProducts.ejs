@@ -10,6 +10,7 @@
                 <div class="col-md-3 col-6 product-block">
                     <a href="/products/update-product/<%= product.id %> " style="text-decoration: none;color: #000000">
                         <div class="caption">
+                           
                             <h3><%= product.title %> </h3>
                             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
@@ -33,6 +34,9 @@
                             <div class="mb-4"><label><%= product.game %> </label></div>
                             <div class="price-mob mb-2"><%= product.price %> </div>
                             <div class="clearfix"></div>
+                            <% if(!product.verified) {%>
+                                <center><h5 style="color: red;">NO VERIFICADA</h5></center>
+                                <% } %>
                         </div>
                     </a>
                 </div>
