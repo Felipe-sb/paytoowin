@@ -1,81 +1,106 @@
-
 <html>
+    <% if (!login) { %> <%- include('../presetsViews/header',{title:
+    product.title,login:null}) %> <% }else{ %> <%-
+    include('../presetsViews/header',{title:
+    product.title,login:true,username:login.username}) %> <% } %>
 
-<% if (!login) { %>
-    <%- include('../presetsViews/header',{title: product.title,login:null}) %>
-<% }else{ %>
-    <%- include('../presetsViews/header',{title: product.title,login:true,username:login.username}) %>
-<% } %> 
-
- 
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link
-			href="/css/product.css"
-			rel="stylesheet"
-			
-		/>
-        </head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="/css/product.css" rel="stylesheet" />
+    </head>
 
-<body>
-   
-   
-
-<div class="container">
-    <div class="pt-5">
-        <div class="back">
-        <h6 class="mb-0"><a href="/products" class="text-body"><i
-              class="fas fa-long-arrow-alt-left me-2"></i>Ir al catalogo</a></h6>
-      </div>
-    </div>
-    <div class="card">
-        <div class="container-fliud">
-            <div class="wrapper row">
-                
-                <div class="preview col-md-6">
-                    
-                    <div class="preview-pic tab-content">
-                      
-                      
-                    </div>
-                    <ul class="preview-thumbnail nav nav-tabs">
-                      
-                      <li><a data-target="#pic-2" data-toggle="tab"><div class="tab-pane active" id="pic-1"><% product.images.forEach(image=>{
-                        %>
-                        <img src="<%=image.url%> "  alt="<%= image.originalname %> ">
-                        <%
-                        }) %></div></a></li>
-                    </ul>
-                    
+    <body>
+        <div class="container">
+            <div class="pt-5">
+                <div class="back " >
+                    <h6 class="mb-0">
+                        <a href="/products" class="text-body"
+                            ><i class="fas fa-long-arrow-alt-left me-2"></i>Ir
+                            al catalogo</a
+                        >
+                    </h6>
                 </div>
-                <div class="details col-md-6">
-                    <h2><%= product.title %></h2>
-            
-                    <p class="product-description"><%= product.description %></p>
-                    <p class="product-description"></p>Nivel: <%= product.level %></p>
-                    <h4 class="price">$<%= product.price %></h4>
-                    
-                    <% if (login) { %>
-                        <form action="/commerce/addToCart" method="post">
-                            <input type="hidden" name="idProduct" value="<%=product.id%>"/>
-                            <input type="submit" class="btn btn-outline-warning" value="Agregar al carrito" />
-                        </form>
-                    <% }else{ %>
-                        <a href="/auth/login" class="iniciar">Iniciar Sesion</a>
-                    <%}%>
+            </div>
+            <div class="card">
+                <div class="container-fliud">
+                    <div class="row">
+                        <div
+                            id="carouselExampleControls"
+                            class="carousel slide col-4"
+                            data-bs-ride="carousel"
+                        >
+                            <div class="carousel-inner">
+                                <% product.images.forEach(image=>{ %>
+                                <div class="carousel-item active">
+                                    <img
+                                        height="180rem"
+                                        src="<%=image.url%>"
+                                        class="d-block image"
+                                        alt="<%= image.originalname %> "
+                                    />
+                                </div>
+                                <% }) %>
+                            </div>
+                            <button
+                                class="carousel-control-prev"
+                                type="button"
+                                data-bs-target="#carouselExampleControls"
+                                data-bs-slide="prev"
+                            >
+                                <span
+                                    class="carousel-control-prev-icon"
+                                    aria-hidden="true"
+                                ></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button
+                                class="carousel-control-next"
+                                type="button"
+                                data-bs-target="#carouselExampleControls"
+                                data-bs-slide="next"
+                            >
+                                <span
+                                    class="carousel-control-next-icon"
+                                    aria-hidden="true"
+                                ></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <div class="details col-md-6">
+                            <h2><%= product.title %></h2>
+
+                            <p class="product-description">
+                                <%= product.description %>
+                            </p>
+                            <p class="product-description">
+                                Nivel: <%= product.level %>
+                            </p>
+                            <h4 class="price">$<%= product.price %></h4>
+
+                            <% if (login) { %>
+                            <form action="/commerce/addToCart" method="post">
+                                <input
+                                    type="hidden"
+                                    name="idProduct"
+                                    value="<%=product.id%>"
+                                />
+                                <input
+                                    type="submit"
+                                    class="btn btn-outline-warning"
+                                    value="Agregar al carrito"
+                                />
+                            </form>
+                            <% }else{ %>
+                            <a href="/auth/login" class="iniciar"
+                                >Iniciar Sesion</a
+                            >
+                            <%}%>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-</body>
+    </body>
 
-   
-
-        
-    
-<%- include('../presetsViews/footer') %> 
-
+    <%- include('../presetsViews/footer') %>
 </html>
-
-
