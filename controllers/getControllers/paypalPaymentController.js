@@ -2,7 +2,7 @@ const axios = require('axios');
 const User = require('../../models/User');
 const Product = require('../../models/Product');
 const transporter = require('../../helpers/transporter');
-const PAYPAL_API_URL = 'https://api-m.sandbox.paypal.com';
+const Sale = require('../../models/Sale');
 const createOrderPayPal = async (req, res, next) => {
     if (req.session.loggedIn) {
         const user = await User.findOne({ email: req.session.email }).populate(
@@ -66,6 +66,14 @@ const captureOrderPayPal = async (req, res) => {
                 let text = `${user.username} gracias por tu compra en PayTooWin a continuación se encuentran tus productos comprados con su nombre de usuario y su contraseña.`;
                 let counter = 1;
                 let owner = {};
+                let sale = new Sale({
+                    buyer: user._id,
+                    sellers:[],
+                    products:[],
+                    userPercentage:0,
+                    platformPercentaje:0,
+                    total:0
+                })
                 for (let i = 0; i < user.cart.length; i++) {
                     const product = user.cart[i];
                     await Product.findByIdAndUpdate(product.id, {
@@ -74,10 +82,16 @@ const captureOrderPayPal = async (req, res) => {
                     });
                     owner = await User.findById(product.owner[0]);
                     owner.balance = owner.balance + (product.price * 75) / 100;
+                    sale.sellers = [...sale.sellers,owner._id]
+                    sale.products = [...sale.products,product._id]
+                    sale.userPercentage += (product.price*75)/100
+                    sale.platformPercentaje += (product.price*25)/100
+                    sale.total+= product.price
                     await owner.save();
                     text += `\n\nCuenta numero ${counter}\nJuego${product.game}\nNombre de usuario: ${product.username}\nContraseña: ${product.password}`;
                     counter++;
                 }
+                await sale.save();
                 user.oldPurchases = [...user.oldPurchases, ...user.cart];
                 user.cart = [];
                 console.log(text);
