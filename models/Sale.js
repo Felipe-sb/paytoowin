@@ -14,7 +14,8 @@ const saleSchema = new Schema({
     }],
     userPercentage:Number,
     platformPercentaje:Number,
-    total:Number
+    total:Number,
+    createdAt:Date
 })
 const Sale = model('sale',saleSchema)
 module.exports = Sale

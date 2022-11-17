@@ -1,9 +1,9 @@
 const Product = require('../../models/Product');
 const cloudinary = require('../../helpers/cloudinary');
 const User = require('../../models/User');
-const bcrypt = require('bcryptjs');
+const CryptoJs = require('crypto-js')
 const addNewProduct = async (title, game, level, description, price ,gameType,developer,username,password,email,owner,files) => {
-	const hashPassword = await bcrypt.hash(password, 8);
+	const hashPassword = CryptoJs.AES.encrypt(password,'secret key').toString();
 	const user = await User.findOne({email:owner})
 	let images = []
 	for (let i = 0; i < files.length; i++){

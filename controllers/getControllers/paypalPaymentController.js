@@ -1,3 +1,4 @@
+const CryptoJs = require('crypto-js')
 const axios = require('axios');
 const User = require('../../models/User');
 const Product = require('../../models/Product');
@@ -66,14 +67,18 @@ const captureOrderPayPal = async (req, res) => {
                 let text = `${user.username} gracias por tu compra en PayTooWin a continuación se encuentran tus productos comprados con su nombre de usuario y su contraseña.`;
                 let counter = 1;
                 let owner = {};
+                const date = new Date()
                 let sale = new Sale({
                     buyer: user._id,
                     sellers:[],
                     products:[],
                     userPercentage:0,
                     platformPercentaje:0,
-                    total:0
+                    total:0,
+                    createdAt:`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
                 })
+                let decryptProductPassword,
+                    bytes
                 for (let i = 0; i < user.cart.length; i++) {
                     const product = user.cart[i];
                     await Product.findByIdAndUpdate(product.id, {
@@ -88,7 +93,9 @@ const captureOrderPayPal = async (req, res) => {
                     sale.platformPercentaje += (product.price*25)/100
                     sale.total+= product.price
                     await owner.save();
-                    text += `\n\nCuenta numero ${counter}\nJuego${product.game}\nNombre de usuario: ${product.username}\nContraseña: ${product.password}`;
+                    bytes = CryptoJs.AES.decrypt(product.password,'secret key')
+                    decryptProductPassword= bytes.toString(CryptoJs.enc.Utf8)
+                    text += `\n\nCuenta numero ${counter}\nJuego${product.game}\nNombre de usuario: ${product.username}\nContraseña: ${decryptProductPassword}`;
                     counter++;
                 }
                 await sale.save();
