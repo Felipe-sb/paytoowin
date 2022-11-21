@@ -4,10 +4,10 @@ const sendDataForCharts = async(req,res,next) =>{
     // if(!req.session.loggedIn || req.session.rol !== 'admin'){
     //     next();
     // }
-    // const {from,to} = req.query
-    // const date = new Date().toISOString()
-    // console.log(date);
-    const sales = await Sale.find({createdAt:{$gte:'2022/09/23',$lte:'2022-12-01'}})
+    const {from,to} = req.query
+    const sales = (!from || !to) 
+        ? await Sale.find({}).populate('products sellers buyer')
+        : await Sale.find({createdAt:{$gte:`${from}`,$lte:`${to}`}}).populate('products sellers buyer')
     res.json(sales)
 }
 module.exports = sendDataForCharts

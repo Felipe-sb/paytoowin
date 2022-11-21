@@ -5,8 +5,10 @@ require('./database/connection');
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
+const cors = require('cors');
 const app = express();
 app.set('view engine', 'ejs');
+app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

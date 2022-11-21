@@ -1,0 +1,35 @@
+<%- include ('../presetsViews/header',{login:true,username:'Admin',title:'Dashboard'}) %>
+<link rel="stylesheet" href="./css/dashboard.css">
+<div class="filterForDate">
+    <label for="from">From: </label>
+    <input type="date" name="from" id="from">
+    <br>
+    <label for="to">To:</label>
+    <input type="date" name="to" id="to">
+    <br>
+    <button class="btn btn-success" id="filter">Filtrar</button>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-5 col-sm-11 mt-3 p-2 text-center graph item text-light">
+            <p class="display-6">Juegos más vendidos</p>
+            <canvas id="productsByGame"></canvas>
+        </div>
+        <div class="col-lg-3 col-md-5 col-sm-11 mt-3 p-2 text-center graph item text-light">
+            <p class="display-6">Top 10 vendedores</p>
+            <canvas id="bestSellers"></canvas>
+        </div>
+        <div class="col-lg-3 col-md-5  col-sm-11 text-center p-2 mt-3 item text-light">
+            <h2 id="total" class="h2 display-2"></h2>
+            <p class="display-6">Ganancia Historica</p>
+        </div>
+        <div class="col-lg-3 col-md-5 col-sm-11 text-center mt-3 p-2 graph item text-light">
+            <h2 id="average" class="h2 display-2"></h2>
+            <p class="display-6 ">Promedio de ventas</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./js/fetchDataDashboards.js"></script>
+<%- include('../presetsViews/footer') %> 
