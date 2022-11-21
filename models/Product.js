@@ -24,8 +24,7 @@ const productSchema = new Schema({
 	clicks:Number,
 	username:String,
 	password:String,
-	email:String, 
-
+	email:String,
 });
 const Product = model('Product', productSchema);
 module.exports = Product;

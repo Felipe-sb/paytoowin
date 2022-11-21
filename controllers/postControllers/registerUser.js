@@ -2,9 +2,9 @@ const User = require('../../models/User');
 const bcrypt = require('bcryptjs');
 const transporter = require('../../helpers/transporter');
 const registerUser = async (req, res) => {
-	const { username, email, password,rol } = req.body;
+	const { username, email, password,rol, country } = req.body;
 	const hashPassword = await bcrypt.hash(password, 8);
-	const newUser = new User({ username, email, password: hashPassword,rol,createDate: Date.now(),banned:false,balance:0,verified:false});
+	const newUser = new User({ username, email, password: hashPassword,country,rol,createDate: Date.now(),banned:false,balance:0,verified:false});
 	newUser.save().then(async (user) => {
 		await transporter.sendMail({
 			from: '"paytoowin" <paytoowin.noreply@gmail.com>"',

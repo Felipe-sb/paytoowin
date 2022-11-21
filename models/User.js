@@ -3,6 +3,7 @@ const userSchema = new Schema({
 	username: String,
 	email: String,
 	password: String,
+	country:String,
 	createDate:String,
 	rol:String,
 	banned:Boolean,
