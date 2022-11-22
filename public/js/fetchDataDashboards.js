@@ -6,6 +6,7 @@
     const total = document.querySelector('#total');
     const average = document.querySelector('#average');
     const bestSellers = document.querySelector('#bestSellers');
+    const host = document.querySelector('#host');
     let partialTotals = 0,
         minSale = 0,
         maxSale = 0
@@ -14,7 +15,7 @@
     let ownerProduct=[],
         ownerCounters={}
     let response = await fetch(
-        `http://localhost:4000/admin/data?from=${from.value}&to=${to.value}`
+        `${host.value}/admin/data?from=${from.value}&to=${to.value}`
     );
     let data = await response.json();
     console.log(data);
@@ -104,7 +105,7 @@
         gameProduct=[]
         gameCounters={}
         response = await fetch(
-            `http://localhost:4000/admin/data?from=${from.value}&to=${to.value}`
+            `${host.value}/admin/data?from=${from.value}&to=${to.value}`
         );
         data = await response.json();
         console.log(data);

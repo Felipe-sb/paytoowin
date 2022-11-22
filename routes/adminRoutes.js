@@ -4,7 +4,6 @@ const { getUserById } = require('../controllers/getControllers/getUserById');
 const sendDataForCharts = require('../controllers/getControllers/sendDataForCharts');
 const { banUserById } = require('../controllers/postControllers/banUserById');
 const { updateUserById } = require('../controllers/postControllers/updateUserByid');
-
 const router = require('express').Router();
 router.get('/', adminDashboardRender)
 router.get('/data',sendDataForCharts)
