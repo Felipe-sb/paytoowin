@@ -11,7 +11,6 @@ const indexRender = async(req, res) => {
 		.sort((a,b)=>{
 		return b.clicks - a.clicks
 	})
-	console.log(data)
 	if (req.session.loggedIn) {
 		const {username, email } = req.session;
 		res.render('./baseViews/index', {

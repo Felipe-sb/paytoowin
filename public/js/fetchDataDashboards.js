@@ -99,16 +99,15 @@
     filterBtn.addEventListener('click', async () => {
         let partialTotals = 0,
         minSale = 0,
-        maxSale = 0
-        ownerProduct=[]
-        ownerCounters={}
-        gameProduct=[]
+        maxSale = 0,
+        ownerProduct=[],
+        ownerCounters={},
+        gameProduct=[],
         gameCounters={}
         response = await fetch(
             `${host.value}/admin/data?from=${from.value}&to=${to.value}`
         );
         data = await response.json();
-        console.log(data);
         data.forEach((sale) => {
             partialTotals += sale.total;
             if (minSale === 0 || sale.total < minSale) {
@@ -139,7 +138,7 @@
         productsByGameChart.data.labels = gameProduct;
         productsByGameChart.data.datasets[0].data = Object.values(gameCounters)
         mostSellers.data.labels = ownerProduct;
-        mostSellers.data.datasets[0].data = Object.values(gameCounters)
+        mostSellers.data.datasets[0].data = Object.values(ownerCounters)
         productsByGameChart.update();
         mostSellers.update();
     });
