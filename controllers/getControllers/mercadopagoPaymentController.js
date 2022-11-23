@@ -1,33 +1,30 @@
 const mercadopago = require('../../helpers/meradopago');
 const axios = require('axios')
 const createOrderMercadoPago = async(user) =>{
-    // const date = new Date('November 13, 2022')
-    // let dayNumber = date.getDay()+1
-    // let currentDay = `${date.getDate()}`
-    // let currentMonth=  `${date.getMonth()+1}`
-    // const currentYear = date.getFullYear()
-    // console.log(dayNumber);
-    // if (Number(dayNumber) === 1) {
-    //     currentDay =`${Number(currentDay) -2}`
-    // }
-    // if (Number(dayNumber) === 7) {
-    //     currentDay = `${Number(currentDay) - 1}`
-    // }
-    // const holidays = await axios.get(`https://apis.digital.gob.cl/fl/feriados/${currentYear}`)
-    // let currentDate = `${currentYear}-${currentMonth.length===1?`0${currentMonth}`:currentMonth}-${currentDay.length===1?`0${currentDay}`:currentDay}`
-    // let isHoliday
-    // do {
-    //     isHoliday = false
-    //     for (let i = 0; i < holidays.data.length; i++) {
-    //         const holiday = holidays.data[i];
-    //         if (holiday.fecha === currentDate) {
-    //             currentDay = `${Number(currentDay) - 1}`
-    //             currentDate = `${currentYear}-${currentMonth.length===1?`0${currentMonth}`:currentMonth}-${currentDay.length===1?`0${currentDay}`:currentDay}`
-    //             isHoliday = true
-    //         }
-    //     }
-    // } while (isHoliday);
-    // const {data} = await axios.get(`https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar/${currentYear}/${currentMonth}/dias/${currentDay}?apikey=e8298c7f6be9139923017aed93b70296c120a06f&formato=json`)
+    const currentDate = new Date()
+    const currentYear = currentDate.getFullYear()
+    const currentMonth = `${currentDate.getMonth()+1}`.length === 1 
+                            ? `0${currentDate.getMonth()+1}`
+                            : `${currentDate.getMonth()+1}`
+    const currentDay = `${currentDate.getDate()}`.length === 1 
+                            ? `0${currentDate.getDate()}`
+                            : `${currentDate.getDate()}`
+    const holidays = await axios.get(`https://apis.digital.gob.cl/fl/feriados/${currentYear}`)
+    let isHoliday = false;
+    let data
+    holidays.data.forEach(holiday =>{
+        if (holiday.fecha === `${currentYear}-${currentMonth}-${currentDay}`) {
+            isHoliday = true;
+        }
+    })
+    if (currentDate.getDay() === 0 || currentDate.getDay() === 6) {
+        isHoliday = true
+    }
+    if (isHoliday) {
+        data = await axios.get(`https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar/anteriores/${currentYear}/${currentMonth}/dias/${currentDay}?apikey=e8298c7f6be9139923017aed93b70296c120a06f&formato=json`)
+    }else{
+        data = await axios.get(`https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar?apikey=e8298c7f6be9139923017aed93b70296c120a06f&formato=json`)
+    }
     let preference = {
         items:[],
         back_urls:{
@@ -39,7 +36,7 @@ const createOrderMercadoPago = async(user) =>{
     }
     let price = 0
     user.cart.forEach(product =>{
-        price = Math.round(product.price* 890)
+        price = Math.round(product.price* Number(data.data.Dolares[data.data.Dolares.length-1].Valor.replace(',','.')))
         preference.items = [...preference.items,{
             title:`${product.title}`,
             unit_price:price,
