@@ -1,7 +1,7 @@
 exports.validateLoginForm=(req,res,next)=>{
     const {email,password} = req.body
     const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-    const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/
+    const passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$/
 
     if (!email || !emailRegex.test(email)) {
         res.render('./authViews/login',{
@@ -23,7 +23,7 @@ exports.validateLoginForm=(req,res,next)=>{
             alertConfig:{
 				alert:true,
 				title:'Contraseña no valida',
-				text:`Ingrese una contraseña valida (Ej: A12da45)`,
+				text:`Ingrese una contraseña valida que contenga minimo 8 caracteres, una mayuscula y un número`,
 				icon:'warning',
 				confirmButton:true,
 				timer:false,

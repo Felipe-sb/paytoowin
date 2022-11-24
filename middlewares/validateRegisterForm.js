@@ -1,8 +1,8 @@
 exports.validateRegisterForm=(req,res,next)=>{
     const {email,password,confirmPassword,username,rol} = req.body
     const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-    const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/
-    const confirmPassRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/
+    const passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$/
+    const confirmPassRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$/
     const usernameRegex= /^[a-zA-Z0-9]{4,10}$/
 
     if (!usernameRegex.test(username)) {
@@ -39,7 +39,7 @@ exports.validateRegisterForm=(req,res,next)=>{
             alertConfig:{
 				alert:true,
 				title:'Contraseña no valida',
-				text:`Ingrese una contraseña valida (Ej: A12da45)`,
+				text:`Ingrese una contraseña valida que contenga minimo 8 caracteres, una mayuscula y un número`,
 				icon:'warning',
 				confirmButton:true,
 				timer:false,
@@ -54,7 +54,7 @@ exports.validateRegisterForm=(req,res,next)=>{
             alertConfig:{
 				alert:true,
 				title:'Contraseña no valida',
-				text:`Ingrese una contraseña valida (Ej: B23fa55)`,
+				text:`Ingrese una contraseña valida que contenga minimo 8 caracteres, una mayuscula y un número`,
 				icon:'warning',
 				confirmButton:true,
 				timer:false,
