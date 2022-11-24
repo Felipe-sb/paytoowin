@@ -38,6 +38,7 @@ const loginUser = async(req,res)=>{
     req.session.userId = user.id
     req.session.username = user.username
     req.session.email = user.email
+    req.session.password = user.password
     req.session.rol = user.rol
     req.session.balance = user.balance
     console.log(req.session);

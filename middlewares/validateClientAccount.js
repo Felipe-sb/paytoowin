@@ -1,21 +1,21 @@
 exports.validateClientAccount=(req,res,next)=>{
     const {password,confirmPassword} = req.body
-    const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/
+    const passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$/
 
     
 
 
     if (!password || !passRegex.test(password)){
 
-        res.render('./baseViews/cuenta',{
+        res.render('./accountViews/cuenta',{
             alertConfig:{
 				alert:true,
-				title:'Contraseña no valida',
-				text:`Ingrese una contraseña valida (Ej: A12da45)`,
+				title:'Nueva contraseña invalida',
+				text:`Ingrese una contraseña valida que contenga minimo 8 caracteres, una mayuscula y un número`,
 				icon:'warning',
 				confirmButton:true,
 				timer:false,
-				route:'cuenta'
+				route:'account/cuenta'
 			},
             login:{userId:req.session.userId, username:req.session.username, email:req.session.email}
 
@@ -24,15 +24,15 @@ exports.validateClientAccount=(req,res,next)=>{
 
     }
     if (!confirmPassword || !passRegex.test(confirmPassword)) {
-        res.render('./baseViews/cuenta',{
+        res.render('./accountViews/cuenta',{
             alertConfig:{
 				alert:true,
 				title:'Error al confirmar contraseña',
-				text:`Ingrese una contraseña valida (Ej: B23fa55)`,
+				text:`Ingrese una contraseña valida que contenga minimo 8 caracteres, una mayuscula y un número`,
 				icon:'warning',
 				confirmButton:true,
 				timer:false,
-				route:'cuenta'
+				route:'account/cuenta'
 			},
             login:{userId:req.session.userId, username:req.session.username, email:req.session.email}
 
@@ -41,7 +41,7 @@ exports.validateClientAccount=(req,res,next)=>{
         return
     }
     if (password !== confirmPassword ) {
-        res.render('./baseViews/cuenta',{
+        res.render('./accountViews/cuenta',{
             alertConfig:{
 				alert:true,
 				title:'Ooooops',
