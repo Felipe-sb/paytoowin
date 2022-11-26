@@ -7,6 +7,7 @@
     const average = document.querySelector('#average');
     const bestSellers = document.querySelector('#bestSellers');
     const host = document.querySelector('#host');
+    const errorParagraph = document.querySelector('#error-paragraph');
     let partialTotals = 0,
         minSale = 0,
         maxSale = 0
@@ -104,6 +105,16 @@
         ownerCounters={},
         gameProduct=[],
         gameCounters={}
+        if (from.value !== undefined && to.value !== undefined) {
+            const fromDate = new Date(from.value).valueOf()
+            const toDate = new Date(to.value).valueOf()
+            const differenceDate = toDate - fromDate
+            if (differenceDate > 15778800000 || differenceDate <0){
+                errorParagraph.innerHTML = 'La diferencia maxima entre las fechas es de 6 meses'
+                return;
+            }
+        }
+        errorParagraph.innerHTML = ''
         response = await fetch(
             `${host.value}/admin/data?from=${from.value}&to=${to.value}`
         );
