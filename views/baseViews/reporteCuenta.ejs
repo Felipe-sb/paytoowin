@@ -1,0 +1,69 @@
+<% if (!login) { %>
+    <%- include('../presetsViews/header',{title: 'Reporte',login:null}) %>
+<% }else{ %>
+    <%- include('../presetsViews/header',{title: 'Reporte',login:true,username:login.username}) %>
+<% } %> 
+<link rel="stylesheet" href="/css/signin.css">
+    <div>
+        <main class="form-signin">
+            <form id="loginForm" action="/reporteCuenta" method="POST">
+                <img
+                    class="mb-4"
+                    src="https://res.cloudinary.com/mycloudsb/image/upload/v1668379802/logoformulario_wyemmv.svg"
+                    alt="logo"
+                    width="80"
+                    height="67"
+                />
+                <h1 class="h3 mb-3 fw-normal" style="color:#ffffff ;">Reporte Cuenta Baneada</h1>
+                <div class="form-floating">
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="floatingInput"
+                        name="email"
+                        placeholder="Correo Electronico"
+                    />
+                    <label for="floatingInput">Correo electronico</label>
+                </div>
+                <div class="form-floating">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="floatingInput"
+                        name="subject"
+                        placeholder="Asunto"
+                    />
+                    <label for="floatingInput">ID cuenta baneada</label>
+                </div>
+                <div class="form-floating">
+                    <textarea
+                        class="text form-control"
+                        id="floatingInput"
+                        name="text"
+                        placeholder="ID Cuenta"
+                        rows="30",
+                        cols="50"
+                    ></textarea>
+                    <label for="floatingInput">Reporte de baneo</label>
+                </div>
+                <button class="w-100 btn btn-lg btn-warning" type="">
+                    Enviar
+                </button>
+            </form>
+        </main>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if (alertConfig.alert) { %>
+        <script>
+            Swal.fire({
+                title: '<%=alertConfig.title%>',
+                text: '<%=alertConfig.text%>',
+                icon: '<%=alertConfig.icon%>',
+                showConfirmButton: <%=alertConfig.confirmButton%>,
+                timer: <%=alertConfig.timer%>,
+            }).then(() => {
+                window.location = '/<%=alertConfig.route%>'
+            })
+        </script>
+    <% } %>
+<%- include ('../presetsViews/footer')%>

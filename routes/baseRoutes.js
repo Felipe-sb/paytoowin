@@ -8,6 +8,7 @@ const pagoexitosoRender = require('../controllers/getControllers/pagoexitosoRend
 const pagorechazadoRender = require('../controllers/getControllers/pagorechazadoRender');
 const pagopendienteRender = require('../controllers/getControllers/pagopendienteRender');
 const nosotrosRender = require('../controllers/getControllers/nosotrosRender');
+const reporteCuentaRender = require('../controllers/getControllers/reporteCuentaRender');
 const sendContactMail = require('../controllers/postControllers/sendContactMail');
 const { validateContactForm } = require('../middlewares/validateContactForm');
 
@@ -19,6 +20,7 @@ router.get('/pagoexitoso',pagoexitosoRender)
 router.get('/pagorechazado',pagorechazadoRender)
 router.get('/pagopendiente',pagopendienteRender)
 router.get('/nosotros',nosotrosRender)
+router.get('/reportecuenta',reporteCuentaRender)
 router.get('/contact',contactRender)
 router.post('/contact',validateContactForm,sendContactMail)
 module.exports = router

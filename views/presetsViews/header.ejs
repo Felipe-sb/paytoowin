@@ -65,7 +65,13 @@
 								>Actualizar Producto</a
 							>
 						</li>
-						
+
+						<li class="nav-item">
+							<a class="nav-link" style="color: #ffffff;" href="/reporteCuenta"
+								>Reportar Cuenta</a
+							>
+						</li>
+												
 						<div class="login">
 						<li class="nav-item dropdown">
 							<a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffffff;"  > <%=username%> </a>
@@ -81,6 +87,7 @@
 							</li>
 						
 						<% }else{ %>
+							
 							<a href="/auth/login" class="nav-link" style="color: #ffffff;">Iniciar Sesion</a>
 							<a class="nav-link" style="color: #ffffff;" href="/auth/register">Registrarme</a>
 							
