@@ -6,32 +6,31 @@
         <br>
         <div class="container">
             <div class="row">
-                <form action="/products/filter/1" method="get">
-                    <%- include('../presetsViews/gameSelect') %> <%-
-                    include('../presetsViews/gameType') %> <%-
-                    include('../presetsViews/gameDeveloper') %>
-
-                    <input
-                        type="submit"
-                        class="btn btn-success"
-                        value="filtrar"
-                    />
-                </form>
-            </div>
-            <div class="row justify-content-center"  >
                 <div class="col-12">
                     <% if (msg) { %>
                     <h2 class="page-header"><%= msg %></h2>
                     <% }else{ %>
-                    <h2 class="page-header" style="color:#ffffff ;">Catalogo</h2>
+                    <h2 class="page-header" style="color: #ffffff ;">Catalogo</h2>
                     <%}%>
                 </div>
-                <br>
     
+                <div>
+                    <form action="/products/filter/1" method="get">
+                        <%- include('../presetsViews/gameSelect') %> <%-
+                        include('../presetsViews/gameType') %> <%-
+                        include('../presetsViews/gameDeveloper') %>
+    
+                        <input
+                            type="submit"
+                            class="btn btn-success"
+                            value="filtrar"
+                        />
+                    </form>
+                </div><br>
     
                 <% if (products) { %> 
                     <% products.forEach(product => { %>
-                            <div class="card w-5 col-md-6 col-sm-12 col-6" style="background-color: #8623F1; border-radius: 10px; margin-left: 5px; margin-right: 5px; margin-bottom: 5px; width: 20rem; ">
+                            <div class="card w-5 col-md-2 col-6" style="background-color: #8623F1; border-radius: 10px; margin-left: 5px; margin-right: 5px; margin-bottom: 5px; width: 20rem; ">
                                 <a
                                     href="/products/product/<%= product.id %> "
                                     style="text-decoration: none; color: #ffffff"
@@ -117,7 +116,7 @@
                     </li>
                     <% } else { %> 
                         <li class="page-item">
-                            <a href="/products/catalog/1" class="page-link" style="background-color: #8623F1; color: #ffffff;">Primera pagina </a>
+                            <a href="/products/filter/1?gameType=<%=gameType%>&game=<%=game%>&developer=<%=developer%>" class="page-link" style="background-color: #8623F1; color: #ffffff;">Primera pagina </a>
                             </li>
                             <% } %>
 
@@ -137,7 +136,7 @@
                                         </li>
                                         <% } else { %>
                                 <li class="page-item">
-                                    <a href="/products/catalog/<%= i %>" class="page-link" style="background-color: #8623F1; color: #ffffff;">
+                                    <a href="/products/filter/<%= i %>?gameType=<%=gameType%>&game=<%=game%>&developer=<%=developer%>" class="page-link" style="background-color: #8623F1; color: #ffffff;">
                                         <%= i %>
                                     </a>
                                 </li>
@@ -158,7 +157,7 @@
                                     </li>
                                 <% } else {  %>
                                     <li class="page-item">
-                                        <a class="page-link" href="/products/catalog/<%=pages%>" style="background-color: #8623F1; color: #ffffff;">Ultima pagina</a>
+                                        <a class="page-link" href="/products/filter/<%=pages%>?gameType=<%=gameType%>&game=<%=game%>&developer=<%=developer%>" style="background-color: #8623F1; color: #ffffff;">Ultima pagina</a>
                                     </li> 
 
                                     <% } %>

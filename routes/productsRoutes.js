@@ -40,11 +40,10 @@ router.get('/product/:id',async(req,res,next)=>{
 		login: { username: req.session.username, email: req.session.email },
 	});
 })
-router.post('/filter/:page',async(req,res)=>{
-    const {game,gameType,developer} = req.body
-    let perPage = 8;
-    let page = req.params.page || 1;
-    let query = {}
+router.get('/filter/:page',async(req,res)=>{
+
+    const {game,gameType,developer} = req.query;
+    let query = {partialDelete:false, verified:true}
     if(game !== ''){
         query['game'] = game
     }
@@ -54,45 +53,23 @@ router.post('/filter/:page',async(req,res)=>{
     if(developer !== ''){
         query['developer'] = developer
     }
-    if (req.session.loggedIn) {
-        Product.find({query})
-            .skip(perPage * page - perPage)
-            .limit(perPage)
-            .exec((err, products) => {
-                Product.count((err, count) => {
-                    if (err) return next(err);
-                    res.render('./productsViews/catalog', {
-                        products,
-                        current: page,
-                        pages: Math.ceil(count / perPage),
-                        login: {username: req.session.username},
-                        msg: null
-                      
-                    });
-                    return
-                });
-            });
-        
-        } else {
+    const page = req.params.page;
+    if (Number(page)===NaN) {
+        next();
+        return
+    }
+    const products = await Product.paginate(query, {limit: 8, page});
+    const pages = products.totalPages
+    const current = page
+    if (!req.session.loggedIn) {
+       
+    res.render('./productsViews/filter',{msg:null,products:products.docs,login:null, pages,current,game,gameType,developer})
+        return
+       }
     
-            Product.find({query})
-                .skip(perPage * page - perPage)
-                .limit(perPage)
-                .exec((err, products) => {
-                    Product.count((err, count) => {
-                        if (err) return next(err);
-                        res.render('./productsViews/catalog', {
-                            products,
-                            current: page,
-                            pages: Math.ceil(count / perPage),
-                            login: null,
-                            msg: null
-                          
-                        });
-                        return
-                    });
-                });
-            }
+       res.render('./productsViews/filter',{msg:null,products:products.docs,login:{username:req.session.username}, pages,current,game,gameType,developer})
+        
+
 })
 router.get('/add-product',addProductRender)
 router.get('/update-product/',listProducts)
