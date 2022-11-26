@@ -104,11 +104,16 @@ include('../presetsViews/header',{title:
                 top.forEach(product =>{ 
                     if(counter <= 3){%>
 
-                <div class="card col-md-4 col-6 product-block p-4" style="background-color: #8623F1; border-radius: 15px;">
-                    <img
+                <div class="card w-5 col-md-2 col-6" style="background-color: #8623F1; border-radius: 10px; margin-left: 5px; margin-right: 5px; margin-bottom: 5px; width: 20rem; ">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #ffffff;"><%= product.game %> </h5>
+                        <img
                         src="<%= product.images[0].url %> "
                         class="card-img-top"
                         loading="lazy"
+                        height="180rem"
+                        class="d-block w-100"
+                        
                     />
                     <div class="card-body">
                         <h5 class="card-title" style="color: #ffffff;"><%= product.title %> </h5>
@@ -121,6 +126,7 @@ include('../presetsViews/header',{title:
                         <a href="/products/product/<%=product.id%>" class="btn btn-warning"
                             >Comprar</a>
                     </div>
+                </div>
                 </div>
             <%      }
                     counter ++

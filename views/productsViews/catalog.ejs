@@ -24,7 +24,7 @@ include('../presetsViews/header',{title:
 <!--  
             <div>
                 
-                <form action="/products/filter/1" method="post">
+                <form action="/catalog/filter/:page" method="post">
                     <%- include('../presetsViews/gameSelect') %> <%-
                     include('../presetsViews/gameType') %> <%-
                     include('../presetsViews/gameDeveloper') %>
@@ -40,8 +40,9 @@ include('../presetsViews/header',{title:
 
             <% if (products) { %> 
                 <% products.forEach(product => { %>
-                    <% if (product.verified && !product.partialDelete) { %>
-                        <div class="card col-md-3 col-6 product-block" style="background-color: #8623F1; border-radius: 10px;">
+                    <% if (product.verified) { %>
+                        <div class="card w-5 col-md-2 col-6" style="background-color: #8623F1; border-radius: 10px; margin-left: 5px; margin-right: 5px; margin-bottom: 5px; width: 20rem;">
+                            <div class="card-body">
                             <a
                                 href="/products/product/<%= product.id %> "
                                 style="text-decoration: none; color: #ffffff"
@@ -113,6 +114,7 @@ include('../presetsViews/header',{title:
                                     <div class="clearfix"></div>
                                 </div>
                             </a>
+                            </div>
                         </div>
                     <% } %>
                 <% }) %> 
