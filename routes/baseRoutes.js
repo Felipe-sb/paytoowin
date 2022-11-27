@@ -10,6 +10,7 @@ const pagopendienteRender = require('../controllers/getControllers/pagopendiente
 const nosotrosRender = require('../controllers/getControllers/nosotrosRender');
 const reporteCuentaRender = require('../controllers/getControllers/reporteCuentaRender');
 const sendContactMail = require('../controllers/postControllers/sendContactMail');
+const sendReporteCuentaMail = require('../controllers/postControllers/sendReporteCuentaMail');
 const { validateContactForm } = require('../middlewares/validateContactForm');
 
 const router = require('express').Router();
@@ -21,6 +22,7 @@ router.get('/pagorechazado',pagorechazadoRender)
 router.get('/pagopendiente',pagopendienteRender)
 router.get('/nosotros',nosotrosRender)
 router.get('/reportecuenta',reporteCuentaRender)
+router.get('/reportecuenta',sendReporteCuentaMail)
 router.get('/contact',contactRender)
 router.post('/contact',validateContactForm,sendContactMail)
 module.exports = router
