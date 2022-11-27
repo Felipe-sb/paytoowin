@@ -4,10 +4,20 @@ const sendDataForCharts = async(req,res,next) =>{
     // if(!req.session.loggedIn || req.session.rol !== 'admin'){
     //     next();
     // }
+    const months=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
     const {from,to} = req.query
     const sales = (!from || !to) 
         ? await Sale.find({}).populate('products sellers buyer')
         : await Sale.find({createdAt:{$gte:`${from}`,$lte:`${to}`}}).populate('products sellers buyer')
-    res.json(sales)
+    let perMonth={}
+    sales.forEach(sale => {
+        if (perMonth[months[sale.createdAt.getMonth()]] !== undefined) {
+            perMonth[months[sale.createdAt.getMonth()]]= [...perMonth[months[sale.createdAt.getMonth()]],{sale,month:months[sale.createdAt.getMonth()]}]
+        }else{
+            perMonth[months[sale.createdAt.getMonth()]]= [{sale,month:months[sale.createdAt.getMonth()]}]
+        }
+    })
+    console.log(perMonth);
+    res.json({sales,perMonth})
 }
 module.exports = sendDataForCharts

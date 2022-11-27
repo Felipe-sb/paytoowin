@@ -8,6 +8,8 @@
     const bestSellers = document.querySelector('#bestSellers');
     const host = document.querySelector('#host');
     const errorParagraph = document.querySelector('#error-paragraph');
+    const medianGraphContainer = document.querySelector('#median-graph-container')
+    const canvas = document.createElement('canvas');
     let partialTotals = 0,
         minSale = 0,
         maxSale = 0
@@ -20,7 +22,7 @@
     );
     let data = await response.json();
     console.log(data);
-    data.forEach((sale) => {
+    data.sales.forEach((sale) => {
         partialTotals += sale.total;
         if (minSale === 0 || sale.total < minSale) {
             minSale = sale.total;
@@ -105,21 +107,23 @@
         ownerCounters={},
         gameProduct=[],
         gameCounters={}
-        if (from.value !== undefined && to.value !== undefined) {
-            const fromDate = new Date(from.value).valueOf()
-            const toDate = new Date(to.value).valueOf()
-            const differenceDate = toDate - fromDate
-            if (differenceDate > 15778800000 || differenceDate <0){
-                errorParagraph.innerHTML = 'La diferencia maxima entre las fechas es de 6 meses'
-                return;
-            }
+        if (from.value === '' && to.value === '') {
+            errorParagraph.innerHTML='Por favor seleccione fechas validas'
+            return
+        }
+        const fromDate = new Date(from.value).valueOf()
+        const toDate = new Date(to.value).valueOf()
+        const differenceDate = toDate - fromDate
+        if (differenceDate > 15778800000 || differenceDate <0){
+            errorParagraph.innerHTML = 'La diferencia maxima entre las fechas es de 6 meses'
+            return;
         }
         errorParagraph.innerHTML = ''
         response = await fetch(
             `${host.value}/admin/data?from=${from.value}&to=${to.value}`
         );
         data = await response.json();
-        data.forEach((sale) => {
+        data.sales.forEach((sale) => {
             partialTotals += sale.total;
             if (minSale === 0 || sale.total < minSale) {
                 minSale = sale.total;
@@ -144,6 +148,41 @@
                 }
             })
         });
+        canvas.className='col-8 mh-75'
+        canvas.id ='median-graph'
+        medianGraphContainer.appendChild(canvas)
+        const labelsMedianGraph = Object.keys(data.perMonth)
+        const averagePerMonth = []
+        console.log(labelsMedianGraph);
+        let medianGraph = new Chart(canvas,{
+            data:{
+                labels: labelsMedianGraph,
+                datasets:[{
+                    type:'line',
+                    label:'Mediana Ventas Por Mes',
+                    data:[300,500],
+                    borderColor:'#ffffff'
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            color:'#ffffff',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                scales:{
+                    y:{
+                        min:0,
+                        max:1000
+                    }
+                }
+            }
+        })
         average.innerHTML = `${(maxSale + minSale) / 2} USD`;
         total.innerHTML = `${partialTotals} USD`;
         productsByGameChart.data.labels = gameProduct;
