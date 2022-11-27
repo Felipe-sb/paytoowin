@@ -21,7 +21,6 @@
         `${host.value}/admin/data?from=${from.value}&to=${to.value}`
     );
     let data = await response.json();
-    console.log(data);
     data.sales.forEach((sale) => {
         partialTotals += sale.total;
         if (minSale === 0 || sale.total < minSale) {
@@ -99,6 +98,50 @@
             }
         }
     });
+    canvas.className='col-8 mh-75'
+    canvas.id ='median-graph'
+    let medianGraph = new Chart(canvas,{
+        data:{
+            labels: [],
+            datasets:[{
+                type:'line',
+                label:'Mediana Ventas Por Mes',
+                data:[],
+                borderColor:'#ffffff'
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color:'#ffffff',
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            },
+            scales:{
+                y:{
+                    ticks:{
+                        color:'#ffffff',
+                    },
+                    grid:{
+                        color:'rgba(255,255,255,0.2)'
+                    }
+                },
+                x:{
+                    ticks:{
+                        color:'#ffffff',
+                        align:'start'
+                    },
+                    grid:{
+                        color:'rgba(255,255,255,0.2)'
+                    }
+                }
+            }
+        }
+    })
     filterBtn.addEventListener('click', async () => {
         let partialTotals = 0,
         minSale = 0,
@@ -148,40 +191,11 @@
                 }
             })
         });
-        canvas.className='col-8 mh-75'
-        canvas.id ='median-graph'
-        medianGraphContainer.appendChild(canvas)
-        const labelsMedianGraph = Object.keys(data.perMonth)
-        const averagePerMonth = []
-        console.log(labelsMedianGraph);
-        let medianGraph = new Chart(canvas,{
-            data:{
-                labels: labelsMedianGraph,
-                datasets:[{
-                    type:'line',
-                    label:'Mediana Ventas Por Mes',
-                    data:[300,500],
-                    borderColor:'#ffffff'
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: {
-                        labels: {
-                            color:'#ffffff',
-                            font: {
-                                size: 14
-                            }
-                        }
-                    }
-                },
-                scales:{
-                    y:{
-                        min:0,
-                        max:1000
-                    }
-                }
-            }
+        dataPerMonth =[]
+        Object.values(data.perMonth).forEach(month=>{
+            let salesSortedByTotal = month.sort((a,b)=>b.sale.total - a.sale.total)
+            dataPerMonth = [...dataPerMonth, (salesSortedByTotal[0].sale.total+salesSortedByTotal[salesSortedByTotal.length-1].sale.total)/2]
+            salesSortedByTotal=[]
         })
         average.innerHTML = `${(maxSale + minSale) / 2} USD`;
         total.innerHTML = `${partialTotals} USD`;
@@ -189,7 +203,11 @@
         productsByGameChart.data.datasets[0].data = Object.values(gameCounters)
         mostSellers.data.labels = ownerProduct;
         mostSellers.data.datasets[0].data = Object.values(ownerCounters)
+        medianGraph.data.labels=Object.keys(data.perMonth)
+        medianGraph.data.datasets[0].data = dataPerMonth
+        medianGraphContainer.appendChild(canvas)
         productsByGameChart.update();
         mostSellers.update();
+        medianGraph.update();
     });
 })();
