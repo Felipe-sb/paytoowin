@@ -21,21 +21,22 @@
                     </h6>
                 </div>
             </div>
-            <div class="card" style="background-color: #8623F1; border-radius: 10px;">
+            <div class="card m-0 mt-2 text-center" style="background-color: #8623F1; border-radius: 10px;">
                 <div class="container-fliud">
-                    <div class="row">
+                    <div class="row col-sm-12">
                         <div
                             id="carouselExampleControls"
-                            class="carousel slide col-4"
+                            class="carousel slide col-lg-6 col-sm-12 h-25"
                             data-bs-ride="carousel"
                         >
                             <div class="carousel-inner">
                                 <% product.images.forEach(image=>{ %>
                                 <div class="carousel-item active">
                                     <img
-                                        height="180rem"
+                                        
+                                        height="100rem"
                                         src="<%=image.url%>"
-                                        class="d-block image"
+                                        class="image"
                                         alt="<%= image.originalname %> "
                                     />
                                 </div>
@@ -95,7 +96,7 @@
                                     </form>
                                 <% } %>  
                             <% }else{ %>
-                            <a href="/auth/login" class="iniciar"
+                            <a href="/auth/login" style="color: #ffffff;" class="iniciar"
                                 >Iniciar Sesion</a
                             >
                             <%}%>
