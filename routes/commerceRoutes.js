@@ -85,10 +85,10 @@ router.get('/successPay', async (req, res, next) => {
                 });
             });
         res.render('./commerceViews/pagoexitoso', {
-            login: { username: req.session.username },
+            login: { username: req.session.username, rol:req.session.rol },
         });
         res.render('./commerceViews/pagopendiente', {
-            login: { username: req.session.username },
+            login: { username: req.session.username, rol:req.session.rol },
         });
     }
 });

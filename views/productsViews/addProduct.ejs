@@ -1,7 +1,7 @@
 <% if(!login){ %>
 	<%- include('../presetsViews/header',{title: 'Añadir Producto',login:null}) %>	
 <% }else{ %>
-	<%- include('../presetsViews/header',{title: 'Añadir Producto',login:true,username:login.username}) %>
+	<%- include('../presetsViews/header',{title: 'Añadir Producto',login:true,username:login.username,rol:login.rol}) %>
 <% } %> 
 <link rel="stylesheet" href="/css/signin.css">
 <div>

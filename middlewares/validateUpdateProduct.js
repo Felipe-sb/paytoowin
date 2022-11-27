@@ -9,7 +9,7 @@ const validateUpdateProduct = async(req,res,next) =>{
     if(!regexNotEmptyString.test(title)){
         res.render('./productsViews/updateProduct',{
             product,
-            login:req.session.loggedIn,
+            login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
 				title:'Titulo invalido',
@@ -26,7 +26,7 @@ const validateUpdateProduct = async(req,res,next) =>{
     }
     if(!regexOnlyNumbers.test(level) || !regexNotEmptyString.test(level)){
         res.render('./productsViews/updateProduct',{
-            login:req.session.loggedIn,
+            login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
 				title:'Nivel invalido',
@@ -43,7 +43,7 @@ const validateUpdateProduct = async(req,res,next) =>{
     }
     if (images.length=== 0) {
         res.render('./productsViews/updateProduct',{
-            login:req.session.loggedIn,
+            login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
 				title:'No se ha subido ninguna imagen',
@@ -60,7 +60,7 @@ const validateUpdateProduct = async(req,res,next) =>{
     }
     if (!regexNotEmptyString.test(description)) {
         res.render('./productsViews/updateProduct',{
-            login:req.session.loggedIn,
+            login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
 				title:'Descripcion invalida',
@@ -77,7 +77,7 @@ const validateUpdateProduct = async(req,res,next) =>{
     }
     if(!regexOnlyNumbers.test(price) || !regexNotEmptyString.test(price)){
         res.render('./productsViews/updateProduct',{
-            login:req.session.loggedIn,
+            login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
 				title:'Precio invalido',
@@ -94,7 +94,7 @@ const validateUpdateProduct = async(req,res,next) =>{
     }
 	if (!regexNotEmptyString.test(username)) {
         res.render('./productsViews/updateProduct',{
-            login:req.session.loggedIn,
+            login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
 				title:'Nombre de usuario invalido',

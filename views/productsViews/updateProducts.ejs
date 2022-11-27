@@ -1,7 +1,7 @@
 <% if (!login) { %>
     <%- include('../presetsViews/header',{title:`Update products` ,login:null}) %>
 <% }else{ %>
-    <%- include('../presetsViews/header',{title: 'Update products' ,login:true,username:login.username}) %>
+    <%- include('../presetsViews/header',{title: 'Update products' ,login:true,username:login.username,rol:login.rol}) %>
 <% } %> 
 <div class="container">
     <div class="row">

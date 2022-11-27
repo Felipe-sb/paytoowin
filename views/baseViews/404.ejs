@@ -1,7 +1,7 @@
 <% if (!login) { %>
     <%- include('../presetsViews/header',{title:'404', login:null})%>
 <% }else{ %>
-    <%- include('../presetsViews/header',{title:'404', login,username})%>
+    <%- include('../presetsViews/header',{title:'404', login:true,username:login.username,rol:login.rol})%>
 <% } %> 
 <center>
     <h1 class="mt-5">404</h1>

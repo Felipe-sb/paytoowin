@@ -13,7 +13,7 @@ if (!email || !emailRegex.test(email)) {
             timer:false,
             route:'updateEmailClient'
         },
-        login:{userId:req.session.userId, username:req.session.username, email:req.session.email}
+        login:{userId:req.session.userId, username:req.session.username, email:req.session.email, rol:req.session.rol}
     })
     return
 }

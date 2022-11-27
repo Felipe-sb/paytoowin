@@ -14,7 +14,7 @@ const verifiedEmailExist = async (req,res,next) =>{
 				route:'updateEmailClient'
 			},
 
-        login:{userId:req.session.userId, username:req.session.username, email:req.session.email}
+        login:{userId:req.session.userId, username:req.session.username, email:req.session.email, rol:req.session.rol}
         })
         return;
     }

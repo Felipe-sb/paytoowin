@@ -1,4 +1,4 @@
-<%- include ('../presetsViews/header',{title:'Lista de usuarios',login,username}) %>
+<%- include ('../presetsViews/header',{title:'Lista de usuarios',login:true,username:login.username,rol:login.rol}) %>
 <div class="container mt-3">
     <div class="row">
         <% if (users) { %>

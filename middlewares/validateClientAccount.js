@@ -17,7 +17,7 @@ exports.validateClientAccount=(req,res,next)=>{
 				timer:false,
 				route:'account/cuenta'
 			},
-            login:{userId:req.session.userId, username:req.session.username, email:req.session.email}
+            login:{userId:req.session.userId, username:req.session.username, email:req.session.email, rol:req.session.rol}
 
         })
         return
@@ -34,7 +34,7 @@ exports.validateClientAccount=(req,res,next)=>{
 				timer:false,
 				route:'account/cuenta'
 			},
-            login:{userId:req.session.userId, username:req.session.username, email:req.session.email}
+            login:{userId:req.session.userId, username:req.session.username, email:req.session.email, rol:req.session.rol}
 
         })
         
@@ -51,7 +51,7 @@ exports.validateClientAccount=(req,res,next)=>{
 				timer:false,
 				route:'cuenta'
 			},
-            login:{userId:req.session.userId, username:req.session.username, email:req.session.email}
+            login:{userId:req.session.userId, username:req.session.username, email:req.session.email, rol:req.session.rol}
 
         })
         return

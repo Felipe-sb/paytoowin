@@ -12,10 +12,10 @@ const indexRender = async(req, res) => {
 		return b.clicks - a.clicks
 	})
 	if (req.session.loggedIn) {
-		const {username, email } = req.session;
+		const {username, email, rol } = req.session;
 		res.render('./baseViews/index', {
 			top:orderProductsByClicks,
-			login: { username, email },
+			login: { username, email, rol },
 		});
 		return;
 	}

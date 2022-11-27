@@ -1,9 +1,13 @@
 const Product = require('../../models/Product')
 const listProducts = async(req,res,next) =>{
+    if(!req.session.loggedIn){
+        next()
+        return
+    }
     let products = await Product.find({}).populate('owner')
     if (req.session.rol === 'admin' || req.session.rol === 'clientService'){
         res.render('./productsViews/updateProducts',
-            {products,login:{username:req.session.username,email: req.session.email},alertConfig:{alert:false}})
+            {products,login:{username:req.session.username,email: req.session.email, rol:req.session.rol},alertConfig:{alert:false}})
         return
     }else{
         products = products.filter(product =>{
@@ -14,7 +18,7 @@ const listProducts = async(req,res,next) =>{
         })
         console.log(products)
         res.render('./productsViews/updateProducts',
-            {products,login:{username:req.session.username,email: req.session.email},alertConfig:{alert:false}})
+            {products,login:{username:req.session.username,email: req.session.email, rol:req.session.rol},alertConfig:{alert:false}})
         return
     }
     next()

@@ -26,7 +26,7 @@ const updatePasswordClient = async (req, res,next) => {
                     timer:false,
                     route:'auth/login'
                 },
-                login:{userId:req.session.userId, username:req.session.username, email:req.session.email}
+                login:{userId:req.session.userId, username:req.session.username, email:req.session.email, rol:req.session.rol}
                 
             });
             req.session.destroy();
@@ -44,7 +44,7 @@ const updatePasswordClient = async (req, res,next) => {
                 timer:false,
                 route:'account/cuenta'
             },
-            login:{userId:req.session.userId, username:req.session.username, email:req.session.email}
+            login:{userId:req.session.userId, username:req.session.username, email:req.session.email, rol:req.session.rol}
 
         })
     }

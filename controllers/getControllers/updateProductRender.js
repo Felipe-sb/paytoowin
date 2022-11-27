@@ -12,7 +12,7 @@ const updateProductRender = async(req,res,next) =>{
 	console.log(user);
 	res.render('./productsViews/updateProduct', {
 		product,
-		login: { username: req.session.username, email: req.session.email},
+		login: { username: req.session.username, email: req.session.email, rol:req.session.rol},
         alertConfig:{alert:false},
 		rol:user.rol
 		

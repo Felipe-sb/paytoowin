@@ -8,14 +8,14 @@ const cartRender = async(req, res,next) => {
 			const id = await createOrderMercadoPago(user)
 			res.render('./commerceViews/cart', {
 				cart:user.cart,
-				login:{username:req.session.username,email:req.session.email},
+				login:{username:req.session.username,email:req.session.email, rol:req.session.rol},
 				paymentId:id
 			});
 			return;
 		}
 		res.render('./commerceViews/cart', {
 			cart:user.cart,
-			login:{username:req.session.username,email:req.session.email},
+			login:{username:req.session.username,email:req.session.email, rol:req.session.rol},
 			paymentId:null
 		});
 		return;

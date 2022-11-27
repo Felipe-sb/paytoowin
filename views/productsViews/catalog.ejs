@@ -1,7 +1,7 @@
 <% if (!login) { %> <%- include('../presetsViews/header',{title:
     'Catalogo',login:null}) %> <% }else{ %> <%-
     include('../presetsViews/header',{title:
-    'Catalogo',login:true,username:login.username}) %> <% } %>
+    'Catalogo',login:true,username:login.username,rol:login.rol}) %> <% } %>
     <center>
         <br>
         <div class="container">

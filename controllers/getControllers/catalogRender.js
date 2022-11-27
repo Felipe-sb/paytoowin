@@ -15,7 +15,7 @@ const getAllProducts = async (req, res) => {
     return
    }
 
-    res.render('./productsViews/catalog',{msg:null,products:products.docs,login:{username:req.session.username}, pages,current})
+    res.render('./productsViews/catalog',{msg:null,products:products.docs,login:{username:req.session.username, rol:req.session.rol}, pages,current})
     
 
 

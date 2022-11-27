@@ -16,7 +16,7 @@ const updateEmail = async (req, res,next) => {
                     timer:false,
                     route:'account/updateEmailClient'
                 },
-                login:{userId:req.session.userId, username:req.session.username, email:req.session.email}
+                login:{userId:req.session.userId, username:req.session.username, email:req.session.email, rol:req.session.rol}
     
             })
             return

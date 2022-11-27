@@ -6,7 +6,7 @@ const oldPurchasesRender = async (req,res,next) =>{
     }
     const user = await User.findOne({email:req.session.email}).populate('oldPurchases')
     res.render('./accountViews/oldPurchases',{
-        login:{username:req.session.username},
+        login:{username:req.session.username, rol:req.session.rol},
         products:user.oldPurchases
     })
 }
