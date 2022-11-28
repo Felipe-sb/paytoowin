@@ -1,9 +1,25 @@
 <%- include ('../presetsViews/header',{title:user.username,username:login.username,login:true,rol:login.rol}) %>
-<div>
-	<main class="form-signin">
+
+	<center>
+	<div class="card col-md-10 col-sm-12 col-lg-6" style="background-color: #8623F1; margin: 0 auto; border-radius: 10px;margin-left:5px ; margin-right: 5px; margin-bottom: 15px;margin-top: 30px; width: 60%; align-items: center; ">
+        <main class="form-signin" style="padding: 10px;" >
 		<form action="/admin/updateUser" method="post">
-			<h1 class="h3 mb-3 fw-normal">Actualizar Usuario</h1>
+			<img
+                    class="mb-4"
+                    src="https://res.cloudinary.com/mycloudsb/image/upload/v1668379802/logoformulario_wyemmv.svg"
+                    alt="logo"
+                    width="80"
+                    height="67"
+					style="margin: 0 auto;"
+                />
+			<h1 class="h3 mb-3 fw-normal" style="color: #ffffff;">Actualizar Usuario</h1>
             <input type="hidden" name="id" value="<%= user.id %>" />
+			<select class="form-select mb-1" aria-label="Default select example" name="rol">
+                <option selected>Selecciona el rol y accesibilidad del usuario</option>
+                <option value="admin">Administrador</option>
+                <option value="clientService">Servicio al cliente</option>
+                <option value="client">Cliente</option>
+            </select>
 			<div class="form-floating">
 				<input
 					type="text"
@@ -27,18 +43,17 @@
 				/>
 				<label for="floatingInput">Correo Electronico</label>
 			</div>
-            <select class="form-select mb-1" aria-label="Default select example" name="rol">
-                <option selected>Selecciona el rol y accesibilidad del usuario</option>
-                <option value="admin">Administrador</option>
-                <option value="clientService">Servicio al cliente</option>
-                <option value="client">Cliente</option>
-            </select>
-			<input type="submit" value="Actualizar Usuario" class="btn btn-primary">
+            
+			<input type="submit" value="Actualizar Usuario" class="btn btn-primary col-12">
 		</form>
 		<form action="/admin/banUser" method="post">
 			<input type="hidden" name="id" value="<%= user.id %>" />
-			<input type="submit" value="Banear Usuario" class="btn btn-danger mt-4 w-100 btn-lg">
+			<input type="submit" value="Banear Usuario" class="btn btn-danger mt-2 col-12">
+		
 		</form>
 	</main>
-</div>
+	</div>
+</center>
+	
+
 <%- include ('../presetsViews/footer') %>
