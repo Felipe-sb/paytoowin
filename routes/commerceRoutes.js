@@ -24,7 +24,7 @@ router.get('/', cartRender);
 router.get('/captureOrderPayPal', captureOrderPayPal);
 router.get('/cancelOrderPayPal', cancelOrderPayPal);
 router.get('/createOrderPayPal', createOrderPayPal);
-router.get('/successPay', async (req, res, next) => {
+router.get('/successPayMercadopago', async (req, res, next) => {
     if (!req.session.loggedIn) {
         next();
         return;
@@ -83,16 +83,15 @@ router.get('/successPay', async (req, res, next) => {
                     subject: 'Compra Exitosa',
                     text,
                 });
+                res.redirect(`/commerce/successPay?id=${saveSale.id}`);
             });
-        res.render('./commerceViews/pagoexitoso', {
-            login: { username: req.session.username, rol:req.session.rol },
-        });
-        res.render('./commerceViews/pagopendiente', {
-            login: { username: req.session.username, rol:req.session.rol },
-        });
     }
 });
+router.get('/successPay',async(req,res)=>{
+    const {id}= req.query
+    const sale = await Sale.findById(id).populate('buyer products')
+    res.render('./commerceViews/pagoexitoso',{login:{username:req.session.username,rol:req.session.rol},sale})
+})
 router.post('/addToCart', addProductToCart);
 router.post('/deleteProductFromCart', deleteProductFromCart);
-
 module.exports = router;

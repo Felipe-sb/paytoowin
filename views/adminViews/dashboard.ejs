@@ -1,39 +1,67 @@
-<%- include ('../presetsViews/header',{login:true,username:login.username,rol:login.rol,title:'Dashboard'}) %>
-<link rel="stylesheet" href="./css/dashboard.css">
+<%- include
+('../presetsViews/header',{login:true,username:login.username,rol:login.rol,title:'Dashboard'})
+%>
+<link rel="stylesheet" href="./css/dashboard.css" />
 <div class="filterForDate">
-    <label for="from">From: </label>
-    <input type="date" name="from" id="from">
-    <br>
-    <label for="to">To:</label>
-    <input type="date" name="to" id="to">
-    <br>
-    <input type="hidden" id="host" name="host" value="<%= host %>">
-    <button class="btn btn-success" id="filter">Filtrar</button>
+  <div class="dropdown">
+    <button
+      class="btn btn-success dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton1"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      Filtrar
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li class="p-4">
+        <center>
+          <label for="from">From: </label>
+          <input type="date" name="from" id="from" />
+          <br />
+          <label for="to">To:</label>
+          <input type="date" name="to" id="to" />
+          <br />
+          <input type="hidden" id="host" name="host" value="<%= host %>" />
+          <button class="btn btn-success" id="filter">Filtrar</button>
+        </center>
+      </li>
+    </ul>
+  </div>
 </div>
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-12 text-center">
-            <p id="error-paragraph" class="text-light display-4"></p>
-        </div>
-        <div class="col-lg-4 col-md-5 col-sm-11 m-1 mt-3 p-2 text-center graph item text-light">
-            <p class="display-6">Juegos más vendidos</p>
-            <canvas id="productsByGame"></canvas>
-        </div>
-        <div class="col-lg-4 col-md-5 col-sm-11 m-1 mt-3 p-2 text-center graph item text-light">
-            <p class="display-6">Top 10 vendedores</p>
-            <canvas id="bestSellers"></canvas>
-        </div>
-        <div class="col-lg-3 col-md-5  col-sm-11 text-center m-1 p-2 mt-3 item text-light">
-            <h2 id="total" class="h2 display-2"></h2>
-            <p class="display-6">Ganancia Historica</p>
-        </div>
-        <div class="col-lg-9 col-sm-12 col-md-12 justify-content-center text-center m-1 mt-3 p-2 graph item text-light" id="median-graph-container">
-            <h2 id="average" class="h2 display-2"></h2>
-            <p class="display-6 ">Promedio de ventas</p>
-        </div>
+  <div class="row justify-content-center">
+    <div class="col-12 text-center">
+      <p id="error-paragraph" class="text-light display-4"></p>
     </div>
+    <div
+      class="col-lg-4 col-md-5 col-sm-11 m-1 mt-3 p-2 text-center graph item text-light"
+    >
+      <p class="display-6">Juegos más vendidos</p>
+      <canvas id="productsByGame"></canvas>
+    </div>
+    <div
+      class="col-lg-4 col-md-5 col-sm-11 m-1 mt-3 p-2 text-center graph item text-light"
+    >
+      <p class="display-6">Top 10 vendedores</p>
+      <canvas id="bestSellers"></canvas>
+    </div>
+    <div
+      class="col-lg-3 col-md-5 col-sm-11 text-center m-1 p-2 mt-3 item text-light"
+    >
+      <h2 id="total" class="h2 display-2"></h2>
+      <p class="display-6">Ganancia Historica</p>
+    </div>
+    <div
+      class="col-lg-9 col-sm-12 col-md-12 justify-content-center text-center m-1 mt-3 p-2 graph item text-light"
+      id="median-graph-container"
+    >
+      <h2 id="average" class="h2 display-2"></h2>
+      <p class="display-6">Promedio de ventas</p>
+    </div>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="./js/fetchDataDashboards.js"></script>
-<%- include('../presetsViews/footer') %> 
+<%- include('../presetsViews/footer') %>

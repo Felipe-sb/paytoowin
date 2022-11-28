@@ -1,7 +1,4 @@
-<% if (!login) { %> <%- include('../presetsViews/header',{title:
-    'PayTooWin',login:null}) %> <% }else{ %> <%-
-    include('../presetsViews/header',{title:
-    'PayTooWin',login:true,username:login.username,rol:login.rol}) %> <% } %>
+<%-include('../presetsViews/header',{title:'PayTooWin',login:true,username:login.username,rol:login.rol}) %>
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="./css/factura.css" />
@@ -11,20 +8,18 @@
 	type="image/x-icon"
 />
 
-</div>
-    <div class="centrar">
 
-    <h2>Orden de Compra</h2>
+    <div class="centrar p-5" style="background-color: #ffffff;"> 
+
+    <h1>Gracias Por Comprar En PayTooWin</h1>
 
     <div class="row my-3">
       <div class="col-10">
-        <h1>PayTooWin</h1>
-        <p>Av. Providencia #966</p>
-        <p>Torre Costanera 9no. nivel</p>
-        <p>local 122</p>
+        <h6>La informacion de sus productos fue enviada a su correo</h6>
+        <p>Ante cualquier inconveniente ponerse en contacto mediante el formulario de ayuda</p>
       </div>
       <div class="col-2">
-        <img src="https://res.cloudinary.com/mycloudsb/image/upload/v1668378888/logo5_qn0oqm.svg" alt="logo" width="150px" class="logo"/>
+        <img src="https://res.cloudinary.com/mycloudsb/image/upload/v1669606594/ax6lc-9utsx_tk3qpk.svg" alt="logo" width="150px" class="logo"/>
       </div>
     </div>
   
@@ -32,24 +27,24 @@
   
     <div class="row fact-info mt-1">
       <div class="col-3">
-        <h5>Facturar a</h5>
+        <h5>Comprador: </h5>
         <p>
-            Nombre de usuario
+            <%= sale.buyer[0].username %> 
         </p>
       </div>
       <div class="col-3">
         <h5>Enviar a</h5>
         <p>
-          correo@mail.com
+          <%= sale.buyer[0].email %> 
         </p>
       </div>
       <div class="col-3">
         <h5>ID Compra</h5>
-        <p>45612</p>
+        <p><%= sale.id %> </p>
       </div>
       <div class="col-3">
         <h5>Fecha Compra</h5>
-        <p>25/11/2022</p>
+        <p><%= `${sale.createdAt.getFullYear()}-${sale.createdAt.getMonth()+1}-${sale.createdAt.getDate()}` %> </p>
       </div>
     </div>
   
@@ -57,39 +52,32 @@
       <table class="table table-borderless factura">
         <thead>
           <tr>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>Titulo</th>
+            <th>Descripcion</th>
+            <th>Juego</th>
             <th>Precio Unitario</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>$230</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>$230</td>
-          </tr>
+          <% sale.products.forEach(product=>{%>
+            <tr>
+              <td><%= product.title %> </td>
+              <td><%= product.description %> </td>
+              <td><%= product.game %> </td>
+              <td>$<%= product.price %> </td>
+            </tr>
+          <%}) %> 
         </tbody>
         <tfoot>
           <tr>
             <th></th>
             <th></th>
             <th>Total Factura</th>
-            <th>$460</th>
+            <th>$<%=sale.total %> </th>
           </tr>
         </tfoot>
       </table>
-    </div>
-
-    
+    </div> 
 </div>
-
 
 <%- include('../presetsViews/footer') %>

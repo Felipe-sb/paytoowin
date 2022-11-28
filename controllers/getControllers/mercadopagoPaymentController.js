@@ -9,6 +9,7 @@ const createOrderMercadoPago = async(user) =>{
     const currentDay = `${currentDate.getDate()}`.length === 1 
                             ? `0${currentDate.getDate()}`
                             : `${currentDate.getDate()}`
+    const getHour=currentDate.getHours()
     const holidays = await axios.get(`https://apis.digital.gob.cl/fl/feriados/${currentYear}`)
     let isHoliday = false;
     let data
@@ -20,6 +21,9 @@ const createOrderMercadoPago = async(user) =>{
     if (currentDate.getDay() === 0 || currentDate.getDay() === 6) {
         isHoliday = true
     }
+    if (getHour<13) {
+        isHoliday=true
+    }
     if (isHoliday) {
         data = await axios.get(`https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar/anteriores/${currentYear}/${currentMonth}/dias/${currentDay}?apikey=e8298c7f6be9139923017aed93b70296c120a06f&formato=json`)
     }else{
@@ -28,9 +32,9 @@ const createOrderMercadoPago = async(user) =>{
     let preference = {
         items:[],
         back_urls:{
-            "success":`${process.env.HOST}/commerce/successPay`,
-            "failure":`${process.env.HOST}/commerce/successPay`,
-            "pending":`${process.env.HOST}/commerce/successPay`
+            "success":`${process.env.HOST}/commerce/successPayMercadopago`,
+            "failure":`${process.env.HOST}/commerce/failurePayMercadopago`,
+            "pending":`${process.env.HOST}/commerce/pendingPayMercadopago`
         },
         auto_return:'approved',
     }

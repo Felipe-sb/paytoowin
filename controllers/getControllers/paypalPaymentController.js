@@ -98,7 +98,7 @@ const captureOrderPayPal = async (req, res) => {
                     text += `\n\nCuenta numero ${counter}\nJuego${product.game}\nNombre de usuario: ${product.username}\nContraseña: ${decryptProductPassword}`;
                     counter++;
                 }
-                await sale.save();
+                const saveSale=await sale.save();
                 user.oldPurchases = [...user.oldPurchases, ...user.cart];
                 user.cart = [];
                 console.log(text);
@@ -109,8 +109,9 @@ const captureOrderPayPal = async (req, res) => {
                     subject: 'Compra Exitosa',
                     text,
                 });
+                res.redirect(`/commerce/successPay?id=${saveSale.id}`);
             });
-    res.redirect('/commerce');
+    
 };
 module.exports = {
     createOrderPayPal,
