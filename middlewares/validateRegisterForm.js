@@ -1,5 +1,7 @@
+const countries = require("../helpers/countries")
+
 exports.validateRegisterForm=(req,res,next)=>{
-    const {email,password,confirmPassword,username,rol} = req.body
+    const {email,password,confirmPassword,username,country} = req.body
     const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
     const passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$/
     const confirmPassRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$/
@@ -19,6 +21,20 @@ exports.validateRegisterForm=(req,res,next)=>{
         })
         return
     }
+	if(!countries.includes(country)){
+		res.render('./authViews/register',{
+            alertConfig:{
+				alert:true,
+				title:'Pais invalido',
+				text:`Por favor ingrese un pais valido`,
+				icon:'warning',
+				confirmButton:true,
+				timer:false,
+				route:'auth/register'
+			}
+        })
+        return
+	}
     if (!email || !emailRegex.test(email)) {
         res.render('./authViews/register',{
             alertConfig:{
