@@ -2,22 +2,33 @@
     'Catalogo',login:null}) %> <% }else{ %> <%-
     include('../presetsViews/header',{title:
     'Catalogo',login:true,username:login.username,rol:login.rol}) %> <% } %>
-    <center>
+    
         <br>
         <div class="container">
             <div class="row">
-                <form action="/products/filter/1" method="get">
-                    <%- include('../presetsViews/gameSelect') %> <%-
-                    include('../presetsViews/gameType') %> <%-
-                    include('../presetsViews/gameDeveloper') %>
-
-                    <input
-                        type="submit"
-                        class="btn btn-success"
-                        value="filtrar"
-                    />
-                </form>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle btn-success" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Filtros
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li class="">
+                            <form action="/products/filter/1" method="get">
+                                <%- include('../presetsViews/gameSelect') %> <%-
+                                include('../presetsViews/gameType') %> <%-
+                                include('../presetsViews/gameDeveloper') %>
+                                <center>
+                                    <input
+                                    type="submit"
+                                    class="btn btn-success"
+                                    value="filtrar"
+                                    />
+                                </center>
+                            </form>
+                        </li>
+                    </ul>
+                  </div>
             </div>
+            <center>
             <div class="row justify-content-center"  >
                 <div class="col-12">
                     <% if (msg) { %>

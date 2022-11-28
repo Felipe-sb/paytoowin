@@ -2,32 +2,42 @@
     'Catalogo',login:null}) %> <% }else{ %> <%-
     include('../presetsViews/header',{title:
     'Catalogo',login:true,username:login.username,rol:login.rol}) %> <% } %>
-    <center>
+    
         <br>
         <div class="container">
             <div class="row">
+    
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle btn-success" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Filtros
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li class="">
+                            <form action="/products/filter/1" method="get" class="">
+                                <%- include('../presetsViews/gameSelect') %> <%-
+                                include('../presetsViews/gameType') %> <%-
+                                include('../presetsViews/gameDeveloper') %>
+                                <center>
+                                    <input
+                                    type="submit"
+                                    class="btn btn-success text-center justify-content-center"
+                                    value="filtrar"
+                                    />
+                                </center>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
                 <div class="col-12">
                     <% if (msg) { %>
-                    <h2 class="page-header"><%= msg %></h2>
+                    <h2 class="page-header text-center"><%= msg %></h2>
                     <% }else{ %>
-                    <h2 class="page-header" style="color: #ffffff ;">Catalogo</h2>
+                    <h2 class="page-header text-center" style="color: #ffffff ;">Catalogo</h2>
                     <%}%>
                 </div>
-    
-                <div>
-                    <form action="/products/filter/1" method="get">
-                        <%- include('../presetsViews/gameSelect') %> <%-
-                        include('../presetsViews/gameType') %> <%-
-                        include('../presetsViews/gameDeveloper') %>
-    
-                        <input
-                            type="submit"
-                            class="btn btn-success"
-                            value="filtrar"
-                        />
-                    </form>
-                </div><br>
-    
+            </div>
+            <center>
+            <div class="row justify-content-center">
                 <% if (products) { %> 
                     <% products.forEach(product => { %>
                             <div class="card w-5 col-md-2 col-6" style="background-color: #8623F1; border-radius: 10px; margin-left: 5px; margin-right: 5px; margin-bottom: 5px; width: 20rem; ">

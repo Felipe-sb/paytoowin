@@ -3,17 +3,17 @@
     <div class="row">
         <% if (users) { %>
             <% users.forEach(user => { %>
-                <div class="col-md-3 col-6 product-block">
+                <div class="card col-md-6 col-lg-3 col-sm-10 product-block justify-content-center text-center pt-4 pb-4" style="background-color:#8623F1 ; border-radius: 3%;">
                     <a href="/admin/users/<%= user.id %> " style="text-decoration: none;color: #000000">
                         <div class="caption">
-                            <h3><%= user.username %> </h3>
-                            <div class="mb-4"><label><%= user.email %> </label></div>
+                            <h3 class="text-light">Nombre de usuario: <%= user.username %></h3>
+                            <div class="mb-4"><label class="text-light">Email: <%= user.email %> </label></div>
                             <% if (user.rol === 'admin') { %>
-                                <div class="price-mob mb-2">Administrador </div>
+                                <div class="price-mob mb-2 text-light">Rol: Administrador </div>
                             <% }else if(user.rol==='clientService') {%>
-                                <div class="price-mob mb-2">Servicio al cliente </div>
+                                <div class="price-mob mb-2 text-light">Rol: Servicio al cliente </div>
                             <%} else {%>
-                                <div class="price-mob mb-2">Cliente</div>
+                                <div class="price-mob mb-2 text-light">Rol: Cliente</div>
                             <%}%>
                             <div class="clearfix"></div>
                         </div>

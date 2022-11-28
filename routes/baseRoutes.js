@@ -23,7 +23,6 @@ router.get('/pagopendiente',pagopendienteRender)
 router.get('/nosotros',nosotrosRender)
 router.get('/reportecuenta',reporteCuentaRender)
 router.get('/contact',contactRender)
-
 router.post('/reportecuenta',sendReporteCuentaMail)
 router.post('/contact',validateContactForm,sendContactMail)
 module.exports = router
