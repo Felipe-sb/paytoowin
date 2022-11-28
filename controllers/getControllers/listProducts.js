@@ -6,15 +6,10 @@ const listProducts = async(req,res,next) =>{
     }
     
     let products = await Product.find({}).populate('owner')
-     if(products !== []){
-        res.render('./productsViews/updateProducts',
-            {products,msg:"error su usuario no tiene productos en venta",login:{username:req.session.username,email: req.session.email, rol:req.session.rol},alertConfig:{alert:false}})
-        return
-
-     }
+     
     if (req.session.rol === 'admin' || req.session.rol === 'clientService'){
         res.render('./productsViews/updateProducts',
-            {products,login:{username:req.session.username,email: req.session.email, rol:req.session.rol},alertConfig:{alert:false}})
+            {products,msg:null,login:{username:req.session.username,email: req.session.email, rol:req.session.rol},alertConfig:{alert:false}})
         return
     }else{
         products = products.filter(product =>{
@@ -23,9 +18,15 @@ const listProducts = async(req,res,next) =>{
                 return product
             }
         })
+        if(products !== []){
+            res.render('./productsViews/updateProducts',
+                {products,msg:"error su usuario no tiene productos en venta",login:{username:req.session.username,email: req.session.email, rol:req.session.rol},alertConfig:{alert:false}})
+            return
+    
+         }
         console.log(products)
         res.render('./productsViews/updateProducts',
-            {products,login:{username:req.session.username,email: req.session.email, rol:req.session.rol},alertConfig:{alert:false}})
+            {products,msg:null,login:{username:req.session.username,email: req.session.email, rol:req.session.rol},alertConfig:{alert:false}})
         return
     }
     next()
