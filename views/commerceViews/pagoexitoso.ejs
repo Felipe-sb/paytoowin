@@ -1,44 +1,95 @@
-<%-include('../presetsViews/header',{title:
-'Pago Exitoso',login:true,username:login.username,rol:login.rol})%>
+<% if (!login) { %> <%- include('../presetsViews/header',{title:
+    'PayTooWin',login:null}) %> <% }else{ %> <%-
+    include('../presetsViews/header',{title:
+    'PayTooWin',login:true,username:login.username,rol:login.rol}) %> <% } %>
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="./css/terminos.css" />
-<div class="body-content">
-    <div class="header">
-        
+<link rel="stylesheet" href="./css/factura.css" />
+<link
+	rel="shortcut icon"
+	href="https://res.cloudinary.com/mycloudsb/image/upload/v1658334593/logo_exjlzw.ico"
+	type="image/x-icon"
+/>
 
-        <h2>
-            Estado de Pago
-            <img
-                class="mb-4"
-                src="https://res.cloudinary.com/dfbisj1ch/image/upload/v1668375821/PTW/estado-pago_wajtil.png"
-                alt="logo"
-                width="10%"
-                height="10%"
-            />
-        </h2>
-
-      
-
-        
-            <div class="d-flex justify-content-center align-items-center mb-5">
-                <div class="card">
-                    <h6 class="mb-0 text-muted">Estado de pago</h6><hr>
-                    <h6 class="mb-0 text-muted">ID Producto</h6><hr>
-                    <h6 class="mb-0 text-muted">Su pago fue realizado exitosamente</h6><hr>
-                    <h6 class="mb-0 text-muted">Producto</h6><hr>
-                    <h3 class="mb-0 text-muted">Total</h3>
-                    
-                                      
-                </div> 
-
-            </div>
-        
-
-        <button class="w-100 btn btn-lg btn-outline-warning" type="submit">
-            Volver
-        </button>
-    </div>
 </div>
+    <div class="centrar">
+
+    <h2>Orden de Compra</h2>
+
+    <div class="row my-3">
+      <div class="col-10">
+        <h1>PayTooWin</h1>
+        <p>Av. Providencia #966</p>
+        <p>Torre Costanera 9no. nivel</p>
+        <p>local 122</p>
+      </div>
+      <div class="col-2">
+        <img src="https://res.cloudinary.com/mycloudsb/image/upload/v1668378888/logo5_qn0oqm.svg" alt="logo" width="150px" class="logo"/>
+      </div>
+    </div>
+  
+    <hr />
+  
+    <div class="row fact-info mt-1">
+      <div class="col-3">
+        <h5>Facturar a</h5>
+        <p>
+            Nombre de usuario
+        </p>
+      </div>
+      <div class="col-3">
+        <h5>Enviar a</h5>
+        <p>
+          correo@mail.com
+        </p>
+      </div>
+      <div class="col-3">
+        <h5>ID Compra</h5>
+        <p>45612</p>
+      </div>
+      <div class="col-3">
+        <h5>Fecha Compra</h5>
+        <p>25/11/2022</p>
+      </div>
+    </div>
+  
+    <div class="row my-5">
+      <table class="table table-borderless factura">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Precio Unitario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>$230</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>$230</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>Total Factura</th>
+            <th>$460</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    
+</div>
+
 
 <%- include('../presetsViews/footer') %>
