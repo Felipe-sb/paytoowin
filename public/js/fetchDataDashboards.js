@@ -205,7 +205,13 @@
         mostSellers.data.datasets[0].data = Object.values(ownerCounters)
         medianGraph.data.labels=Object.keys(data.perMonth)
         medianGraph.data.datasets[0].data = dataPerMonth
-        medianGraphContainer.appendChild(canvas)
+        if (Object.keys(data.perMonth).length !== 1) {
+            medianGraphContainer.appendChild(canvas)
+        }else{
+            if (document.getElementById('median-graph')) {
+                medianGraphContainer.removeChild(canvas)
+            }
+        }
         productsByGameChart.update();
         mostSellers.update();
         medianGraph.update();
