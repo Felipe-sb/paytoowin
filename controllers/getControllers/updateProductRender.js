@@ -1,6 +1,7 @@
 const Product = require('../../models/Product')
 const User = require('../../models/User')
 const updateProductRender = async(req,res,next) =>{
+
 	if (!req.session.loggedIn) {
 		next()
 		return

@@ -4,7 +4,9 @@ const listProducts = async(req,res,next) =>{
         next()
         return
     }
+    
     let products = await Product.find({}).populate('owner')
+
     if (req.session.rol === 'admin' || req.session.rol === 'clientService'){
         res.render('./productsViews/updateProducts',
             {products,login:{username:req.session.username,email: req.session.email, rol:req.session.rol},alertConfig:{alert:false}})

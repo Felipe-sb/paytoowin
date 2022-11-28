@@ -5,7 +5,7 @@
 <% } %> 
 <div class="container">
     <div class="row">
-        <% if (products) { %>
+        <% if (products!==[]) { %>
             <% products.forEach(product => { %>
                 <div class="card col-md-3 col-6 product-block" style="background-color: #8623F1; border-radius: 10px; padding-bottom: 20px;">
                     <a href="/products/update-product/<%= product.id %> " style="text-decoration: none;color: #ffffff">
