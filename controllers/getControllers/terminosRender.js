@@ -1,8 +1,8 @@
 const terminosRender = (req, res) => {
 	if (req.session.loggedIn) {
-		const {username, email } = req.session;
+		const {username, email,rol} = req.session;
 		res.render('./baseViews/terminos', {
-			login: { username, email },
+			login: { username, email,rol },
 		});
 		return;
 	}

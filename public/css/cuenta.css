@@ -1,26 +1,24 @@
 * {
     box-sizing: border-box;
+    
   }
   
 
   .body-content {
     font-family: Arial;
     padding: 5%;
-    background: #f1f1f1;
-  }
-  
-  .header {
-    padding: 30px;
-    font-size: 40px;
-    text-align: center;
-    background: white;
+    background: #bfa0ff;
   }
   
 
   .card {
-     background-color: white;
-     padding: 20px;
-     margin-top: 20px;
+    background-color: #8623F1;
+     padding: 10px;
+     margin-left: 25%;
+     margin-right: 25%;
+     text-align: center;
+     border-radius: 20px;
+     width: 50%;
   }
   
   .row:after {

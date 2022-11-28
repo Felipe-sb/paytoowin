@@ -10,25 +10,32 @@
 </head>
 <body>
 
-    <div class="body-content">
-        <h6 class="mb-0"><a href="/account/accountSetting" class="text-body"><i
+    <div class="body-content" >
+        <h6 class="mb-0"><a href="/account/accountSetting" style="color: #ffffff;"><i
             class="fas fa-long-arrow-alt-left me-2"></i>Volver</a></h6><br>
         
-<div class="header">
-  <h2>Saldo y pago</h2>
-</div>
+
 <center>
 <div class="row">
     <form action="/getMoney" method="post">
-  <div class="leftcolumn">
     <div class="card">
-        <h4 class="nav-link" style="color: black;">Saldo disponible: $<%=balance%> USD</h4>
-        
+        <img
+                        class="mb-4"
+                        src="https://res.cloudinary.com/mycloudsb/image/upload/v1668379802/logoformulario_wyemmv.svg"
+                        alt="logo"
+                        width="80"
+                        height="67"
+                        style="margin: 0 auto;"
+
+                    />
+        <h2 style="color:#ffffff ;">Saldo y pago</h2><br>
+        <h4 class="nav-link" style="color: white;">Saldo disponible: $<%=balance%> USD</h4>
+        <button class="w-100 btn btn-lg btn-warning" type="submit">
+            Retirar Dinero
+        </button>
     </div>
       </div>
-      <button class="w-100 btn btn-lg btn-outline-warning" type="submit">
-        Retirar Dinero
-    </button>
+      
    
     </form>
   </div>

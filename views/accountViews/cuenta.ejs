@@ -11,62 +11,61 @@
 <body>
 
     <div class="body-content">
-        <h6 class="mb-0"><a href="/account/accountSetting" class="text-body"><i
-            class="fas fa-long-arrow-alt-left me-2"></i>Volver</a></h6><br>
+        <h6 class="mb-0"><a href="/account/accountSetting"  style="color: #ffffff;"><i
+            class="fas fa-long-arrow-alt-left me-2"></i>Volver</a></h6>
         
-<div class="header">
-  <h2>Configuracion de contraseña</h2>
-</div>
-
-<div class="row">
-  <div class="leftcolumn">
-    
-
-    <form action="/account/cuenta" method="POST">
-    <div class="card">
-        
-        <div class="form-floating">
-            <input
-                type="password"
-                class="form-control"
-                id="floatingPassword"
-                name="clientPassword"
-                placeholder="Contraseña Actual"
-            />
-            <label for="floatingPassword">Contraseña Actual</label>
+            <center>
+                <div class="card col-md-2 col-6" style="background-color: #8623F1; border-radius: 10px; margin-left: 5px; margin-right: 30px; margin-bottom: 5px;margin-top: 30px; width: 35rem; align-items: center; ">
+            <main class="form-signin">
+                <form id="loginForm" action="/account/cuenta" method="POST">
+                    <img
+                        class="mb-4"
+                        src="https://res.cloudinary.com/mycloudsb/image/upload/v1668379802/logoformulario_wyemmv.svg"
+                        alt="logo"
+                        width="80"
+                        height="67"
+                    />
+                    <h1 class="h3 mb-3 fw-normal" style="color:#ffffff ;">Configuracion de contraseña</h1>
+                    <div class="form-floating">
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="floatingPassword"
+                            name="clientPassword"
+                            placeholder="Contraseña Actual"
+                        />
+                        <label for="floatingPassword">Contraseña Actual</label>
+                    </div>
+                    <div class="form-floating">
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="floatingPassword"
+                            name="password"
+                            placeholder="Contraseña"
+                        />
+                        <label for="floatingPassword">Contraseña Nueva</label>
+                    </div>
+                    <div class="form-floating">
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="floatingInput"
+                            name="confirmPassword"
+                            placeholder="Confirma tu contraseña"
+                        />
+                        <label for="floatingInput">Confirma tu contraseña</label>
+                    </div>
+                    <button class="w-100 btn btn-lg btn-warning" type="submit">
+                        Actualizar Contraseña
+                    </button>
+                    
+                    
+                </form>
+            </main>
+            </div>
         </div>
-        <div class="form-floating">
-            <input
-                type="password"
-                class="form-control"
-                id="floatingPassword"
-                name="password"
-                placeholder="Contraseña"
-            />
-            <label for="floatingPassword">Contraseña Nueva</label>
-        </div>
-        <div class="form-floating">
-            <input
-                type="password"
-                class="form-control"
-                id="floatingInput"
-                name="confirmPassword"
-                placeholder="Confirma tu contraseña"
-            />
-            <label for="floatingInput">Confirma tu contraseña</label>
-        </div>
-        <button class="w-100 btn btn-lg btn-outline-warning" type="submit">
-            Actualizar Contraseña
-        </button>
-        
-      </div>
-    </form>
-    
-    
-  </div>
-
-</div>
-    </div>
+    </center>
 </body>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <% if (alertConfig.alert) { %>

@@ -3,6 +3,6 @@ const contactRender=(req,res) =>{
         res.render('./baseViews/contact',{alertConfig:{alert:false},login:null})
         return   
     }
-    res.render('./baseViews/contact',{alertConfig:{alert:false},login:{username:req.session.username, email:req.session.email}})
+    res.render('./baseViews/contact',{alertConfig:{alert:false},login:{username:req.session.username, email:req.session.email,rol:req.session.rol}})
 }
 module.exports = contactRender

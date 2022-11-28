@@ -1,8 +1,8 @@
 const faqsRender = (req, res) => {
 	if (req.session.loggedIn) {
-		const {username, email } = req.session;
+		const {username, email,rol } = req.session;
 		res.render('./baseViews/faqs', {
-			login: { username, email },
+			login: { username, email,rol },
 		});
 		return;
 	}
