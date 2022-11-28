@@ -1,4 +1,4 @@
-exports.validateRegisterForm=(req,res,next)=>{
+exports.validateAdminRegisterForm=(req,res,next)=>{
     const {email,password,confirmPassword,username,rol} = req.body
     const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
     const passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$/
@@ -6,7 +6,7 @@ exports.validateRegisterForm=(req,res,next)=>{
     const usernameRegex= /^[a-zA-Z0-9]{4,10}$/
 
     if (!usernameRegex.test(username)) {
-        res.render('./authViews/register',{
+        res.render('./adminViews/register',{
             alertConfig:{
 				alert:true,
 				title:'Campo Vacio',
@@ -14,13 +14,15 @@ exports.validateRegisterForm=(req,res,next)=>{
 				icon:'warning',
 				confirmButton:true,
 				timer:false,
-				route:'auth/register'
-			}
+				route:'admin/register'
+                
+			},
+            login:{username:req.session.username, rol:req.session.username}
         })
         return
     }
     if (!email || !emailRegex.test(email)) {
-        res.render('./authViews/register',{
+        res.render('./adminViews/register',{
             alertConfig:{
 				alert:true,
 				title:'Correo electronico no valido',
@@ -28,14 +30,15 @@ exports.validateRegisterForm=(req,res,next)=>{
 				icon:'warning',
 				confirmButton:true,
 				timer:false,
-				route:'auth/register'
-			}
+				route:'admin/register'
+			},
+            login:{username:req.session.username, rol:req.session.username}
         })
         return
     }
     if (!password || !passRegex.test(password)){
 
-        res.render('./authViews/register',{
+        res.render('./adminViews/register',{
             alertConfig:{
 				alert:true,
 				title:'Contraseña no valida',
@@ -43,14 +46,15 @@ exports.validateRegisterForm=(req,res,next)=>{
 				icon:'warning',
 				confirmButton:true,
 				timer:false,
-				route:'auth/register'
-			}
+				route:'admin/register'
+			},
+            login:{username:req.session.username, rol:req.session.username}
         })
         return
 
     }
     if (!confirmPassword || !confirmPassRegex.test(confirmPassword)) {
-        res.render('./authViews/register',{
+        res.render('./adminViews/register',{
             alertConfig:{
 				alert:true,
 				title:'Contraseña no valida',
@@ -58,13 +62,14 @@ exports.validateRegisterForm=(req,res,next)=>{
 				icon:'warning',
 				confirmButton:true,
 				timer:false,
-				route:'auth/register'
-			}
+				route:'admin/register'
+			},
+            login:{username:req.session.username, rol:req.session.username}
         })
         return
     }
     if (password !== confirmPassword ) {
-        res.render('./authViews/register',{
+        res.render('./adminViews/register',{
             alertConfig:{
 				alert:true,
 				title:'Ooooops',
@@ -72,12 +77,27 @@ exports.validateRegisterForm=(req,res,next)=>{
 				icon:'warning',
 				confirmButton:true,
 				timer:false,
-				route:'auth/register'
-			}
+				route:'admin/register'
+			},
+            login:{username:req.session.username, rol:req.session.username}
         })
         return
     }
+	if (rol !== 'admin' && rol !== 'clientService' && rol !== 'client') {
+		res.render('./adminViews/register',{
+            alertConfig:{
+				alert:true,
+				title:'Ooooops',
+				text:`Porfavor seleccione un rol valido`,
+				icon:'warning',
+				confirmButton:true,
+				timer:false,
+				route:'admin/register'
+			},
+            login:{username:req.session.username, rol:req.session.username}
+        })
+		return
+	}
     next();
         
 }
-

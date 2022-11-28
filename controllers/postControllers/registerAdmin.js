@@ -1,10 +1,14 @@
 const User = require('../../models/User');
 const bcrypt = require('bcryptjs');
 const transporter = require('../../helpers/transporter');
-const registerUser = async (req, res) => {
-	const { username, email, password, country } = req.body;
+const registerAdmin = async (req, res, next) => {
+    if(req.session.rol !== "admin") {
+        next();
+        return
+    }
+	const { username, email, password, country, rol } = req.body;
 	const hashPassword = await bcrypt.hash(password, 8);
-	const newUser = new User({ username, email, password: hashPassword,country,rol:"client",createDate: Date.now(),banned:false,balance:0,verified:false});
+	const newUser = new User({ username, email, password: hashPassword,country,rol,createDate: Date.now(),banned:false,balance:0,verified:false});
 	newUser.save().then(async (user) => {
 		await transporter.sendMail({
 			from: '"paytoowin" <paytoowin.noreply@gmail.com>"',
@@ -12,7 +16,7 @@ const registerUser = async (req, res) => {
 			subject: 'Cuenta creada',
 			text: `Bienvenido ${user.username} a paytoowin la mejor plataforma para la compra y venta de juegos de tus juegos favoritos`,
 		});
-        res.render('./authViews/register',{
+        res.render('./adminViews/register',{
 			alertConfig:{
 				alert:true,
 				title:'Usuario registrado con exito',
@@ -20,9 +24,9 @@ const registerUser = async (req, res) => {
 				icon:'success',
 				confirmButton:true,
 				timer:false,
-				route:'auth/login'
+				route:'admin/users'
 			}
 		})
 	});
 };
-module.exports = registerUser;
+module.exports = registerAdmin;
