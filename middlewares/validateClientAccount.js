@@ -7,7 +7,7 @@ exports.validateClientAccount=(req,res,next)=>{
 
     if (!password || !passRegex.test(password)){
 
-        res.render('./accountViews/cuenta',{
+        res.status(406).render('./accountViews/cuenta',{
             alertConfig:{
 				alert:true,
 				title:'Nueva contraseña invalida',
@@ -24,7 +24,7 @@ exports.validateClientAccount=(req,res,next)=>{
 
     }
     if (!confirmPassword || !passRegex.test(confirmPassword)) {
-        res.render('./accountViews/cuenta',{
+        res.status(406).render('./accountViews/cuenta',{
             alertConfig:{
 				alert:true,
 				title:'Error al confirmar contraseña',
@@ -41,7 +41,7 @@ exports.validateClientAccount=(req,res,next)=>{
         return
     }
     if (password !== confirmPassword ) {
-        res.render('./accountViews/cuenta',{
+        res.status(406).render('./accountViews/cuenta',{
             alertConfig:{
 				alert:true,
 				title:'Ooooops',

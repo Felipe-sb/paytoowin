@@ -4,7 +4,7 @@ exports.validateLoginForm=(req,res,next)=>{
     const passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$/
 
     if (!email || !emailRegex.test(email)) {
-        res.render('./authViews/login',{
+        res.status(406).render('./authViews/login',{
             alertConfig:{
 				alert:true,
 				title:'Correo electronico no valido',
@@ -19,7 +19,7 @@ exports.validateLoginForm=(req,res,next)=>{
     }
     if (!password || !passRegex.test(password)){
 
-        res.render('./authViews/login',{
+        res.status(406).render('./authViews/login',{
             alertConfig:{
 				alert:true,
 				title:'Contraseña no valida',

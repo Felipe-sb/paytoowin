@@ -90,7 +90,7 @@ router.get('/successPayMercadopago', async (req, res, next) => {
 router.get('/successPay',async(req,res)=>{
     const {id}= req.query
     const sale = await Sale.findById(id).populate('buyer products')
-    res.render('./commerceViews/pagoexitoso',{login:{username:req.session.username,rol:req.session.rol},sale})
+    res.status(200).render('./commerceViews/pagoexitoso',{login:{username:req.session.username,rol:req.session.rol},sale})
 })
 router.post('/addToCart', addProductToCart);
 router.post('/deleteProductFromCart', deleteProductFromCart);

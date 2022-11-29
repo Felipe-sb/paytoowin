@@ -4,7 +4,7 @@ exports.validateContactForm=(req,res,next)=>{
     const subjectRegex = /^(?!\s*$).+/
     const textRegex = /^(?!\s*$).+/
     if (!emailRegex.test(email)) {
-        res.render('./baseViews/contact',{
+        res.status(406).render('./baseViews/contact',{
 			login:req.session.loggedIn,
             alertConfig:{
 				alert:true,
@@ -20,7 +20,7 @@ exports.validateContactForm=(req,res,next)=>{
     }
 
     if (!subjectRegex.test(subject)) {
-        res.render('./baseViews/contact',{
+        res.status(406).render('./baseViews/contact',{
 			login:req.session.loggedIn,
             alertConfig:{
 				alert:true,
@@ -36,7 +36,7 @@ exports.validateContactForm=(req,res,next)=>{
     }
 
     if (!textRegex.test(text)) {
-        res.render('./baseViews/contact',{
+        res.status(406).render('./baseViews/contact',{
 			login:req.session.loggedIn,
             alertConfig:{
 				alert:true,

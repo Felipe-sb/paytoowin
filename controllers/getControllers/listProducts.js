@@ -8,7 +8,7 @@ const listProducts = async(req,res,next) =>{
     let products = await Product.find({}).populate('owner')
      
     if (req.session.rol === 'admin' || req.session.rol === 'clientService'){
-        res.render('./productsViews/updateProducts',
+        res.status(200).render('./productsViews/updateProducts',
             {products,msg:null,login:{username:req.session.username,email: req.session.email, rol:req.session.rol},alertConfig:{alert:false}})
         return
     }else{
@@ -19,13 +19,13 @@ const listProducts = async(req,res,next) =>{
             }
         })
         if(products !== []){
-            res.render('./productsViews/updateProducts',
+            res.status(200).render('./productsViews/updateProducts',
                 {products,msg:"error su usuario no tiene productos en venta",login:{username:req.session.username,email: req.session.email, rol:req.session.rol},alertConfig:{alert:false}})
             return
     
          }
         console.log(products)
-        res.render('./productsViews/updateProducts',
+        res.status(200).render('./productsViews/updateProducts',
             {products,msg:null,login:{username:req.session.username,email: req.session.email, rol:req.session.rol},alertConfig:{alert:false}})
         return
     }

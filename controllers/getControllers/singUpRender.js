@@ -3,6 +3,6 @@ const singUpRender = (req,res) =>{
         res.redirect('/')
         return
     }
-    res.render('./authViews/register',{alertConfig:{alert:false}})
+    res.status(200).render('./authViews/register',{alertConfig:{alert:false}})
 }
 module.exports = singUpRender

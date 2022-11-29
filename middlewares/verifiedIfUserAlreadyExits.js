@@ -3,7 +3,7 @@ const verifiedIfUserAlreadyExits = async (req,res,next) =>{
     const {email} = req.body
     const user = await User.find({email})
     if (user.length !== 0) {
-        res.render('./authViews/register',{
+        res.status(406).render('./authViews/register',{
             alertConfig:{
 				alert:true,
 				title:`La cuenta con el correo ${email} ya existe`,

@@ -3,7 +3,7 @@ const verifiedEmailExist = async (req,res,next) =>{
     const {email} = req.body
     const user = await User.find({email})
     if (user.length !== 0) {
-        res.render('./baseViews/updateEmailClient',{
+        res.status(406).render('./baseViews/updateEmailClient',{
             alertConfig:{
 				alert:true,
 				title:`La cuenta con el correo ${email} ya existe`,

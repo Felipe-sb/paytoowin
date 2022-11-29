@@ -1,10 +1,5 @@
 const User = require('../../models/User');
 const bcryptjs = require ('bcryptjs');
-
-
-    
-
-
 const updatePasswordClient = async (req, res,next) => {
     const { password, clientPassword } = req.body;
     const email = req.session.email;
@@ -16,7 +11,7 @@ const updatePasswordClient = async (req, res,next) => {
         if (password !== "" || password !== undefined ) {
             const cryptPass = await bcryptjs.hash(password,8)
         const newUser = await User.findByIdAndUpdate(req.session.userId, { password: cryptPass });
-        res.render('./accountViews/cuenta',{
+        res.status(200).render('./accountViews/cuenta',{
                 alertConfig:{
                     alert:true,
                     title:'OPERACION EXITOSA',
@@ -34,7 +29,7 @@ const updatePasswordClient = async (req, res,next) => {
         }
         
     }else { 
-        res.render('./accountViews/cuenta',{
+        res.status(401).render('./accountViews/cuenta',{
             alertConfig:{
                 alert:true,
                 title:'Contraseña invalida ',

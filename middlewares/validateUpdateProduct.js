@@ -7,7 +7,7 @@ const validateUpdateProduct = async(req,res,next) =>{
 	const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
     const product = await Product.findById(id)
     if(!regexNotEmptyString.test(title)){
-        res.render('./productsViews/updateProduct',{
+        res.status(406).render('./productsViews/updateProduct',{
             product,
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
@@ -25,7 +25,7 @@ const validateUpdateProduct = async(req,res,next) =>{
         return;
     }
     if(!regexOnlyNumbers.test(level) || !regexNotEmptyString.test(level)){
-        res.render('./productsViews/updateProduct',{
+        res.status(406).render('./productsViews/updateProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -42,7 +42,7 @@ const validateUpdateProduct = async(req,res,next) =>{
         return;
     }
     if (images.length=== 0) {
-        res.render('./productsViews/updateProduct',{
+        res.status(406).render('./productsViews/updateProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -59,7 +59,7 @@ const validateUpdateProduct = async(req,res,next) =>{
         return;
     }
     if (!regexNotEmptyString.test(description)) {
-        res.render('./productsViews/updateProduct',{
+        res.status(406).render('./productsViews/updateProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -76,7 +76,7 @@ const validateUpdateProduct = async(req,res,next) =>{
         return;
     }
     if(!regexOnlyNumbers.test(price) || !regexNotEmptyString.test(price)){
-        res.render('./productsViews/updateProduct',{
+        res.status(406).render('./productsViews/updateProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -93,7 +93,7 @@ const validateUpdateProduct = async(req,res,next) =>{
         return;
     }
 	if (!regexNotEmptyString.test(username)) {
-        res.render('./productsViews/updateProduct',{
+        res.status(406).render('./productsViews/updateProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,

@@ -8,7 +8,7 @@ const validateCheckbox = async (req,res,next) =>{
     console.log(booleanaccept)
     if (booleanaccept==false) {
 
-        res.render('./authViews/register',{
+        res.status(406).render('./authViews/register',{
             alertConfig:{
 				alert:true,
 				title:`Por favor acepte los terminos y condiciones`,

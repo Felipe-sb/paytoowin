@@ -3,7 +3,7 @@ const {email} = req.body
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 
 if (!email || !emailRegex.test(email)) {
-    res.render('./baseViews/updateEmailClient',{
+    res.status(406).render('./baseViews/updateEmailClient',{
         alertConfig:{
             alert:true,
             title:'Correo electronico no valido',

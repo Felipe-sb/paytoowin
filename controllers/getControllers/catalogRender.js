@@ -11,11 +11,11 @@ const getAllProducts = async (req, res) => {
     const current = page
 
    if (!req.session.loggedIn) {
-    res.render('./productsViews/catalog',{msg:null,products:products.docs,login:null, pages,current})
+    res.status(200).render('./productsViews/catalog',{msg:null,products:products.docs,login:null, pages,current})
     return
    }
 
-    res.render('./productsViews/catalog',{msg:null,products:products.docs,login:{username:req.session.username, rol:req.session.rol}, pages,current})
+    res.status(200).render('./productsViews/catalog',{msg:null,products:products.docs,login:{username:req.session.username, rol:req.session.rol}, pages,current})
     
 
 

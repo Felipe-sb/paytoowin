@@ -16,7 +16,7 @@ const registerAdmin = async (req, res, next) => {
 			subject: 'Cuenta creada',
 			text: `Bienvenido ${user.username} a paytoowin la mejor plataforma para la compra y venta de juegos de tus juegos favoritos`,
 		});
-        res.render('./adminViews/register',{
+        res.status(200).render('./adminViews/register',{
 			alertConfig:{
 				alert:true,
 				title:'Usuario registrado con exito',

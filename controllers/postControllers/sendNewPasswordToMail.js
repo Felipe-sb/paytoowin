@@ -23,7 +23,7 @@ const sendNewPasswordToMail = async (req, res) => {
 			subject: 'Recuperacion de contraseña',
 			text: `Hola ${user.username} tu nueva contraseña es ${newPassword}`,
 		});
-		res.render('./authViews/forgotPassword',{
+		res.status(200).render('./authViews/forgotPassword',{
 			alertConfig:{
 				alert:true,
 				title:'Contraseña recuperada',

@@ -6,7 +6,7 @@ const updateEmail = async (req, res,next) => {
         if (email !== "" ) {
             const newUser = await User.findByIdAndUpdate(req.session.userId, { email },{new:true});
             req.session.email = newUser.email;
-            res.render('./accountViews/updateEmailClient',{
+            res.status(200).render('./accountViews/updateEmailClient',{
                 alertConfig:{
                     alert:true,
                     title:'OPERACION EXITOSA',

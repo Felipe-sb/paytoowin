@@ -2,7 +2,7 @@ const Sale = require("../../models/Sale");
 
 const sendDataForCharts = async(req,res,next) =>{
     if(!req.session.loggedIn || req.session.rol !== 'admin'){
-        res.json({error:'Usted no esta autenticado o no es administrador'})
+        res.status(401).json({error:'Usted no esta autenticado o no es administrador'})
     }
     const months=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
     const {from,to} = req.query
@@ -18,6 +18,6 @@ const sendDataForCharts = async(req,res,next) =>{
         }
     })
     console.log(perMonth);
-    res.json({sales,perMonth})
+    res.status(200).json({sales,perMonth})
 }
 module.exports = sendDataForCharts

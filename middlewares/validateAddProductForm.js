@@ -7,7 +7,7 @@ const validateAddProductForm = (req,res,next)=>{
 	const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/
 
     if(!regexNotEmptyString.test(title)){
-        res.render('./productsViews/addProduct',{
+        res.status(406).render('./productsViews/addProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -23,7 +23,7 @@ const validateAddProductForm = (req,res,next)=>{
     }
 	if(gameType !== "battleroyale" && gameType !=="deportes" && gameType !=="rpg" && gameType !=="mmo" ){
 		
-        res.render('./productsViews/addProduct',{
+        res.status(406).render('./productsViews/addProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -38,7 +38,7 @@ const validateAddProductForm = (req,res,next)=>{
         return;
     }
 	if(developer !== "ubisoft" && developer!== "rockstar" && developer!== "blizzard" && developer!=="activision" && developer!=="riot" && developer!=="ea" && developer!=="epicgames" && developer!=="microsoft" && developer!=="bigpoint" && developer!=="pubgstudios"){
-        res.render('./productsViews/addProduct',{
+        res.status(406).render('./productsViews/addProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -53,7 +53,7 @@ const validateAddProductForm = (req,res,next)=>{
         return;
     }
     if (game !== "darkorbit" && game !=="lol" && game !=="gta5" && game !=="wow" && game !=="warzone" && game !=="fortnite" && game !=="pubg" && game !=="apex" && game !=="forzah5" && game !=="valorant" && game !=="fifa23"){
-        res.render('./productsViews/addProduct',{
+        res.status(406).render('./productsViews/addProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -68,7 +68,7 @@ const validateAddProductForm = (req,res,next)=>{
         return;
     }
     if(!regexOnlyNumbers.test(level) || !regexNotEmptyString.test(level)){
-        res.render('./productsViews/addProduct',{
+        res.status(406).render('./productsViews/addProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -83,7 +83,7 @@ const validateAddProductForm = (req,res,next)=>{
         return;
     }
     if (images.length=== 0) {
-        res.render('./productsViews/addProduct',{
+        res.status(406).render('./productsViews/addProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -98,7 +98,7 @@ const validateAddProductForm = (req,res,next)=>{
         return;
     }
     if (!regexNotEmptyString.test(description)) {
-        res.render('./productsViews/addProduct',{
+        res.status(406).render('./productsViews/addProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -113,7 +113,7 @@ const validateAddProductForm = (req,res,next)=>{
         return;
     }
     if(!regexOnlyNumbers.test(price)){
-        res.render('./productsViews/addProduct',{
+        res.status(406).render('./productsViews/addProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -128,7 +128,7 @@ const validateAddProductForm = (req,res,next)=>{
         return;
     }
 	if (!regexNotEmptyString.test(username)) {
-        res.render('./productsViews/addProduct',{
+        res.status(406).render('./productsViews/addProduct',{
             login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -143,7 +143,7 @@ const validateAddProductForm = (req,res,next)=>{
         return;
     }
 	if (!email || !emailRegex.test(email)) {
-        res.render('./productsViews/addProduct',{
+        res.status(406).render('./productsViews/addProduct',{
 			login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,
@@ -159,7 +159,7 @@ const validateAddProductForm = (req,res,next)=>{
     }
 	if (!password || !passRegex.test(password)){
 
-        res.render('./productsViews/addProduct',{
+        res.status(406).render('./productsViews/addProduct',{
 			login:{username:req.session.username,rol:req.session.rol},
             alertConfig:{
 				alert:true,

@@ -8,7 +8,7 @@ exports.validateRegisterForm=(req,res,next)=>{
     const usernameRegex= /^[a-zA-Z0-9]{4,10}$/
 
     if (!usernameRegex.test(username)) {
-        res.render('./authViews/register',{
+        res.status(406).render('./authViews/register',{
             alertConfig:{
 				alert:true,
 				title:'Campo Vacio',
@@ -22,7 +22,7 @@ exports.validateRegisterForm=(req,res,next)=>{
         return
     }
 	if(!countries.includes(country)){
-		res.render('./authViews/register',{
+		res.status(406).render('./authViews/register',{
             alertConfig:{
 				alert:true,
 				title:'Pais invalido',
@@ -36,7 +36,7 @@ exports.validateRegisterForm=(req,res,next)=>{
         return
 	}
     if (!email || !emailRegex.test(email)) {
-        res.render('./authViews/register',{
+        res.status(406).render('./authViews/register',{
             alertConfig:{
 				alert:true,
 				title:'Correo electronico no valido',
@@ -51,7 +51,7 @@ exports.validateRegisterForm=(req,res,next)=>{
     }
     if (!password || !passRegex.test(password)){
 
-        res.render('./authViews/register',{
+        res.status(406).render('./authViews/register',{
             alertConfig:{
 				alert:true,
 				title:'Contraseña no valida',
@@ -66,7 +66,7 @@ exports.validateRegisterForm=(req,res,next)=>{
 
     }
     if (!confirmPassword || !confirmPassRegex.test(confirmPassword)) {
-        res.render('./authViews/register',{
+        res.status(406).render('./authViews/register',{
             alertConfig:{
 				alert:true,
 				title:'Contraseña no valida',
@@ -80,7 +80,7 @@ exports.validateRegisterForm=(req,res,next)=>{
         return
     }
     if (password !== confirmPassword ) {
-        res.render('./authViews/register',{
+        res.status(406).render('./authViews/register',{
             alertConfig:{
 				alert:true,
 				title:'Ooooops',

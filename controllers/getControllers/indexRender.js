@@ -13,12 +13,12 @@ const indexRender = async(req, res) => {
 	})
 	if (req.session.loggedIn) {
 		const {username, email, rol } = req.session;
-		res.render('./baseViews/index', {
+		res.status(200).render('./baseViews/index', {
 			top:orderProductsByClicks,
 			login: { username, email, rol },
 		});
 		return;
 	}
-	res.render('./baseViews/index',{top:orderProductsByClicks, login:null});
+	res.status(200).render('./baseViews/index',{top:orderProductsByClicks, login:null});
 };
 module.exports = indexRender;

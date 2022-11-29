@@ -11,7 +11,7 @@ const oldSalesRender = async(req,res,next) =>{
             return product
         }
     })
-    res.render('./accountViews/oldSales',{
+    res.status(200).render('./accountViews/oldSales',{
         login:{username:req.session.username, rol:req.session.rol},
         products:soldProducts,
     })

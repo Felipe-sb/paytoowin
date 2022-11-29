@@ -8,7 +8,7 @@ const sendContactMail = async(req,res) =>{
         subject,
         text
     })
-    res.render('./baseViews/contact',{
+    res.status(200).render('./baseViews/contact',{
         login:req.session.loggedIn,
         alertConfig:{
             alert:true,

@@ -3,6 +3,6 @@ const loginRender = (req,res)=>{
         res.redirect('/')
         return
     }
-    res.render('./authViews/login',{alertConfig:{alert:false}})
+    res.status(200).render('./authViews/login',{alertConfig:{alert:false}})
 }
 module.exports = loginRender

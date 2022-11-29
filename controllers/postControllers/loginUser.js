@@ -21,7 +21,7 @@ const loginUser = async(req,res)=>{
     }
     const validatePassword = await bcrypt.compare(password, user.password)
     if (!validatePassword){
-        res.render('./authViews/login',{
+        res.status(401).render('./authViews/login',{
             alertConfig:{
 				alert:true,
 				title:'Contraseña Incorrecta',

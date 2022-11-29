@@ -34,7 +34,7 @@ router.get('/product/:id',async(req,res,next)=>{
             haveTheProductInCart = true
         }
     })
-	res.render('./productsViews/product', {
+	res.status(200).render('./productsViews/product', {
         haveTheProductInCart,
 		product,
 		login: { username: req.session.username, email: req.session.email, rol:req.session.rol},
@@ -63,11 +63,11 @@ router.get('/filter/:page',async(req,res)=>{
     const current = page
     if (!req.session.loggedIn) {
        
-    res.render('./productsViews/filter',{msg:null,products:products.docs,login:null, pages,current,game,gameType,developer})
+    res.status(200).render('./productsViews/filter',{msg:null,products:products.docs,login:null, pages,current,game,gameType,developer})
         return
        }
     
-       res.render('./productsViews/filter',{msg:null,products:products.docs,login:{username:req.session.username, rol:req.session.rol}, pages,current,game,gameType,developer})
+       res.status(200).render('./productsViews/filter',{msg:null,products:products.docs,login:{username:req.session.username, rol:req.session.rol}, pages,current,game,gameType,developer})
         
 
 })
@@ -87,7 +87,7 @@ router.post('/add-product',upload,validateAddProductForm,async(req,res)=>{
             const user = await User.findOne({email:owner})
             user.products = [...user.products,product._id]
             await user.save()
-            res.render('./productsViews/addProduct',{
+            res.status(201).render('./productsViews/addProduct',{
                 login:{username:req.session.username,rol:req.session.rol},
                 product,
                 alertConfig:{
@@ -110,7 +110,7 @@ router.post('/update-product',upload,validateUpdateProduct,async(req,res,next)=>
     const {id,title,game,level,description,price,username} = req.body
     const files = req.files
     const product = await updateProduct(id,title,game,level,description,price,username,files)
-    res.render('./productsViews/updateProduct',{
+    res.status(202).render('./productsViews/updateProduct',{
         login:{
             username:req.session.username,
             email:req.session.email,rol:req.session.rol
@@ -135,7 +135,7 @@ router.post('/delete',async(req,res,next)=>{
     }
     const {id} = req.body;
     const product = await deleteProduct(id)
-    res.render('./productsViews/addProduct',{
+    res.status(202).render('./productsViews/addProduct',{
         login:{username:req.session.username,rol:req.session.rol},
         product:null,
         alertConfig:{
@@ -157,7 +157,7 @@ router.post('/verified',async(req,res,next)=>{
     }
     const {id} = req.body;
     const product = await verifiedProduct(id)
-    res.render('./productsViews/addProduct',{
+    res.status(202).render('./productsViews/addProduct',{
         login:{username:req.session.username,rol:req.session.rol},
         product:null,
         alertConfig:{
